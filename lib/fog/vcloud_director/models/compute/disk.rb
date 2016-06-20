@@ -42,6 +42,11 @@ module Fog
           response = service.put_disks(attributes[:vm].id, data.disks)
           service.process_task(response.body)
         end
+
+        def reload
+          # disks cannot be loaded with url
+          self
+        end
       end
     end
   end
