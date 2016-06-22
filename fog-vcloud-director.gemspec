@@ -6,8 +6,8 @@ require "fog/vcloud_director/version"
 Gem::Specification.new do |spec|
   spec.name          = "fog-vcloud-director"
   spec.version       = Fog::VcloudDirector::VERSION
-  spec.authors       = ["Luka Zakrajsek"]
-  spec.email         = ["luka.zakrajsek@xlab.si"]
+  spec.authors       = ["Luka Zakrajšek"]
+  spec.email         = ["luka@bancek.net"]
   spec.summary       = "Module for the 'fog' gem to support vCloud Director."
   spec.description   = 'This library can be used as a module for `fog` or as standalone provider
                         to use the vCloud Director in applications.'
@@ -26,10 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "shindo"
   spec.add_development_dependency "minitest"
-  spec.add_development_dependency "pry"
   spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "coveralls"
   spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "mime-types"
 end
