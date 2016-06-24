@@ -33,6 +33,19 @@ module Fog
           service.custom_fields( :vapp => self)
         end
 
+        def human_status
+          case status
+          when '0', 0
+            'creating'
+          when '8', 8
+            'off'
+          when '4', 4
+            'on'
+          else
+            'unknown'
+          end
+        end
+
         # @param [String] action The specified action is applied to all virtual
         #   machines in the vApp. All values other than **default** ignore
         #   actions, order, and delay specified in the StartupSection. One of:
