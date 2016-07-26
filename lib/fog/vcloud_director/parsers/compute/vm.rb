@@ -75,6 +75,8 @@ module Fog
               'off'
             when '4', 4
               'on'
+            when '3', 3
+              'suspended'
             else
               'unknown'
             end
