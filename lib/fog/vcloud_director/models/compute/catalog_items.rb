@@ -9,6 +9,13 @@ module Fog
 
         attribute :catalog
 
+        def get_single_catalog_item(catalog_item_id)
+          item = service.get_catalog_item(catalog_item_id).body
+          return nil unless item
+          item[:vapp_template_id] = item[:Entity][:href].split('/').last
+          new(item)
+        end
+
         private
 
         def item_list
