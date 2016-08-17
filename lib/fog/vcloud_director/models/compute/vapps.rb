@@ -16,6 +16,12 @@ module Fog
           "vApp"
         end
 
+        def get_single_vapp(vapp_id)
+          item = service.get_vapp(vapp_id).body
+          return nil unless item
+          new(item)
+        end
+
         private
 
         def get_by_id(item_id)
