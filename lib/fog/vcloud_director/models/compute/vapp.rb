@@ -35,6 +35,8 @@ module Fog
 
         def human_status
           case status
+          when '-1', -1
+            'failed_creation'
           when '0', 0
             'creating'
           when '8', 8
