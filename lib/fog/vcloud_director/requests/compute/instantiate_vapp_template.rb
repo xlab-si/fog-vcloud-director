@@ -47,15 +47,15 @@ module Fog
         def generate_instantiate_vapp_template_request(options ={})        
           
           #overriding some params so they work with new standardised generator
-          options[:InstantiationParams] = 
-          {
-            :NetworkConfig => 
-              [{
-              :networkName => options[:network_name],
-              :networkHref => options[:network_uri],
-              :fenceMode => 'bridged'
-              }]
-          } unless options[:InstantiationParams]
+          # options[:InstantiationParams] =
+          # {
+          #   :NetworkConfig =>
+          #     [{
+          #     :networkName => options[:network_name],
+          #     :networkHref => options[:network_uri],
+          #     :fenceMode => 'bridged'
+          #     }]
+          # } unless options[:InstantiationParams]
           options[:name] = options.delete(:vapp_name) if options[:vapp_name]
           options[:Description] = options.delete(:description) unless options[:Description]
           if options[:vms_config] then
