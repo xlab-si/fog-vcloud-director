@@ -380,6 +380,19 @@ module Fog
           @connection.reset
         end
 
+        def instantiate_template(options)
+          vapp_template_id = options[:template]
+          vapp_name        = options[:stack_name]
+
+          # Remove unneeded options.
+          options.delete(:template)
+          options.delete(:stack_name)
+
+          response = instantiate_vapp_template(vapp_name, vapp_template_id, options)
+          process_task(response.body[:Tasks][:Task])
+          response.body[:href].split('/').last # returns the vapp_id if it was instantiated successfully.
+        end
+
         def request(params)
           begin
             do_request(params)

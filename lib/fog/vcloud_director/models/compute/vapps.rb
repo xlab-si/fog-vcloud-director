@@ -19,6 +19,8 @@ module Fog
         def get_single_vapp(vapp_id)
           item = service.get_vapp(vapp_id).body
           return nil unless item
+          %w(:Link).each {|key_to_delete| item.delete(key_to_delete) }
+          service.add_id_from_href!(item)
           new(item)
         end
 
