@@ -44,18 +44,17 @@ module Fog
           options
         end
 
-        def generate_instantiate_vapp_template_request(options ={})        
-          
+        def generate_instantiate_vapp_template_request(options ={})
           #overriding some params so they work with new standardised generator
-          # options[:InstantiationParams] =
-          # {
-          #   :NetworkConfig =>
-          #     [{
-          #     :networkName => options[:network_name],
-          #     :networkHref => options[:network_uri],
-          #     :fenceMode => 'bridged'
-          #     }]
-          # } unless options[:InstantiationParams]
+          options[:InstantiationParams] =
+          {
+            :NetworkConfig =>
+              [{
+                :networkName => options[:network_name],
+                :networkHref => options[:network_uri],
+                # :fenceMode => "bridged"
+              }]
+          } unless options[:InstantiationParams]
           options[:name] = options.delete(:vapp_name) if options[:vapp_name]
           options[:Description] = options.delete(:description) unless options[:Description]
           if options[:vms_config] then
@@ -63,14 +62,9 @@ module Fog
             options[:source_vms].each_with_index {|vm, i|options[:source_vms][i][:StorageProfileHref] = options[:source_vms][i].delete(:storage_profile_href) }
           end
           options[:Source] = options.delete(:template_uri) if options[:template_uri]
-            
-              
+          options[:source_vms].each_with_index { |_, i| options[:source_vms][i][:href] = vapp_template_vm_end_point(options[:source_vms][i].delete(:vm_id)) if options[:source_vms][i].has_key?(:vm_id) }
 
-          
           Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(options).generate_xml
-
-
-
         end
 
         def xmlns
@@ -92,6 +86,10 @@ module Fog
 
         def vapp_template_end_point(vapp_template_id = nil)
           end_point + ( vapp_template_id ? "vAppTemplate/#{vapp_template_id}" : "vAppTemplate" )
+        end
+
+        def vapp_template_vm_end_point(vm_id = nil)
+          end_point + ( vm_id ? "vAppTemplate/#{vm_id}" : "vAppTemplate" )
         end
 
         def endpoint
