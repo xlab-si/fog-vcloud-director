@@ -1,3 +1,5 @@
+require "fog/vcloud_director"
+
 if ENV["FOG_MOCK"] == "true"
   Fog.mock!
 end
