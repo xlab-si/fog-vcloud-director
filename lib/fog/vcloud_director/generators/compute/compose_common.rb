@@ -12,8 +12,12 @@ module Fog
 
           def vapp_attrs
             attrs = {
-              :xmlns => 'http://www.vmware.com/vcloud/v1.5',
-              'xmlns:ovf' => 'http://schemas.dmtf.org/ovf/envelope/1'
+              :xmlns          => 'http://www.vmware.com/vcloud/v1.5',
+              'xmlns:vcloud'  => 'http://www.vmware.com/vcloud/v1.5',
+              'xmlns:ovf'     => 'http://schemas.dmtf.org/ovf/envelope/1',
+              'xmlns:vssd'    => 'http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData',
+              'xmlns:rasd'    => 'http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData',
+              'xmlns:vmw'     => 'http://www.vmware.com/schema/ovf'
             }
 
             [:deploy, :powerOn, :name].each do |a|
@@ -102,6 +106,9 @@ module Fog
                       xml.ComputerName customization[:ComputerName]
                     }
                   end
+                  if (hardware = vm[:hardware])
+                    build_virtual_hardware_section(xml, hardware)
+                  end
                 }
                 xml.StorageProfile(:href => vm[:StorageProfileHref]) if (vm.key? :StorageProfileHref)
               }
@@ -115,6 +122,71 @@ module Fog
             xml.AllEULAsAccepted (@configuration[:AllEULAsAccepted] || true)
           end
 
+          def build_virtual_hardware_section(xml, hardware)
+            xml[:ovf].VirtualHardwareSection do
+              xml[:ovf].Info('Virtual hardware requirements')
+              virtual_hardware_section_item_mem(xml, **hardware[:memory]) if hardware[:memory]
+              virtual_hardware_section_item_cpu(xml, **hardware[:cpu]) if hardware[:cpu]
+              array_wrap(hardware[:disk]).each { |disk| virtual_hardware_section_item_hdd(xml, **disk) }
+            end
+          end
+
+          def virtual_hardware_section_item_base(xml, type:, name: nil, id: nil)
+            id ||= SecureRandom.uuid
+            name ||= id
+            xml[:ovf].Item do
+              xml[:rasd].ResourceType(type)
+              xml[:rasd].ElementName(name)
+              xml[:rasd].InstanceID(id)
+
+              yield
+
+              # RASD elements must be alphabetically sorted
+              sort_nodes_by_name(xml)
+            end
+          end
+
+          def virtual_hardware_section_item_mem(xml, quantity_mb:, reservation: nil, limit: nil, weight: nil)
+            virtual_hardware_section_item_base(xml, :type => 4) do
+              xml[:rasd].AllocationUnits('byte * 2^20')
+              xml[:rasd].VirtualQuantity(quantity_mb)
+              xml[:rasd].Reservation(reservation) if reservation
+              xml[:rasd].Limit(limit) if limit
+              xml[:rasd].Weight(weight) if weight
+            end
+          end
+
+          def virtual_hardware_section_item_cpu(xml, num_cores:, cores_per_socket: nil, reservation: nil, limit: nil, weight: nil)
+            virtual_hardware_section_item_base(xml, :type => 3) do
+              xml[:rasd].AllocationUnits('hertz * 10^6')
+              xml[:rasd].VirtualQuantity(num_cores)
+              xml[:rasd].Reservation(reservation) if reservation
+              xml[:rasd].Limit(limit) if limit
+              xml[:rasd].Weight(weight) if weight
+              xml[:vmw].CoresPerSocket(cores_per_socket) if cores_per_socket
+            end
+          end
+
+          def virtual_hardware_section_item_hdd(xml, capacity_mb:, id:, address: nil, type: nil, subtype: nil)
+            virtual_hardware_section_item_base(xml, :type => 17, :id => id) do
+              xml[:rasd].AddressOnParent(address) if address
+              attrs = {}
+              attrs['vcloud:capacity'] = capacity_mb if capacity_mb
+              attrs['vcloud:busType'] = type if type
+              attrs['vcloud:busSubType'] = subtype if subtype
+              xml[:rasd].HostResource(attrs)
+            end
+          end
+
+          def sort_nodes_by_name(xml)
+            nodes = xml.parent.children.remove
+            nodes.sort_by { |n| "#{n.namespace.prefix}:#{n.name}" }.each { |n| xml.parent.add_child(n) }
+          end
+
+          def array_wrap(val)
+            return val if val.kind_of?(Array)
+            [val].compact
+          end
         end
       end
     end
