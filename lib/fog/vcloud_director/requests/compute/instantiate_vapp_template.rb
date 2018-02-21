@@ -41,20 +41,25 @@ module Fog
           options[:vdc_uri] =  vdc_end_point(options[:vdc_id])
           options[:network_uri] = network_end_point(options[:network_id]) if options[:network_id]
           options[:template_uri] = vapp_template_end_point(options[:template_id]) || raise("template_id option is required")
+          options[:endpoint] = end_point
           options
         end
 
         def generate_instantiate_vapp_template_request(options ={})
-          #overriding some params so they work with new standardised generator
-          options[:InstantiationParams] =
-          {
-            :NetworkConfig =>
-              [{
-                :networkName => options[:network_name],
-                :networkHref => options[:network_uri],
-                # :fenceMode => "bridged"
-              }]
-          } unless options[:InstantiationParams]
+          # TODO: this is old format for customizing vapp networks, please use :vapp_networks instead to let
+          #       us do the XML building magic for you
+          if options.key?(:network_name) || options.key?(:network_uri)
+            options[:InstantiationParams] = {
+              :NetworkConfig =>
+                [{
+                  :networkName => options[:network_name],
+                  :networkHref => options[:network_uri],
+                  # :fenceMode => "bridged"
+                }]
+            } unless options[:InstantiationParams]
+            network_config = options[:InstantiationParams][:NetworkConfig]
+            network_config.each_with_index { |_, i| network_config[i][:networkHref] = network_end_point(network_config[i].delete(:networkId)) if network_config[i].key?(:networkId) }
+          end
           options[:name] = options.delete(:vapp_name) if options[:vapp_name]
           options[:Description] = options.delete(:description) unless options[:Description]
           if options[:vms_config] then
@@ -63,9 +68,6 @@ module Fog
           end
           options[:Source] = options.delete(:template_uri) if options[:template_uri]
           options[:source_vms].each_with_index { |_, i| options[:source_vms][i][:href] = vapp_template_vm_end_point(options[:source_vms][i].delete(:vm_id)) if options[:source_vms][i].has_key?(:vm_id) }
-
-          network_config = options[:InstantiationParams][:NetworkConfig]
-          network_config.each_with_index { |_, i| network_config[i][:networkHref] = network_end_point(network_config[i].delete(:networkId)) if network_config[i].key?(:networkId) }
 
           Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(options).generate_xml
         end

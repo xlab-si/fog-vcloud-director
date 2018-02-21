@@ -256,4 +256,135 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
       xml.xpath('./rasd:AllocationUnits').text.must_equal('hertz * 10^6')
     end
   end
+
+  describe 'vApp Network customization' do
+    [
+      {
+        :case          => 'minimal vapp networking',
+        :vapp_networks => [
+          {
+            :name   => 'network',
+            :subnet => [
+              {
+                :gateway => '1.2.3.4',
+                :netmask => '255.255.255.0'
+              }
+            ]
+          }
+        ],
+        :expect        => lambda do |vapp_net_conf|
+          common_vapp_network_config_assertions(vapp_net_conf)
+          vapp_net_conf.xpath('./vcloud:NetworkConfig/@networkName').text.must_equal 'network'
+          conf = vapp_net_conf.xpath('./vcloud:NetworkConfig/vcloud:Configuration')
+          conf.xpath('./vcloud:FenceMode').text.must_equal 'isolated'
+          conf.xpath('./vcloud:ParentNetwork').text.must_be_empty
+          subnet = conf.xpath('./vcloud:IpScopes/vcloud:IpScope')
+          subnet.xpath('./vcloud:Gateway').text.must_equal '1.2.3.4'
+          subnet.xpath('./vcloud:Netmask').text.must_equal '255.255.255.0'
+        end
+      },
+      {
+        :case          => 'full networking',
+        :vapp_networks => [
+          {
+            :name        => 'network',
+            :description => 'VM Network Description',
+            :deployed    => true,
+            :parent      => 'parent-network-id',
+            :fence_mode  => 'bridged',
+            :retain      => false,
+            :external_ip => '17.17.17.17',
+            :subnet      => [
+              {
+                :enabled    => true,
+                :inherited  => false,
+                :gateway    => '1.2.3.4',
+                :netmask    => '255.255.255.0',
+                :dns1       => '5.6.7.8',
+                :dns2       => '9.10.11.12',
+                :dns_suffix => 'dns-suffix',
+                :ip_range   => [{ :start => '192.168.254.100', :end => '192.168.254.199' }]
+              }
+            ]
+          }
+        ],
+        :expect        => lambda do |vapp_net_conf|
+          common_vapp_network_config_assertions(vapp_net_conf)
+          vapp_net_conf.xpath('./vcloud:NetworkConfig/@networkName').text.must_equal 'network'
+          vapp_net_conf.xpath('./vcloud:NetworkConfig/vcloud:Description').text.must_equal 'VM Network Description'
+          vapp_net_conf.xpath('./vcloud:NetworkConfig/vcloud:IsDeployed').text.must_equal 'true'
+          conf = vapp_net_conf.xpath('./vcloud:NetworkConfig/vcloud:Configuration')
+          conf.xpath('./vcloud:FenceMode').text.must_equal 'bridged'
+          conf.xpath('./vcloud:ParentNetwork/@href').text.must_equal 'ENDPOINT/network/parent-network-id'
+          conf.xpath('./vcloud:RetainNetInfoAcrossDeployments').text.must_equal 'false'
+          conf.xpath('./vcloud:RouterInfo/vcloud:ExternalIp').text.must_equal '17.17.17.17'
+          subnet = conf.xpath('./vcloud:IpScopes/vcloud:IpScope')
+          subnet.xpath('./vcloud:IsEnabled').text.must_equal 'true'
+          subnet.xpath('./vcloud:IsInherited').text.must_equal 'false'
+          subnet.xpath('./vcloud:Gateway').text.must_equal '1.2.3.4'
+          subnet.xpath('./vcloud:Netmask').text.must_equal '255.255.255.0'
+          subnet.xpath('./vcloud:Dns1').text.must_equal '5.6.7.8'
+          subnet.xpath('./vcloud:Dns2').text.must_equal '9.10.11.12'
+          ip_range = subnet.xpath('./vcloud:IpRanges/vcloud:IpRange')
+          ip_range.xpath('./vcloud:StartAddress').text.must_equal '192.168.254.100'
+          ip_range.xpath('./vcloud:EndAddress').text.must_equal '192.168.254.199'
+        end
+      },
+      {
+        :case          => 'two vapp networks',
+        :vapp_networks => [
+          {
+            :name   => 'network1',
+            :subnet => [
+              {
+                :gateway => '1.1.1.1',
+                :netmask => '255.255.255.1'
+              }
+            ]
+          },
+          {
+            :name   => 'network2',
+            :subnet => [
+              {
+                :gateway => '2.2.2.2',
+                :netmask => '255.255.255.2'
+              }
+            ]
+          }
+        ],
+        :expect        => lambda do |vapp_net_conf|
+          common_vapp_network_config_assertions(vapp_net_conf)
+          vapp_net_conf.xpath('./vcloud:NetworkConfig').count.must_equal 2
+          vapp_net_conf.xpath('./vcloud:NetworkConfig[1]/@networkName').text.must_equal 'network1'
+          vapp_net_conf.xpath('./vcloud:NetworkConfig[2]/@networkName').text.must_equal 'network2'
+          conf1 = vapp_net_conf.xpath('./vcloud:NetworkConfig[1]/vcloud:Configuration')
+          subnet1 = conf1.xpath('./vcloud:IpScopes/vcloud:IpScope')
+          subnet1.xpath('./vcloud:Gateway').text.must_equal '1.1.1.1'
+          subnet1.xpath('./vcloud:Netmask').text.must_equal '255.255.255.1'
+          conf2 = vapp_net_conf.xpath('./vcloud:NetworkConfig[2]/vcloud:Configuration')
+          subnet2 = conf2.xpath('./vcloud:IpScopes/vcloud:IpScope')
+          subnet2.xpath('./vcloud:Gateway').text.must_equal '2.2.2.2'
+          subnet2.xpath('./vcloud:Netmask').text.must_equal '255.255.255.2'
+        end
+      }
+    ].each do |args|
+      it args[:case].to_s do
+        input = {
+          :name          => 'VAPP_NAME',
+          :vapp_networks => args[:vapp_networks],
+          :endpoint      => 'ENDPOINT'
+        }
+        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        args[:expect].call(vapp_network_config(Nokogiri::XML(output)))
+      end
+    end
+
+    def vapp_network_config(xml)
+      xml.xpath('//xmlns:NetworkConfigSection')
+    end
+
+    def self.common_vapp_network_config_assertions(vapp_net_conf)
+      vapp_net_conf.count.must_equal 1
+    end
+  end
 end

@@ -10,6 +10,11 @@ module Fog
 
           private
 
+          def href(path)
+            @endpoint ||= @configuration[:endpoint].to_s.sub(/\/$/, '') # ensure not ending with '/'
+            "#{@endpoint}#{path}"
+          end
+
           def vapp_attrs
             attrs = {
               :xmlns          => 'http://www.vmware.com/vcloud/v1.5',
@@ -34,12 +39,19 @@ module Fog
 
           def build_vapp_instantiation_params(xml)
             xml.Description @configuration[:Description] if @configuration[:Description]
-            
-            vapp = @configuration[:InstantiationParams]
-            if vapp 
-              xml.InstantiationParams {
+            return unless @configuration[:vapp_networks] || @configuration[:InstantiationParams]
+
+            xml.InstantiationParams do
+              if (vapp_networks = @configuration[:vapp_networks])
+                xml.NetworkConfigSection do
+                  xml['ovf'].Info
+                  array_wrap(vapp_networks).each { |vapp_net| vapp_network_section(xml, **vapp_net) }
+                end
+              # Backwards compatibility
+              # TODO: disable inputing InstantiationParams directly as below because it offers bad UX
+              elsif (vapp = @configuration[:InstantiationParams])
                 xml.DefaultStorageProfileSection {
-                    xml.StorageProfile vapp[:DefaultStorageProfile]
+                  xml.StorageProfile vapp[:DefaultStorageProfile]
                 } if (vapp.key? :DefaultStorageProfile)
                 xml.NetworkConfigSection {
                   xml['ovf'].Info
@@ -52,7 +64,7 @@ module Fog
                     }
                   end if vapp[:NetworkConfig]
                 }
-              }
+              end
             end
           end
           
@@ -186,6 +198,58 @@ module Fog
           def array_wrap(val)
             return val if val.kind_of?(Array)
             [val].compact
+          end
+
+          def vapp_network_section(xml, name:, subnet:, description: nil, deployed: nil, parent: nil, parent_name: nil,
+                                   fence_mode: nil, retain: false, external_ip: nil)
+            description ||= name
+            parent = href("/network/#{parent}") if parent
+            fence_mode = calculate_fence_mode(fence_mode, parent, parent_name)
+            xml.NetworkConfig(:networkName => name) do
+              xml.Description(description)
+              xml.IsDeployed(deployed) unless deployed.nil?
+              xml.Configuration do
+                xml.IpScopes do
+                  array_wrap(subnet).each { |s| ip_scope_section(xml, **s) }
+                end
+                attr = {
+                  :href => parent.to_s
+                }
+                attr[:name] = parent_name if parent_name
+                xml.ParentNetwork(attr) if parent || parent_name
+                xml.FenceMode(fence_mode)
+                xml.RetainNetInfoAcrossDeployments(retain)
+                xml.RouterInfo do
+                  xml.ExternalIp(external_ip)
+                end if external_ip
+              end
+            end
+          end
+
+          def ip_scope_section(xml, gateway:, netmask:, enabled: true, inherited: false, dns1: nil, dns2: nil, dns_suffix: nil, ip_range: nil)
+            xml.IpScope do
+              xml.IsInherited(inherited)
+              xml.Gateway(gateway)
+              xml.Netmask(netmask)
+              xml.Dns1(dns1) if dns1
+              xml.Dns2(dns2) if dns2
+              xml.DnsSuffix(dns_suffix) if dns_suffix
+              xml.IsEnabled(enabled)
+              xml.IpRanges do
+                array_wrap(ip_range).each do |range|
+                  xml.IpRange do
+                    xml.StartAddress(range[:start])
+                    xml.EndAddress(range[:end])
+                  end
+                end
+              end if ip_range
+            end
+          end
+
+          def calculate_fence_mode(mode, parent, parent_name)
+            return 'isolated' unless parent || parent_name
+            return 'bridged' unless mode && mode != 'isolated'
+            mode
           end
         end
       end
