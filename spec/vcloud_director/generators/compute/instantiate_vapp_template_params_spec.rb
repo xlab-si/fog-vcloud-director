@@ -387,4 +387,160 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
       vapp_net_conf.count.must_equal 1
     end
   end
+
+  describe 'Guest customization' do
+    [
+      {
+        :case                => 'hostname',
+        :guest_customization => {
+          :ComputerName => 'hostname'
+        },
+        :expect              => lambda do |guest_customization|
+          common_guest_customization_assertions(guest_customization)
+          hostnames = guest_customization.xpath('./xmlns:ComputerName')
+          hostnames.count.must_equal 1
+          hostname = hostnames.first
+          hostname.text.must_equal 'hostname'
+        end
+      }
+    ].each do |args|
+      it args[:case].to_s do
+        input = {
+          :name       => 'VAPP_NAME',
+          :source_vms => [
+            {
+              :name                => 'VM1',
+              :guest_customization => args[:guest_customization]
+            }
+          ]
+        }
+        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        args[:expect].call(guest_customization(Nokogiri::XML(output)))
+      end
+    end
+
+    def guest_customization(xml)
+      xml.xpath('//xmlns:SourcedItem/xmlns:InstantiationParams/xmlns:GuestCustomizationSection')
+    end
+
+    def self.common_guest_customization_assertions(guest_customization)
+      guest_customization.count.must_equal 1
+    end
+  end
+
+  describe 'NIC connection customization' do
+    [
+      {
+        :case     => 'connect NIC#0 in DHCP mode',
+        :networks => [
+          {
+            :networkName             => 'network',
+            :IpAddressAllocationMode => 'DHCP',
+            :IsConnected             => true
+          }
+        ],
+        :expect   => lambda do |networks|
+          common_networks_assertions(networks)
+          network = networks.first
+          network.xpath('./@network').text.must_equal 'network'
+          network.xpath('./xmlns:NetworkConnectionIndex').text.must_equal '0'
+          network.xpath('./xmlns:IpAddressAllocationMode').text.must_equal 'DHCP'
+          network.xpath('./xmlns:IpAddress').text.must_be_empty
+          network.xpath('./xmlns:IsConnected').text.must_equal 'true'
+        end
+      },
+      {
+        :case     => 'connect NIC#0 in MANUAL mode',
+        :networks => [
+          {
+            :networkName             => 'network',
+            :IpAddressAllocationMode => 'MANUAL',
+            :IpAddress               => '1.2.3.4',
+            :IsConnected             => true
+          }
+        ],
+        :expect   => lambda do |networks|
+          common_networks_assertions(networks)
+          network = networks.first
+          network.xpath('./@network').text.must_equal 'network'
+          network.xpath('./xmlns:NetworkConnectionIndex').text.must_equal '0'
+          network.xpath('./xmlns:IpAddressAllocationMode').text.must_equal 'MANUAL'
+          network.xpath('./xmlns:IpAddress').text.must_equal '1.2.3.4'
+          network.xpath('./xmlns:IsConnected').text.must_equal 'true'
+        end
+      },
+      {
+        :case     => 'connect NIC#0 in POOL mode',
+        :networks => [
+          {
+            :networkName             => 'network',
+            :IpAddressAllocationMode => 'POOL',
+            :IsConnected             => true
+          }
+        ],
+        :expect   => lambda do |networks|
+          common_networks_assertions(networks)
+          network = networks.first
+          network.xpath('./@network').text.must_equal 'network'
+          network.xpath('./xmlns:NetworkConnectionIndex').text.must_equal '0'
+          network.xpath('./xmlns:IpAddressAllocationMode').text.must_equal 'POOL'
+          network.xpath('./xmlns:IpAddress').text.must_be_empty
+          network.xpath('./xmlns:IsConnected').text.must_equal 'true'
+        end
+      },
+      {
+        :case     => 'connect NIC#0 and NIC#1',
+        :networks => [
+          {
+            :networkName             => 'network0',
+            :IpAddressAllocationMode => 'DHCP',
+            :IsConnected             => true
+          },
+          {
+            :networkName             => 'network1',
+            :IpAddressAllocationMode => 'MANUAL',
+            :IpAddress               => '1.2.3.4',
+            :IsConnected             => true
+          }
+        ],
+        :expect   => lambda do |networks|
+          networks.count.must_equal 2
+          nic0_network = networks[0]
+          nic0_network.xpath('./@network').text.must_equal 'network0'
+          nic0_network.xpath('./xmlns:NetworkConnectionIndex').text.must_equal '0'
+          nic0_network.xpath('./xmlns:IpAddressAllocationMode').text.must_equal 'DHCP'
+          nic0_network.xpath('./xmlns:IpAddress').text.must_be_empty
+          nic0_network.xpath('./xmlns:IsConnected').text.must_equal 'true'
+          nic1_network = networks[1]
+          nic1_network.xpath('./@network').text.must_equal 'network1'
+          nic1_network.xpath('./xmlns:NetworkConnectionIndex').text.must_equal '1'
+          nic1_network.xpath('./xmlns:IpAddressAllocationMode').text.must_equal 'MANUAL'
+          nic1_network.xpath('./xmlns:IpAddress').text.must_equal '1.2.3.4'
+          nic1_network.xpath('./xmlns:IsConnected').text.must_equal 'true'
+        end
+      }
+    ].each do |args|
+      it args[:case].to_s do
+        input = {
+          :name       => 'VAPP_NAME',
+          :source_vms => [
+            {
+              :name     => 'VM1',
+              :networks => args[:networks]
+            }
+          ]
+        }
+        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        args[:expect].call(networks(Nokogiri::XML(output)))
+      end
+    end
+
+    def networks(xml)
+      xml.xpath('//xmlns:SourcedItem/xmlns:InstantiationParams/xmlns:NetworkConnectionSection/xmlns:NetworkConnection')
+    end
+
+    def self.common_networks_assertions(networks)
+      networks.count.must_equal 1
+    end
+  end
 end
