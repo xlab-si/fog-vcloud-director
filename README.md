@@ -960,3 +960,4 @@ template.instantiate('webserver', {
 }
 ```
 
+See [here](./docs/examples-vapp-instantiate.md) for real-world example.
