@@ -1,9 +1,4 @@
 require './spec/spec_helper.rb'
-require 'minitest/autorun'
-require 'nokogiri'
-require './lib/fog/vcloud_director/generators/compute/compose_common.rb'
-
-include Fog::Generators::Compute::VcloudDirector::ComposeCommon
 
 describe Fog::Generators::Compute::VcloudDirector::ComposeCommon do
   describe '.calculate_fence_mode' do

@@ -1,4 +1,3 @@
-require 'fog/core/model'
 require 'fog/vcloud_director/models/compute/vm_customization'
 
 module Fog
