@@ -29,7 +29,7 @@ module Fog
         PATH        = '/api'
         PORT        = 443
         SCHEME      = 'https'
-        API_VERSION = '5.1'
+        API_VERSION = '5.5'
         OMIT_DEFAULT_PORT = true
       end
 
