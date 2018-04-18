@@ -961,3 +961,6 @@ template.instantiate('webserver', {
 ```
 
 See [here](./docs/examples-vapp-instantiate.md) for real-world example.
+
+### Reconfigure VM Virtual Hardware
+See [here](./docs/examples-vm-reconfigure.md) for real-world example.

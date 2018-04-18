@@ -172,15 +172,14 @@ module Fog
         
         # Reconfigure a VM using any of the options documented in
         # post_reconfigure_vm
-        def reconfigure(options)
-          options[:name] ||= name # name has to be sent
-          # Delete those things that are not changing for performance
-          [:cpu, :memory, :description].each do |k|
-            options.delete(k) if options.key? k and options[k] == attributes[k]
-          end
-          response = service.post_reconfigure_vm(id, options)
+        def reconfigure(options, current: nil)
+          # Fetch current XML.
+          current ||= service.get_vapp(id, :parser => 'xml').body
+          # Let post_reconfigure_vm apply modifications.
+          response = service.post_reconfigure_vm(id, current, options)
           service.process_task(response.body)
-          options.each {|k,v| attributes[k] = v}
+
+          # TODO: apply modifications on current VM instance.
         end
         
         def ready?

@@ -173,7 +173,6 @@ describe Fog::Compute::VcloudDirector::Real do
       { :req => :post_power_on_vapp, :args => %w(id) },
       { :req => :post_reboot_vapp, :args => %w(id) },
       { :req => :post_recompose_vapp, :args => ['id', { :vms_to_delete => [] }] },
-      { :req => :post_reconfigure_vm, :args => %w(id) },
       { :req => :post_remove_all_snapshots, :args => %w(id) },
       { :req => :post_reset_vapp, :args => %w(id) },
       { :req => :post_revert_snapshot, :args => %w(id) },
