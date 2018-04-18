@@ -394,9 +394,23 @@ module Fog
           response.body[:href].split('/').last # returns the vapp_id if it was instantiated successfully.
         end
 
+        # Perform HTTP request against vCloud API.
+        #
+        # @param [Hash] params request parameters.
+        #  - params[:parser] SAX parser class, SAX parser instance or string. String can be one of:
+        #    - 'plaintext': returns unparsed text in response.body
+        #    - 'xml': returns Nokogiri::XML instance in response.body
+        # @return [Excon::Response]
         def request(params)
           begin
-            do_request(params)
+            parser_type = params[:parser]
+            params[:parser] = nil if parser_type.instance_of?(String)
+            params[:parser] = parser_type.new if parser_type.respond_to?(:new)
+
+            resp = do_request(params)
+
+            resp.body = Nokogiri::XML(resp.body) if parser_type == 'xml'
+            resp
           rescue EOFError
             # This error can occur if Vcloud receives a request from a network
             # it deems to be unauthorized; no HTTP response is sent, but the

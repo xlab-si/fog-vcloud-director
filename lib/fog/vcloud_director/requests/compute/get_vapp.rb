@@ -5,20 +5,21 @@ module Fog
         # Retrieve a vApp or VM.
         #
         # @param [String] id Object identifier of the vApp or VM.
+        # @param [Class or Symbol] parser, see compute.rb#request() documentation for details.
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-VApp.html
         # @since vCloud API version 0.9
-        def get_vapp(id)
+        def get_vapp(id, parser: Fog::ToHashDocument)
           response = request(
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::ToHashDocument.new,
+            :parser     => parser,
             :path       => "vApp/#{id}"
           )
-          ensure_list! response.body, :Children, :Vm
+          ensure_list!(response.body, :Children, :Vm) if parser == Fog::ToHashDocument
           response
         end
       end
