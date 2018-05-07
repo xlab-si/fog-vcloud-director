@@ -1,5 +1,5 @@
 require 'fog/core/collection'
-require 'fog/vcloud_director/models/compute/vm'
+require 'fog/vcloud_director/models/compute/template_vm'
 
 module Fog
   module Compute
@@ -13,7 +13,7 @@ module Fog
         attribute :vapp_template
 
 
-        def get_single_vm(vm_id)
+        def get_single_template_vm(vm_id)
           item = service.get_template_vm(vm_id).body
           return nil unless item
           new(item[:vm])
