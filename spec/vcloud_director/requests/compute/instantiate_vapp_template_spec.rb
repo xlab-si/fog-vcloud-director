@@ -1,4 +1,4 @@
-require './spec/vcloud_director/spec_helper.rb'
+require './spec/spec_helper.rb'
 require 'minitest/autorun'
 require './lib/fog/vcloud_director/requests/compute/instantiate_vapp_template.rb'
 
