@@ -149,6 +149,7 @@ module Fog
           service.disks(:vm => self)
         end
 
+        remove_method :memory=
         def memory=(new_memory)
           has_changed = ( memory != new_memory.to_i )
           not_first_set = !memory.nil?
@@ -159,6 +160,7 @@ module Fog
           end
         end
 
+        remove_method :cpu=
         def cpu=(new_cpu)
           has_changed = ( cpu != new_cpu.to_i )
           not_first_set = !cpu.nil?

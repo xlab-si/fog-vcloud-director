@@ -7,6 +7,7 @@ module Fog
         identity  :id
         attribute :value
 
+        remove_method :value=
         def value=(new_value)
           has_changed = ( value != new_value )
           not_first_set = !value.nil?

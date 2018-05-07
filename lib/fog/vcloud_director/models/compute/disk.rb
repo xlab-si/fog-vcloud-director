@@ -17,6 +17,7 @@ module Fog
         attribute :bus_sub_type
         attribute :bus_type
 
+        remove_method :capacity=
         # TODO Virtual machine disk sizes may only be increased, not decreased.
         def capacity=(new_capacity)
           has_changed = ( capacity != new_capacity.to_i )
