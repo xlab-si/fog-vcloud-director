@@ -1,4 +1,4 @@
-require './spec/vcloud_director/spec_helper.rb'
+require './spec/spec_helper.rb'
 require 'minitest/autorun'
 require 'nokogiri'
 require './lib/fog/vcloud_director/generators/compute/compose_common.rb'
