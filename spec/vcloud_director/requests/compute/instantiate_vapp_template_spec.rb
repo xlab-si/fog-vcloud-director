@@ -1,6 +1,4 @@
 require './spec/spec_helper.rb'
-require 'minitest/autorun'
-require './lib/fog/vcloud_director/requests/compute/instantiate_vapp_template.rb'
 
 describe Fog::Compute::VcloudDirector::Real do
   before do

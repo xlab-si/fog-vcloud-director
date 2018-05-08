@@ -1,5 +1,4 @@
 require './spec/spec_helper.rb'
-Dir['./lib/fog/vcloud_director/requests/**/*.rb'].each {|file| require file }
 
 describe Fog::Compute::VcloudDirector::Real do
   describe 'Requests exist' do

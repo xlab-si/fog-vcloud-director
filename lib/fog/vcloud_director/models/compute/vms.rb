@@ -1,4 +1,3 @@
-require 'fog/core/collection'
 require 'fog/vcloud_director/models/compute/vm'
 
 module Fog

@@ -1,6 +1,3 @@
-require 'fog/core'
-require 'fog/xml'
-
 module Fog
   module VcloudDirector
     extend Fog::Provider

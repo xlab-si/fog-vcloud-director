@@ -1,5 +1,4 @@
 require './spec/spec_helper.rb'
-Dir['./lib/fog/vcloud_director/models/**/*.rb'].each {|file| require file }
 
 describe Fog::Compute::VcloudDirector do
   describe 'No load errors' do

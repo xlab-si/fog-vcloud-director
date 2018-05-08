@@ -1,8 +1,4 @@
 require './spec/spec_helper.rb'
-require './lib/fog/vcloud_director/generators/compute/compose_common.rb'
-require './lib/fog/vcloud_director/generators/compute/compose_vapp.rb'
-
-include Fog::Generators::Compute::VcloudDirector::ComposeCommon
 
 describe Fog::Generators::Compute::VcloudDirector::ComposeVapp do
   describe '.calculate_fence_mode' do

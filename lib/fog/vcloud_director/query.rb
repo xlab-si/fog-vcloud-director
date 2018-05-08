@@ -1,4 +1,3 @@
-require 'pp'
 module Fog
   module VcloudDirector
     module Query
