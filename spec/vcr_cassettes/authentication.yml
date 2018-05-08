@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://VMWARE_CLOUD_HOST/api/sessions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/2.1.0
+      Accept:
+      - application/*+xml;version=9.0
+      Authorization:
+      - Basic VMWARE_CLOUD_AUTHORIZATION
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 May 2018 13:29:08 GMT
+      X-Vmware-Vcloud-Request-Id:
+      - e776f0fa-1082-4d96-8ea6-d0039ac96bb3
+      X-Vcloud-Authorization:
+      - a27dc3f5567f49c3b4dd9d0c23b7e1b8
+      Content-Type:
+      - application/vnd.vmware.vcloud.session+xml;version=9.0
+      X-Vmware-Vcloud-Request-Execution-Time:
+      - '152'
+      Content-Length:
+      - '1838'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Session xmlns="http://www.vmware.com/vcloud/v1.5" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:common="http://schemas.dmtf.org/wbem/wscim/1/common" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" xmlns:vmw="http://www.vmware.com/schema/ovf" xmlns:ovfenv="http://schemas.dmtf.org/ovf/environment/1" xmlns:vmext="http://www.vmware.com/vcloud/extension/v1.5" xmlns:ns9="http://www.vmware.com/vcloud/networkservice/1.0" xmlns:ns10="http://www.vmware.com/vcloud/networkservice/common/1.0" xmlns:ns11="http://www.vmware.com/vcloud/networkservice/ipam/1.0" xmlns:ns12="http://www.vmware.com/vcloud/versions" org="RedHat" roles="Organization Administrator" user="redhat" userId="urn:vcloud:user:e0d6e74d-efde-49fe-b19f-ace7e55b68dd" href="https://VMWARE_CLOUD_HOST/api/session" type="application/vnd.vmware.vcloud.session+xml">
+            <Link rel="down" href="https://VMWARE_CLOUD_HOST/api/org/" type="application/vnd.vmware.vcloud.orgList+xml"/>
+            <Link rel="remove" href="https://VMWARE_CLOUD_HOST/api/session"/>
+            <Link rel="down" href="https://VMWARE_CLOUD_HOST/api/admin/" type="application/vnd.vmware.admin.vcloud+xml"/>
+            <Link rel="down" href="https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4" name="RedHat" type="application/vnd.vmware.vcloud.org+xml"/>
+            <Link rel="down" href="https://VMWARE_CLOUD_HOST/api/query" type="application/vnd.vmware.vcloud.query.queryList+xml"/>
+            <Link rel="entityResolver" href="https://VMWARE_CLOUD_HOST/api/entity/" type="application/vnd.vmware.vcloud.entity+xml"/>
+            <Link rel="down:extensibility" href="https://VMWARE_CLOUD_HOST/api/extensibility" type="application/vnd.vmware.vcloud.apiextensibility+xml"/>
+        </Session>
+    http_version: 
+  recorded_at: Tue, 08 May 2018 13:29:08 GMT
+recorded_with: VCR 4.0.0

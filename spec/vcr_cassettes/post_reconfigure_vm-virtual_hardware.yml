@@ -1,0 +1,445 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/action/reconfigureVm
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Vm
+        xmlns=\"http://www.vmware.com/vcloud/v1.5\" xmlns:ovf=\"http://schemas.dmtf.org/ovf/envelope/1\"
+        xmlns:vssd=\"http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData\"
+        xmlns:common=\"http://schemas.dmtf.org/wbem/wscim/1/common\" xmlns:rasd=\"http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData\"
+        xmlns:vmw=\"http://www.vmware.com/schema/ovf\" xmlns:ovfenv=\"http://schemas.dmtf.org/ovf/environment/1\"
+        xmlns:vmext=\"http://www.vmware.com/vcloud/extension/v1.5\" xmlns:ns9=\"http://www.vmware.com/vcloud/networkservice/1.0\"
+        xmlns:ns10=\"http://www.vmware.com/vcloud/networkservice/common/1.0\" xmlns:ns11=\"http://www.vmware.com/vcloud/networkservice/ipam/1.0\"
+        xmlns:ns12=\"http://www.vmware.com/vcloud/versions\" needsCustomization=\"false\"
+        deployed=\"false\" status=\"8\" name=\"Databasy Machiny\" id=\"urn:vcloud:vm:8dc9990c-a55a-418e-8e21-5942a20b93ef\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef\"
+        type=\"application/vnd.vmware.vcloud.vm+xml\">\n  <Link rel=\"down\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/metadata\"
+        type=\"application/vnd.vmware.vcloud.metadata+xml\"/>\n  <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/productSections/\"
+        type=\"application/vnd.vmware.vcloud.productSections+xml\"/>\n  <Link rel=\"screen:thumbnail\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/screen\"/>\n
+        \ <Link rel=\"customizeAtNextPowerOn\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/action/customizeAtNextPowerOn\"/>\n
+        \ <Link rel=\"up\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vapp-fe8d013d-dd2f-4ac6-9e8a-3a4a18e0a62e\"
+        type=\"application/vnd.vmware.vcloud.vApp+xml\"/>\n  <Description>the new
+        description</Description>\n  <Tasks>\n    <Task cancelRequested=\"false\"
+        endTime=\"2018-04-26T10:14:47.769+02:00\" expiryTime=\"2018-07-25T10:14:42.767+02:00\"
+        operation=\"Updated Virtual Machine Databasy Machiny(8dc9990c-a55a-418e-8e21-5942a20b93ef)\"
+        operationName=\"vappUpdateVm\" serviceNamespace=\"com.vmware.vcloud\" startTime=\"2018-04-26T10:14:42.767+02:00\"
+        status=\"error\" name=\"task\" id=\"urn:vcloud:task:cff03716-2fce-4606-be1d-77e8a8180c85\"
+        href=\"https://VMWARE_CLOUD_HOST/api/task/cff03716-2fce-4606-be1d-77e8a8180c85\"
+        type=\"application/vnd.vmware.vcloud.task+xml\">\n      <Owner href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef\"
+        name=\"Databasy Machiny\" type=\"application/vnd.vmware.vcloud.vm+xml\"/>\n
+        \     <Error majorErrorCode=\"500\" message=\"[ 24e9f319-05bd-474e-bd1d-2b8bb3ea9c98
+        ] Unable to perform this action. Contact your cloud administrator.\" minorErrorCode=\"INTERNAL_SERVER_ERROR\"/>\n
+        \     <User href=\"https://VMWARE_CLOUD_HOST/api/admin/user/4e1fe1f6-44a4-4ee8-a1ab-758d66a1e90d\"
+        name=\"system\" type=\"application/vnd.vmware.admin.user+xml\"/>\n      <Organization
+        href=\"https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4\"
+        name=\"RedHat\" type=\"application/vnd.vmware.vcloud.org+xml\"/>\n      <Details>
+        \ [ 24e9f319-05bd-474e-bd1d-2b8bb3ea9c98 ] Unable to perform this action.
+        Contact your cloud administr...</Details>\n    </Task>\n    <Task cancelRequested=\"false\"
+        endTime=\"2018-04-26T15:33:26.945+02:00\" expiryTime=\"2018-07-25T15:33:24.212+02:00\"
+        operation=\"Updated Virtual Machine Databasy Machiny(8dc9990c-a55a-418e-8e21-5942a20b93ef)\"
+        operationName=\"vappUpdateVm\" serviceNamespace=\"com.vmware.vcloud\" startTime=\"2018-04-26T15:33:24.212+02:00\"
+        status=\"error\" name=\"task\" id=\"urn:vcloud:task:689049a4-890c-4074-aa30-cb20ca6105c6\"
+        href=\"https://VMWARE_CLOUD_HOST/api/task/689049a4-890c-4074-aa30-cb20ca6105c6\"
+        type=\"application/vnd.vmware.vcloud.task+xml\">\n      <Owner href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef\"
+        name=\"Databasy Machiny\" type=\"application/vnd.vmware.vcloud.vm+xml\"/>\n
+        \     <Error majorErrorCode=\"500\" message=\"[ 48c6327b-d661-4947-bc71-bc5009e3d60d
+        ] Unable to perform this action. Contact your cloud administrator.\" minorErrorCode=\"INTERNAL_SERVER_ERROR\"/>\n
+        \     <User href=\"https://VMWARE_CLOUD_HOST/api/admin/user/e0d6e74d-efde-49fe-b19f-ace7e55b68dd\"
+        name=\"redhat\" type=\"application/vnd.vmware.admin.user+xml\"/>\n      <Organization
+        href=\"https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4\"
+        name=\"RedHat\" type=\"application/vnd.vmware.vcloud.org+xml\"/>\n      <Details>
+        \ [ 48c6327b-d661-4947-bc71-bc5009e3d60d ] Unable to perform this action.
+        Contact your cloud administr...</Details>\n    </Task>\n    <Task cancelRequested=\"false\"
+        expiryTime=\"2018-07-25T15:36:23.440+02:00\" operation=\"Updating Virtual
+        Machine Databasy Machiny(8dc9990c-a55a-418e-8e21-5942a20b93ef)\" operationName=\"vappUpdateVm\"
+        serviceNamespace=\"com.vmware.vcloud\" startTime=\"2018-04-26T15:36:23.440+02:00\"
+        status=\"running\" name=\"task\" id=\"urn:vcloud:task:f4228017-9d2c-482b-b123-8360721e6f98\"
+        href=\"https://VMWARE_CLOUD_HOST/api/task/f4228017-9d2c-482b-b123-8360721e6f98\"
+        type=\"application/vnd.vmware.vcloud.task+xml\">\n      <Link rel=\"task:cancel\"
+        href=\"https://VMWARE_CLOUD_HOST/api/task/f4228017-9d2c-482b-b123-8360721e6f98/action/cancel\"/>\n
+        \     <Owner href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef\"
+        name=\"Databasy Machiny\" type=\"application/vnd.vmware.vcloud.vm+xml\"/>\n
+        \     <User href=\"https://VMWARE_CLOUD_HOST/api/admin/user/e0d6e74d-efde-49fe-b19f-ace7e55b68dd\"
+        name=\"redhat\" type=\"application/vnd.vmware.admin.user+xml\"/>\n      <Organization
+        href=\"https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4\"
+        name=\"RedHat\" type=\"application/vnd.vmware.vcloud.org+xml\"/>\n      <Details/>\n
+        \   </Task>\n  </Tasks>\n  <ovf:VirtualHardwareSection xmlns:ns13=\"http://www.vmware.com/vcloud/v1.5\"
+        xmlns:vcloud=\"http://www.vmware.com/vcloud/v1.5\" ovf:transport=\"\" ns13:type=\"application/vnd.vmware.vcloud.virtualHardwareSection+xml\"
+        ns13:href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/\">\n
+        \   <ovf:Info>Virtual hardware requirements</ovf:Info>\n    <ovf:System>\n
+        \     <vssd:AutomaticRecoveryAction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:AutomaticShutdownAction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:AutomaticStartupAction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:AutomaticStartupActionDelay xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:AutomaticStartupActionSequenceNumber xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ConfigurationDataRoot xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ConfigurationFile xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ConfigurationID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:CreationTime xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:Description xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:ElementName>Virtual Hardware Family</vssd:ElementName>\n
+        \     <vssd:Generation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:InstanceID>0</vssd:InstanceID>\n      <vssd:LogDataRoot
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <vssd:RecoveryFile xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:SnapshotDataRoot xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:SuspendDataRoot xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:SwapFileDataRoot xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <vssd:VirtualSystemIdentifier>Databasy Machiny</vssd:VirtualSystemIdentifier>\n
+        \     <vssd:VirtualSystemType>vmx-13</vssd:VirtualSystemType>\n    </ovf:System>\n
+        \   <ovf:Item>\n      <rasd:Address>00:50:56:01:01:2c</rasd:Address>\n      <rasd:AddressOnParent>0</rasd:AddressOnParent>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation>true</rasd:AutomaticAllocation>\n
+        \     <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Connection ns13:ipAddressingMode=\"DHCP\"
+        ns13:primaryNetworkConnection=\"true\">Localhost</rasd:Connection>\n      <rasd:ConsumerVisibility
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:Description>PCNet32 ethernet adapter on \"Localhost\"</rasd:Description>\n
+        \     <rasd:ElementName>Network adapter 0</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:InstanceID>1</rasd:InstanceID>\n      <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType>PCNet32</rasd:ResourceSubType>\n
+        \     <rasd:ResourceType>10</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item>\n      <rasd:Address>00:50:56:01:01:2d</rasd:Address>\n
+        \     <rasd:AddressOnParent>1</rasd:AddressOnParent>\n      <rasd:AllocationUnits
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:AutomaticAllocation>true</rasd:AutomaticAllocation>\n      <rasd:AutomaticDeallocation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Connection ns13:ipAddressingMode=\"POOL\"
+        ns13:ipAddress=\"192.168.43.2\" ns13:primaryNetworkConnection=\"false\">RedHat
+        Private network 43</rasd:Connection>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>E1000s ethernet adapter on \"RedHat
+        Private network 43\"</rasd:Description>\n      <rasd:ElementName>Network adapter
+        1</rasd:ElementName>\n      <rasd:Generation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:InstanceID>2</rasd:InstanceID>\n      <rasd:Limit
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType>E1000E</rasd:ResourceSubType>\n
+        \     <rasd:ResourceType>10</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item>\n      <rasd:Address>0</rasd:Address>\n
+        \     <rasd:AddressOnParent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>SCSI Controller</rasd:Description>\n
+        \     <rasd:ElementName>SCSI Controller 0</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:InstanceID>3</rasd:InstanceID>\n      <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType>lsilogicsas</rasd:ResourceSubType>\n
+        \     <rasd:ResourceType>6</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item>\n      <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent>0</rasd:AddressOnParent>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>Hard disk</rasd:Description>\n
+        \     <rasd:ElementName>Hard disk 1</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:HostResource ns13:storageProfileHref=\"https://VMWARE_CLOUD_HOST/api/vdcStorageProfile/c87b2a7c-fcab-4f8a-bef3-3ece59366c38\"
+        ns13:busType=\"6\" ns13:busSubType=\"lsilogicsas\" ns13:capacity=\"5120\"
+        ns13:iops=\"0\" ns13:storageProfileOverrideVmDefault=\"false\"/>\n      <rasd:InstanceID>2000</rasd:InstanceID>\n
+        \     <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent>3</rasd:Parent>\n      <rasd:PoolID
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceType>17</rasd:ResourceType>\n      <rasd:VirtualQuantity>1073741824</rasd:VirtualQuantity>\n
+        \     <rasd:VirtualQuantityUnits>byte</rasd:VirtualQuantityUnits>\n      <rasd:Weight
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \   </ovf:Item>\n    \n    <ovf:Item>\n      <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent>2</rasd:AddressOnParent>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>Hard disk</rasd:Description>\n
+        \     <rasd:ElementName>Hard disk 3</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:HostResource ns13:storageProfileHref=\"https://VMWARE_CLOUD_HOST/api/vdcStorageProfile/c87b2a7c-fcab-4f8a-bef3-3ece59366c38\"
+        ns13:busType=\"6\" ns13:busSubType=\"lsilogicsas\" ns13:capacity=\"3072\"
+        ns13:iops=\"0\" ns13:storageProfileOverrideVmDefault=\"false\"/>\n      <rasd:InstanceID>2002</rasd:InstanceID>\n
+        \     <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent>3</rasd:Parent>\n      <rasd:PoolID
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceType>17</rasd:ResourceType>\n      <rasd:VirtualQuantity>3221225472</rasd:VirtualQuantity>\n
+        \     <rasd:VirtualQuantityUnits>byte</rasd:VirtualQuantityUnits>\n      <rasd:Weight
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \   </ovf:Item>\n    <ovf:Item>\n      <rasd:Address>0</rasd:Address>\n      <rasd:AddressOnParent
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>IDE Controller</rasd:Description>\n
+        \     <rasd:ElementName>IDE Controller 0</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:InstanceID>4</rasd:InstanceID>\n      <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceType>5</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item>\n      <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent>0</rasd:AddressOnParent>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation>false</rasd:AutomaticAllocation>\n
+        \     <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>CD/DVD Drive</rasd:Description>\n
+        \     <rasd:ElementName>CD/DVD Drive 1</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:HostResource/>\n      <rasd:InstanceID>3000</rasd:InstanceID>\n
+        \     <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent>4</rasd:Parent>\n      <rasd:PoolID
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceType>15</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item>\n      <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent>0</rasd:AddressOnParent>\n
+        \     <rasd:AllocationUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticAllocation>false</rasd:AutomaticAllocation>\n
+        \     <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>Floppy Drive</rasd:Description>\n
+        \     <rasd:ElementName>Floppy Drive 1</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:HostResource/>\n      <rasd:InstanceID>8000</rasd:InstanceID>\n
+        \     <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceSubType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ResourceType>14</rasd:ResourceType>\n      <rasd:VirtualQuantity
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n    </ovf:Item>\n    <ovf:Item ns13:type=\"application/vnd.vmware.vcloud.rasdItem+xml\"
+        ns13:href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/cpu\">\n
+        \     <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AllocationUnits>hertz * 10^6</rasd:AllocationUnits>\n
+        \     <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>Number of Virtual CPUs</rasd:Description>\n
+        \     <rasd:ElementName>2 virtual CPU(s)</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:InstanceID>5</rasd:InstanceID>\n      <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation>0</rasd:Reservation>\n      <rasd:ResourceSubType
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:ResourceType>3</rasd:ResourceType>\n      <rasd:VirtualQuantity>8</rasd:VirtualQuantity>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight>0</rasd:Weight>\n      <vmw:CoresPerSocket
+        ovf:required=\"false\">4</vmw:CoresPerSocket>\n      <Link rel=\"edit\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/cpu\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    </ovf:Item>\n    <ovf:Item
+        ns13:type=\"application/vnd.vmware.vcloud.rasdItem+xml\" ns13:href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/memory\">\n
+        \     <rasd:Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AddressOnParent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AllocationUnits>byte * 2^20</rasd:AllocationUnits>\n
+        \     <rasd:AutomaticAllocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:AutomaticDeallocation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Caption xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ChangeableType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConfigurationName xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:ConsumerVisibility xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Description>Memory Size</rasd:Description>\n
+        \     <rasd:ElementName>2048 MB of memory</rasd:ElementName>\n      <rasd:Generation
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:InstanceID>6</rasd:InstanceID>\n      <rasd:Limit xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:MappingBehavior xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:OtherResourceType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Parent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:PoolID xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Reservation>0</rasd:Reservation>\n      <rasd:ResourceSubType
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>\n
+        \     <rasd:ResourceType>4</rasd:ResourceType>\n      <rasd:VirtualQuantity>4096</rasd:VirtualQuantity>\n
+        \     <rasd:VirtualQuantityUnits xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:nil=\"true\"/>\n      <rasd:Weight>0</rasd:Weight>\n      <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/memory\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    </ovf:Item><ovf:Item><rasd:ElementName>71878</rasd:ElementName><rasd:HostResource
+        vcloud:capacity=\"8192\"/><rasd:InstanceID>71878</rasd:InstanceID><rasd:ResourceType>17</rasd:ResourceType></ovf:Item>\n
+        \   <Link rel=\"edit\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/\"
+        type=\"application/vnd.vmware.vcloud.virtualHardwareSection+xml\"/>\n    <Link
+        rel=\"down\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/cpu\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/cpu\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/memory\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/memory\"
+        type=\"application/vnd.vmware.vcloud.rasdItem+xml\"/>\n    <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/disks\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/disks\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/media\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/networkCards\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/networkCards\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"down\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/serialPorts\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n    <Link rel=\"edit\"
+        href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/virtualHardwareSection/serialPorts\"
+        type=\"application/vnd.vmware.vcloud.rasdItemsList+xml\"/>\n  </ovf:VirtualHardwareSection>\n
+        \ <ovf:OperatingSystemSection xmlns:ns13=\"http://www.vmware.com/vcloud/v1.5\"
+        ovf:id=\"102\" ns13:type=\"application/vnd.vmware.vcloud.operatingSystemSection+xml\"
+        vmw:osType=\"windows9Server64Guest\" ns13:href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/operatingSystemSection/\">\n
+        \   <ovf:Info>Specifies the operating system installed</ovf:Info>\n    <ovf:Description>Microsoft
+        Windows Server 2016 (64-bit)</ovf:Description>\n    <Link rel=\"edit\" href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/operatingSystemSection/\"
+        type=\"application/vnd.vmware.vcloud.operatingSystemSection+xml\"/>\n  </ovf:OperatingSystemSection>\n
+        \ <NetworkConnectionSection href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/networkConnectionSection/\"
+        type=\"application/vnd.vmware.vcloud.networkConnectionSection+xml\" ovf:required=\"false\">\n
+        \   <ovf:Info>Specifies the available VM network connections</ovf:Info>\n
+        \   <PrimaryNetworkConnectionIndex>0</PrimaryNetworkConnectionIndex>\n    <NetworkConnection
+        needsCustomization=\"false\" network=\"Localhost\">\n      <NetworkConnectionIndex>0</NetworkConnectionIndex>\n
+        \     <IsConnected>true</IsConnected>\n      <MACAddress>00:50:56:01:01:2c</MACAddress>\n
+        \     <IpAddressAllocationMode>DHCP</IpAddressAllocationMode>\n      <NetworkAdapterType>PCNet32</NetworkAdapterType>\n
+        \   </NetworkConnection>\n    <NetworkConnection needsCustomization=\"false\"
+        network=\"RedHat Private network 43\">\n      <NetworkConnectionIndex>1</NetworkConnectionIndex>\n
+        \     <IpAddress>192.168.43.2</IpAddress>\n      <IsConnected>true</IsConnected>\n
+        \     <MACAddress>00:50:56:01:01:2d</MACAddress>\n      <IpAddressAllocationMode>POOL</IpAddressAllocationMode>\n
+        \     <NetworkAdapterType>E1000E</NetworkAdapterType>\n    </NetworkConnection>\n
+        \ </NetworkConnectionSection>\n  <GuestCustomizationSection href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/guestCustomizationSection/\"
+        type=\"application/vnd.vmware.vcloud.guestCustomizationSection+xml\" ovf:required=\"false\">\n
+        \   <ovf:Info>Specifies Guest OS Customization Settings</ovf:Info>\n    <Enabled>false</Enabled>\n
+        \   <ChangeSid>true</ChangeSid>\n    <VirtualMachineId>8dc9990c-a55a-418e-8e21-5942a20b93ef</VirtualMachineId>\n
+        \   <JoinDomainEnabled>false</JoinDomainEnabled>\n    <UseOrgSettings>false</UseOrgSettings>\n
+        \   <AdminPasswordEnabled>true</AdminPasswordEnabled>\n    <AdminPasswordAuto>true</AdminPasswordAuto>\n
+        \   <AdminAutoLogonEnabled>false</AdminAutoLogonEnabled>\n    <AdminAutoLogonCount>0</AdminAutoLogonCount>\n
+        \   <ResetPasswordRequired>false</ResetPasswordRequired>\n    <ComputerName>DatabseVM</ComputerName>\n
+        \ </GuestCustomizationSection>\n  <RuntimeInfoSection xmlns:ns13=\"http://www.vmware.com/vcloud/v1.5\"
+        ns13:type=\"application/vnd.vmware.vcloud.virtualHardwareSection+xml\" ns13:href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/runtimeInfoSection\">\n
+        \   <ovf:Info>Specifies Runtime info</ovf:Info>\n  </RuntimeInfoSection>\n
+        \ <SnapshotSection href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/snapshotSection\"
+        type=\"application/vnd.vmware.vcloud.snapshotSection+xml\" ovf:required=\"false\">\n
+        \   <ovf:Info>Snapshot information section</ovf:Info>\n  </SnapshotSection>\n
+        \ <DateCreated>2018-04-16T09:13:25.402+02:00</DateCreated>\n  <VAppScopedLocalId>af445e42-234d-41b2-9654-b36ac45ad71c</VAppScopedLocalId>\n
+        \ <VmCapabilities href=\"https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/vmCapabilities/\"
+        type=\"application/vnd.vmware.vcloud.vmCapabilitiesSection+xml\">\n    <MemoryHotAddEnabled>false</MemoryHotAddEnabled>\n
+        \   <CpuHotAddEnabled>false</CpuHotAddEnabled>\n  </VmCapabilities>\n  <StorageProfile
+        href=\"https://VMWARE_CLOUD_HOST/api/vdcStorageProfile/c87b2a7c-fcab-4f8a-bef3-3ece59366c38\"
+        name=\"*\" type=\"application/vnd.vmware.vcloud.vdcStorageProfile+xml\"/>\n</Vm>\n"
+    headers:
+      User-Agent:
+      - fog-core/2.1.0
+      Accept:
+      - application/*+xml;version=9.0
+      X-Vcloud-Authorization:
+      - a27dc3f5567f49c3b4dd9d0c23b7e1b8
+      Content-Type:
+      - application/vnd.vmware.vcloud.vm+xml
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Tue, 08 May 2018 13:42:20 GMT
+      X-Vmware-Vcloud-Request-Id:
+      - 49c867af-2141-47fe-a016-c5baed9800af
+      X-Vcloud-Authorization:
+      - a27dc3f5567f49c3b4dd9d0c23b7e1b8
+      Location:
+      - https://VMWARE_CLOUD_HOST/api/task/9e0fe5aa-59b3-474a-a89a-72228587cb09
+      Content-Type:
+      - application/vnd.vmware.vcloud.task+xml;version=9.0
+      X-Vmware-Vcloud-Request-Execution-Time:
+      - '352'
+      Content-Length:
+      - '1767'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Task xmlns="http://www.vmware.com/vcloud/v1.5" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:common="http://schemas.dmtf.org/wbem/wscim/1/common" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" xmlns:vmw="http://www.vmware.com/schema/ovf" xmlns:ovfenv="http://schemas.dmtf.org/ovf/environment/1" xmlns:vmext="http://www.vmware.com/vcloud/extension/v1.5" xmlns:ns9="http://www.vmware.com/vcloud/networkservice/1.0" xmlns:ns10="http://www.vmware.com/vcloud/networkservice/common/1.0" xmlns:ns11="http://www.vmware.com/vcloud/networkservice/ipam/1.0" xmlns:ns12="http://www.vmware.com/vcloud/versions" cancelRequested="false" expiryTime="2018-08-06T15:42:20.392+02:00" operation="Updating Virtual Machine Databasy Machiny(8dc9990c-a55a-418e-8e21-5942a20b93ef)" operationName="vappUpdateVm" serviceNamespace="com.vmware.vcloud" startTime="2018-05-08T15:42:20.392+02:00" status="queued" name="task" id="urn:vcloud:task:9e0fe5aa-59b3-474a-a89a-72228587cb09" href="https://VMWARE_CLOUD_HOST/api/task/9e0fe5aa-59b3-474a-a89a-72228587cb09" type="application/vnd.vmware.vcloud.task+xml">
+            <Owner href="https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef" name="Databasy Machiny" type="application/vnd.vmware.vcloud.vm+xml"/>
+            <User href="https://VMWARE_CLOUD_HOST/api/admin/user/e0d6e74d-efde-49fe-b19f-ace7e55b68dd" name="redhat" type="application/vnd.vmware.admin.user+xml"/>
+            <Organization href="https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4" name="RedHat" type="application/vnd.vmware.vcloud.org+xml"/>
+            <Details></Details>
+        </Task>
+    http_version: 
+  recorded_at: Tue, 08 May 2018 13:42:20 GMT
+recorded_with: VCR 4.0.0
