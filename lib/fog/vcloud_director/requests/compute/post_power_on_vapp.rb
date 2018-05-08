@@ -33,7 +33,7 @@ module Fog
       end
       class Mock
         def post_power_on_vapp(id)
-          unless vapp = data[:vapps][id]
+          unless data[:vapps][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )
@@ -65,7 +65,7 @@ module Fog
             :body => body
           )
         end
-        end
+      end
     end
   end
 end

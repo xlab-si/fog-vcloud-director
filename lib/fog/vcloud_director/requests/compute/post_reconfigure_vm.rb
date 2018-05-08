@@ -81,7 +81,7 @@ module Fog
       
       class Mock
         def post_reconfigure_vm(id, options={})
-          unless vm = data[:vms][id]
+          unless data[:vms][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

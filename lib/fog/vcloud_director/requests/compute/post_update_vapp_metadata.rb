@@ -49,7 +49,7 @@ module Fog
       end
       class Mock
         def post_update_vapp_metadata(id, metadata={})
-          unless vm = data[:vms][id]
+          unless data[:vms][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

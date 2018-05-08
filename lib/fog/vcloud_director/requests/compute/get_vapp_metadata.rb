@@ -60,7 +60,7 @@ module Fog
         def get_metadata_entries(metadata, id)
           metadata_entries = []
 
-          for key, value in metadata do
+          for key, _ in metadata do
           metadata_entries << {:type=>"application/vnd.vmware.vcloud.metadata.value+xml",
               :href=>make_href("vApp/#{id}/metadata/#{key}"),
               :Link=>

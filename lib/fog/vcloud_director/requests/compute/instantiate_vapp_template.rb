@@ -110,7 +110,7 @@ module Fog
               'No such template.'
             )
           end
-          unless vdc = data[:vdcs][options[:vdc_id]]
+          unless data[:vdcs][options[:vdc_id]]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'No such VDC.'
             )

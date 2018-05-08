@@ -26,7 +26,6 @@ module Fog
       class Mock
         def get_vms(id)
           vapp = get_vapp(id).body
-          parser = Fog::Parsers::Compute::VcloudDirector::Vms.new
           vms  = vapp[:Children][:Vm].map {|child| parse_vapp_to_vm(child) }
           body = {:type => vapp[:type], :vms => vms}
           Excon::Response.new(
