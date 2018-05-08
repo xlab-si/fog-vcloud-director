@@ -26,7 +26,7 @@ module Fog
 
           type = 'application/vnd.vmware.vcloud.owner+xml'
 
-          unless vapp = data[:vapps][id]
+          unless data[:vapps][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

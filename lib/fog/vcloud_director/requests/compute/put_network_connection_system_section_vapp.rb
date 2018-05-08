@@ -118,7 +118,7 @@ module Fog
       end
       class Mock
         def put_network_connection_system_section_vapp(id, options={})
-          unless vm = data[:vms][id]
+          unless data[:vms][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

@@ -26,7 +26,7 @@ module Fog
       end
       class Mock
         def delete_vapp(id)
-          unless vapp = data[:vapps][id]
+          unless data[:vapps][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

@@ -53,7 +53,7 @@ EOF
       class Mock
 
         def put_cpu(id, num_cpus)
-          unless vm = data[:vms][id]
+          unless data[:vms][id]
             raise Fog::Compute::VcloudDirector::Forbidden.new(
               'This operation is denied.'
             )

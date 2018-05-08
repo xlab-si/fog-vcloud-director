@@ -12,7 +12,6 @@ module Fog
           end
 
           def generate_xml
-            attrs = @attrs
             Nokogiri::XML::Builder.new do
               VApp('xmlns' => 'http://www.vmware.com/vcloud/v1.5',
                    'name' => name
