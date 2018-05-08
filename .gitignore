@@ -16,3 +16,4 @@ mkmf.log
 .idea/
 .DS_Store
 .rubocop-*
+/spec/secrets.yaml
