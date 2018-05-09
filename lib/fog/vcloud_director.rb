@@ -9,7 +9,7 @@ require 'fog/vcloud_director/core'
 require 'fog/vcloud_director/query'
 require 'fog/vcloud_director/compute'
 
-Dir['./lib/fog/vcloud_director/generators/**/*.rb'].each {|file| require file }
-Dir['./lib/fog/vcloud_director/models/**/*.rb'].each {|file| require file }
-Dir['./lib/fog/vcloud_director/parsers/**/*.rb'].each {|file| require file }
-Dir['./lib/fog/vcloud_director/requests/**/*.rb'].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'vcloud_director', 'generators', '**', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'vcloud_director', 'models', '**', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'vcloud_director', 'parsers', '**', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'vcloud_director', 'requests', '**', '*.rb')].each {|file| require file }
