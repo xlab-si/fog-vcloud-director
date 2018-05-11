@@ -7,6 +7,7 @@ require "yaml"
 $LOAD_PATH.unshift "lib"
 
 require "fog/vcloud_director"
+require "./spec/common_assertions"
 
 include Fog::Generators::Compute::VcloudDirector::ComposeCommon
 
