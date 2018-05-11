@@ -8,7 +8,7 @@ module Fog
           include VmParserHelper
 
           def reset
-            @vm = { :ip_address => '', :description => '' }
+            @vm = initialize_vm
             @in_operating_system = false
             @in_children = false
             @resource_type = nil

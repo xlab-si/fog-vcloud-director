@@ -3,6 +3,13 @@ module Fog
     module Compute
       module VcloudDirector
         module VmParserHelper
+          def initialize_vm
+            {
+              :vapp_id     => nil,
+              :ip_address  => '',
+              :description => '',
+            }
+          end
 
           def parse_end_element(name, vm)
             case name
@@ -53,10 +60,12 @@ module Fog
             when 'Connection'
               @current_network_connection = extract_attributes(attributes)
             when 'Link'
+              # Extract vapp_id from 'up' link.
+              vm[:vapp_id] = attr_value('href', attributes).to_s.split('/').last if attr_value('type', attributes) == 'application/vnd.vmware.vcloud.vApp+xml'
+
               @links << extract_attributes(attributes)
             end
           end
-
         end
       end
     end

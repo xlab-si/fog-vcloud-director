@@ -1,7 +1,7 @@
 def expect_vm(vm, vapp_id:, name:, status:, deployed:, os:, ip:, cpu:, cores_per_socket:, mem:, num_hdds:, num_nics:)
   vm.must_be_instance_of Fog::Compute::VcloudDirector::Vm
   vm.type.must_equal 'application/vnd.vmware.vcloud.vm+xml'
-  # vm.vapp_id.must_equal vapp_id # TODO(miha-plesko) update parser to fetch this value from single VM response as well.
+  vm.vapp_id.must_equal vapp_id
   vm.name.must_equal name
   vm.description.must_equal ''
   vm.href.must_include '/api/vApp/vm-'
