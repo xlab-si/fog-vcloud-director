@@ -11,7 +11,7 @@ module Fog
             @in_operating_system = false
             @in_children = false
             @resource_type = nil
-            @response = { :vm => { :ip_address => '', :description => '' } }
+            @response = { :vm => initialize_vm }
             @links = []
           end
 
