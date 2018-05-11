@@ -39,6 +39,8 @@ module Fog
               }
             when 'Link'
               vm[:links] = @links
+            when 'CoresPerSocket'
+              vm[:cores_per_socket] = value
             end
           end
 
