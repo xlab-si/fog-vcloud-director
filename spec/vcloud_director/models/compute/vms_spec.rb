@@ -12,16 +12,17 @@ describe Fog::Compute::VcloudDirector::Vms do
       vms.size.must_equal 2
       expect_vm(
         vms.detect { |vm| vm.id = vm_id },
-        :vapp_id  => vapp_id,
-        :name     => 'Web Server VM',
-        :status   => 'off',
-        :deployed => false,
-        :os       => 'Microsoft Windows Server 2016 (64-bit)',
-        :ip       => '',
-        :cpu      => 4,
-        :mem      => 1024,
-        :num_hdds => 1,
-        :num_nics => 2
+        :vapp_id          => vapp_id,
+        :name             => 'Web Server VM',
+        :status           => 'off',
+        :deployed         => false,
+        :os               => 'Microsoft Windows Server 2016 (64-bit)',
+        :ip               => '',
+        :cpu              => 4,
+        :cores_per_socket => 2,
+        :mem              => 1024,
+        :num_hdds         => 1,
+        :num_nics         => 2
       )
     end
   end
@@ -32,16 +33,17 @@ describe Fog::Compute::VcloudDirector::Vms do
       puts vm.network_adapters
       expect_vm(
         vm,
-        :vapp_id  => vapp_id,
-        :name     => 'Web Server VM',
-        :status   => 'off',
-        :deployed => false,
-        :os       => 'Microsoft Windows Server 2016 (64-bit)',
-        :ip       => '',
-        :cpu      => 4,
-        :mem      => 1024,
-        :num_hdds => 1,
-        :num_nics => 2
+        :vapp_id          => vapp_id,
+        :name             => 'Web Server VM',
+        :status           => 'off',
+        :deployed         => false,
+        :os               => 'Microsoft Windows Server 2016 (64-bit)',
+        :ip               => '',
+        :cpu              => 4,
+        :cores_per_socket => 2,
+        :mem              => 1024,
+        :num_hdds         => 1,
+        :num_nics         => 2
       )
     end
   end
