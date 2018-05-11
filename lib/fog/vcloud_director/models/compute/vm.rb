@@ -7,7 +7,7 @@ module Fog
         identity  :id
 
         attribute :vapp_id
-        attribute :vapp_name
+        attribute :vapp_name # TODO(miha-plesko) remove this attribute because value is not included in XML.
         attribute :name
         attribute :type
         attribute :description
