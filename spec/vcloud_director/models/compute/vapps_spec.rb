@@ -30,9 +30,9 @@ describe Fog::Compute::VcloudDirector::Vapps do
         :description => '',
         :deployed    => false,
         :status      => 'off',
-        :lease       => nil,
-        :net_section => nil,
-        :net_config  => nil,
+        :lease       => 'not-implemented',
+        :net_section => 'not-implemented',
+        :net_config  => 'not-implemented',
         :owner       => 'e0d6e74d-efde-49fe-b19f-ace7e55b68dd',
         :maintenance => false,
         :num_vms     => 2

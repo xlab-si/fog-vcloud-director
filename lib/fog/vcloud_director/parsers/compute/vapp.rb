@@ -9,12 +9,9 @@ module Fog
 
           def reset
             @response = @vapp = {
-              :description     => '',
-              :owner           => nil,
-              :lease_settings  => nil,
-              :network_section => nil,
-              :network_config  => nil,
-              :vms             => []
+              :lease_settings  => 'not-implemented',
+              :network_section => 'not-implemented',
+              :network_config  => 'not-implemented'
             }
             @in_sections = false
             @parsing_vm  = false
@@ -43,6 +40,7 @@ module Fog
               @vapp[:deployed] = @vapp[:deployed] == 'true'
             when 'LeaseSettingsSection' # this is the first of the sections
               @in_sections = true
+              @vapp[:description] ||= '' # if description wasn't parsed by now, then vApp has empty description
             when 'User'
               @vapp[:owner] = attr_value('href', attributes).to_s.split('/').last
             when 'Vm'
@@ -60,6 +58,7 @@ module Fog
               @vapp[:maintenance] = value == 'true'
             when 'Vm'
               @parsing_vm = false
+              @vapp[:vms] ||= []
               @vapp[:vms] << @curr_vm
             end
           end
