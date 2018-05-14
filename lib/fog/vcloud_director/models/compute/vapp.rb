@@ -21,10 +21,12 @@ module Fog
           # Instead simple Array we rather store as Collection in order to provide common interface e.g.
           #    vapp.vms.all
           #    vapp.vms.get_by_name
-          @vms = Fog::Compute::VcloudDirector::Vms.new(
-            :vapp    => self,
-            :service => kwargs[:service]
-          ).with_item_list(Array(kwargs.delete(:vms)))
+          if (vms = kwargs.delete(:vms))
+            @vms = Fog::Compute::VcloudDirector::Vms.new(
+              :vapp    => self,
+              :service => kwargs[:service]
+            ).with_item_list(Array(vms))
+          end
 
           super(*args, **kwargs)
         end
