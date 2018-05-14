@@ -149,28 +149,6 @@ module Fog
           requires :id
           service.disks(:vm => self)
         end
-
-        remove_method :memory=
-        def memory=(new_memory)
-          has_changed = ( memory != new_memory.to_i )
-          not_first_set = !memory.nil?
-          attributes[:memory] = new_memory.to_i
-          if not_first_set && has_changed
-            response = service.put_memory(id, memory)
-            service.process_task(response.body)
-          end
-        end
-
-        remove_method :cpu=
-        def cpu=(new_cpu)
-          has_changed = ( cpu != new_cpu.to_i )
-          not_first_set = !cpu.nil?
-          attributes[:cpu] = new_cpu.to_i
-          if not_first_set && has_changed
-            response = service.put_cpu(id, cpu)
-            service.process_task(response.body)
-          end
-        end
         
         # Reconfigure a VM using any of the options documented in
         # post_reconfigure_vm
