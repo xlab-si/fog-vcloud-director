@@ -47,7 +47,9 @@ describe Fog::Compute::VcloudDirector::Vapps do
         :ip               => '',
         :cpu              => 4,
         :cores_per_socket => 2,
+        :cpu_hot          => false,
         :mem              => 1024,
+        :mem_hot          => false,
         :num_hdds         => 1,
         :num_nics         => 2
       )
@@ -61,7 +63,9 @@ describe Fog::Compute::VcloudDirector::Vapps do
         :ip               => '192.168.43.2',
         :cpu              => 8,
         :cores_per_socket => 4,
+        :cpu_hot          => true,
         :mem              => 4096,
+        :mem_hot          => true,
         :num_hdds         => 3,
         :num_nics         => 2
       )

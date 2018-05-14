@@ -925,8 +925,8 @@ http_interactions:
                     <VAppScopedLocalId>af445e42-234d-41b2-9654-b36ac45ad71c</VAppScopedLocalId>
                     <VmCapabilities href="https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/vmCapabilities/" type="application/vnd.vmware.vcloud.vmCapabilitiesSection+xml">
                         <Link rel="edit" href="https://VMWARE_CLOUD_HOST/api/vApp/vm-8dc9990c-a55a-418e-8e21-5942a20b93ef/vmCapabilities/" type="application/vnd.vmware.vcloud.vmCapabilitiesSection+xml"/>
-                        <MemoryHotAddEnabled>false</MemoryHotAddEnabled>
-                        <CpuHotAddEnabled>false</CpuHotAddEnabled>
+                        <MemoryHotAddEnabled>true</MemoryHotAddEnabled>
+                        <CpuHotAddEnabled>true</CpuHotAddEnabled>
                     </VmCapabilities>
                     <StorageProfile href="https://VMWARE_CLOUD_HOST/api/vdcStorageProfile/c87b2a7c-fcab-4f8a-bef3-3ece59366c38" name="*" type="application/vnd.vmware.vcloud.vdcStorageProfile+xml"/>
                 </Vm>
