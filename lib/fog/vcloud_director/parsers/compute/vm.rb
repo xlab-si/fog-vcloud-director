@@ -17,36 +17,12 @@ module Fog
 
           def start_element(name, attributes)
             super
-            if name == 'Vm'
-              vm_attrs = extract_attributes(attributes)
-              @response[:vm].merge!(vm_attrs.reject {|key,value| ![:href, :name, :status, :type, :deployed].include?(key)})
-              @response[:vm][:id] = @response[:vm][:href].split('/').last
-              @response[:vm][:status] = human_status(@response[:vm][:status])
-              @response[:vm][:deployed] = @response[:vm][:deployed] == 'true'
-            else
-              parse_start_element name, attributes, @response[:vm]
-            end
+            return parse_vm_attributes(attributes, @response[:vm]) if name == 'Vm'
+            parse_start_element name, attributes, @response[:vm]
           end
 
           def end_element(name)
             parse_end_element name, @response[:vm]
-          end
-
-          def human_status(status)
-            case status
-            when '-1', -1
-              'failed_creation'
-            when '0', 0
-              'creating'
-            when '8', 8
-              'off'
-            when '4', 4
-              'on'
-            when '3', 3
-              'suspended'
-            else
-              'unknown'
-            end
           end
         end
       end

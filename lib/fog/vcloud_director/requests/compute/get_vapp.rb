@@ -11,7 +11,7 @@ module Fog
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-VApp.html
         # @since vCloud API version 0.9
-        def get_vapp(id, parser: Fog::ToHashDocument)
+        def get_vapp(id, parser: Fog::Parsers::Compute::VcloudDirector::Vapp)
           response = request(
             :expects    => 200,
             :idempotent => true,

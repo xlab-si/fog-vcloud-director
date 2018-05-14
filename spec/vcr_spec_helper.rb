@@ -9,6 +9,8 @@ VCR.configure do |config|
 end
 
 def vcr_service
+  Fog.unmock!
+
   hostname = secrets.fetch(:hostname, 'hostname')
   username = secrets.fetch(:username, 'username')
   password = secrets.fetch(:password, 'password')
@@ -20,7 +22,7 @@ def vcr_service
   end
 
   @vcr_service ||= VCR.use_cassette('authentication') do
-    Fog::Compute::VcloudDirector::Real.new(
+    Fog::Compute::VcloudDirector.new(
       :vcloud_director_username      => username,
       :vcloud_director_password      => password,
       :vcloud_director_host          => hostname,

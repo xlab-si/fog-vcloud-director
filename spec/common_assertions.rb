@@ -15,3 +15,25 @@ def expect_vm(vm, vapp_id:, name:, status:, deployed:, os:, ip:, cpu:, cores_per
   vm.hard_disks.size.must_equal num_hdds
   vm.network_adapters.size.must_equal num_nics
 end
+
+# Basic vApp information which is provided when vApps are only listed for VDC.
+def expect_vapp_skeleton(vapp, id:, name:)
+  vapp.must_be_instance_of Fog::Compute::VcloudDirector::Vapp
+  vapp.type.must_equal 'application/vnd.vmware.vcloud.vApp+xml'
+  vapp.href.must_include '/api/vApp/vapp-'
+  vapp.id.must_equal id
+  vapp.name.must_equal name
+end
+
+def expect_vapp(vapp, id:, name:, description:, deployed:, status:, lease:, net_section:, net_config:, owner:, maintenance:, num_vms:)
+  expect_vapp_skeleton(vapp, :id => id, :name => name)
+  vapp.description.must_equal description
+  vapp.deployed.must_equal deployed
+  vapp.status.must_equal status
+  vapp.lease_settings.must_equal lease
+  vapp.network_section.must_equal net_section
+  vapp.network_config.must_equal net_config
+  vapp.owner.must_equal owner
+  vapp.maintenance.must_equal maintenance
+  vapp.vms.size.must_equal num_vms
+end
