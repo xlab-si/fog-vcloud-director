@@ -5,9 +5,11 @@ module Fog
         module VmParserHelper
           def initialize_vm
             {
-              :vapp_id     => nil,
-              :ip_address  => '',
-              :description => '',
+              :vapp_id        => nil,
+              :ip_address     => '',
+              :description    => '',
+              :cpu_hot_add    => nil,
+              :memory_hot_add => nil
             }
           end
 
@@ -48,6 +50,10 @@ module Fog
               vm[:links] = @links
             when 'CoresPerSocket'
               vm[:cores_per_socket] = value
+            when 'CpuHotAddEnabled'
+              vm[:cpu_hot_add] = value == 'true'
+            when 'MemoryHotAddEnabled'
+              vm[:memory_hot_add] = value == 'true'
             end
           end
 

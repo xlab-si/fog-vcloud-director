@@ -17,7 +17,9 @@ module Fog
         attribute :ip_address
         attribute :cpu, :type => :integer
         attribute :cores_per_socket, :type => :integer
+        attribute :cpu_hot_add, :type => :boolean
         attribute :memory, :type => :integer
+        attribute :memory_hot_add, :type => :boolean
         attribute :hard_disks, :aliases => :disks
         attribute :network_adapters
 
