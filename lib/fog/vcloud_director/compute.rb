@@ -321,18 +321,32 @@ module Fog
         end
 
         def get_by_name(item_name)
-          item_found = item_list.find {|item| item[:name] == item_name}
+          item_found = _item_list.find { |item| item[:name] == item_name }
           return nil unless item_found
           get(item_found[:id])
         end
 
         def index
-          load(item_list)
+          load(_item_list)
         end
 
         def get_everyone
-          items = item_list.map {|item| get_by_id(item[:id])}
+          items = _item_list.map { |item| get_by_id(item[:id]) }
           load(items)
+        end
+
+        # Use pre-fetched list of items. Particularly useful when parent's XML already contains enough information
+        # about child entities, hence we can parse them on parent already to reduce API requests. Some examples:
+        #  - vApp XML contains all the information about each of its child VMs, so we can pre-fetch `vapp.vms`
+        #  - VM XML contains all the information about customization, so we can pre-fecth `vm.guest_customization`
+        #  - VM XML contains all the information about disks, so we can pre-fetch `vm.disks`
+        def with_item_list(hashes)
+          @items = Array(hashes)
+          self
+        end
+
+        def _item_list
+          @items || item_list
         end
       end
 

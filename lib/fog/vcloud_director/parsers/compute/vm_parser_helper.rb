@@ -66,6 +66,31 @@ module Fog
               @links << extract_attributes(attributes)
             end
           end
+
+          def parse_vm_attributes(attributes, vm)
+            vm_attrs = extract_attributes(attributes)
+            vm.merge!(vm_attrs.select { |key, _| %i(href name status type deployed).include?(key) })
+            vm[:id]       = vm[:href].split('/').last
+            vm[:status]   = human_status(vm[:status])
+            vm[:deployed] = vm[:deployed] == 'true'
+          end
+
+          def human_status(status)
+            case status
+            when '-1', -1
+              'failed_creation'
+            when '0', 0
+              'creating'
+            when '8', 8
+              'off'
+            when '4', 4
+              'on'
+            when '3', 3
+              'suspended'
+            else
+              'unknown'
+            end
+          end
         end
       end
     end

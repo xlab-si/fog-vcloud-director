@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/2.1.0
+      Accept:
+      - application/*+xml;version=9.0
+      X-Vcloud-Authorization:
+      - 7380b99fed624ac0a9ecb549807fab02
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 11 May 2018 12:51:33 GMT
+      X-Vmware-Vcloud-Request-Id:
+      - 7ffe9eb0-6b41-45a0-a4f7-6cb8b2e87419
+      X-Vcloud-Authorization:
+      - 7380b99fed624ac0a9ecb549807fab02
+      Content-Type:
+      - application/vnd.vmware.vcloud.vdc+xml;version=9.0
+      X-Vmware-Vcloud-Request-Execution-Time:
+      - '156'
+      Vary:
+      - Accept-Encoding, User-Agent
+      Content-Length:
+      - '7954'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Vdc xmlns="http://www.vmware.com/vcloud/v1.5" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:common="http://schemas.dmtf.org/wbem/wscim/1/common" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" xmlns:vmw="http://www.vmware.com/schema/ovf" xmlns:ovfenv="http://schemas.dmtf.org/ovf/environment/1" xmlns:vmext="http://www.vmware.com/vcloud/extension/v1.5" xmlns:ns9="http://www.vmware.com/vcloud/networkservice/1.0" xmlns:ns10="http://www.vmware.com/vcloud/networkservice/common/1.0" xmlns:ns11="http://www.vmware.com/vcloud/networkservice/ipam/1.0" xmlns:ns12="http://www.vmware.com/vcloud/versions" status="1" name="RedHat VDC 2" id="urn:vcloud:vdc:cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89" type="application/vnd.vmware.vcloud.vdc+xml">
+            <Link rel="up" href="https://VMWARE_CLOUD_HOST/api/org/8f03aa58-b618-4c32-836b-dc6b612ed3a4" type="application/vnd.vmware.vcloud.org+xml"/>
+            <Link rel="down" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/metadata" type="application/vnd.vmware.vcloud.metadata+xml"/>
+            <Link rel="edit" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89" type="application/vnd.vmware.vcloud.vdc+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/uploadVAppTemplate" type="application/vnd.vmware.vcloud.uploadVAppTemplateParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/media" type="application/vnd.vmware.vcloud.media+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/instantiateOvf" type="application/vnd.vmware.vcloud.instantiateOvfParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/instantiateVAppTemplate" type="application/vnd.vmware.vcloud.instantiateVAppTemplateParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/cloneVApp" type="application/vnd.vmware.vcloud.cloneVAppParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/cloneVAppTemplate" type="application/vnd.vmware.vcloud.cloneVAppTemplateParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/cloneMedia" type="application/vnd.vmware.vcloud.cloneMediaParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/captureVApp" type="application/vnd.vmware.vcloud.captureVAppParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/action/composeVApp" type="application/vnd.vmware.vcloud.composeVAppParams+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/disk" type="application/vnd.vmware.vcloud.diskCreateParams+xml"/>
+            <Link rel="edgeGateways" href="https://VMWARE_CLOUD_HOST/api/admin/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/edgeGateways" type="application/vnd.vmware.vcloud.query.records+xml"/>
+            <Link rel="add" href="https://VMWARE_CLOUD_HOST/api/admin/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/networks" type="application/vnd.vmware.vcloud.orgVdcNetwork+xml"/>
+            <Link rel="orgVdcNetworks" href="https://VMWARE_CLOUD_HOST/api/admin/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89/networks" type="application/vnd.vmware.vcloud.query.records+xml"/>
+            <Link rel="alternate" href="https://VMWARE_CLOUD_HOST/api/admin/vdc/cf6ea964-a67f-4ba1-b69e-3dd5d6cb0c89" type="application/vnd.vmware.admin.vdc+xml"/>
+            <Description>Secondary VDC</Description>
+            <AllocationModel>AllocationPool</AllocationModel>
+            <ComputeCapacity>
+                <Cpu>
+                    <Units>MHz</Units>
+                    <Allocated>7160</Allocated>
+                    <Limit>7160</Limit>
+                    <Reserved>3580</Reserved>
+                    <Used>0</Used>
+                    <Overhead>0</Overhead>
+                </Cpu>
+                <Memory>
+                    <Units>MB</Units>
+                    <Allocated>29378</Allocated>
+                    <Limit>29378</Limit>
+                    <Reserved>14689</Reserved>
+                    <Used>0</Used>
+                    <Overhead>0</Overhead>
+                </Memory>
+            </ComputeCapacity>
+            <ResourceEntities>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vAppTemplate/vappTemplate-05e4d68f-1a4e-40d5-9361-a121c1a67393" name="Win-dev-201802-vapp" type="application/vnd.vmware.vcloud.vAppTemplate+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vAppTemplate/vappTemplate-56747885-7f81-4fd8-a7f7-10e65bd42461" name="Windows and Linux VAPP TEMPLATE" type="application/vnd.vmware.vcloud.vAppTemplate+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-6420bb6b-daab-4015-8ab8-f5d8105040fd" name="berginc-vapp" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-fe8d013d-dd2f-4ac6-9e8a-3a4a18e0a62e" name="cfme-vapp" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-6c7beda3-715a-48a8-947b-e8c42cd62ff5" name="vApp-windblows" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-a05279a5-9653-4f3a-9834-92442df9b432" name="burek-vapp" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-5d61572f-f76d-45fc-9f59-f36ca6651781" name="demo-vapp" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-b7f86ad2-ae02-4227-b23a-d65f317f39b8" name="saso-vApp" type="application/vnd.vmware.vcloud.vApp+xml"/>
+                <ResourceEntity href="https://VMWARE_CLOUD_HOST/api/vApp/vapp-fea78247-f6d8-4958-b71f-600d54fd9c90" name="Template" type="application/vnd.vmware.vcloud.vApp+xml"/>
+            </ResourceEntities>
+            <AvailableNetworks>
+                <Network href="https://VMWARE_CLOUD_HOST/api/network/146c97bb-0304-4484-8bd6-7237be034592" name="RedHat Private network 42" type="application/vnd.vmware.vcloud.network+xml"/>
+                <Network href="https://VMWARE_CLOUD_HOST/api/network/c33708b3-0eec-457d-97bd-88e68c036caf" name="RedHat Private network 42 2" type="application/vnd.vmware.vcloud.network+xml"/>
+                <Network href="https://VMWARE_CLOUD_HOST/api/network/488ec9e7-75cd-45fd-ba34-be247600e144" name="RedHat Private network 42 3" type="application/vnd.vmware.vcloud.network+xml"/>
+                <Network href="https://VMWARE_CLOUD_HOST/api/network/b915be99-1471-4e51-bcde-da2da791b98f" name="RedHat Private network 43" type="application/vnd.vmware.vcloud.network+xml"/>
+            </AvailableNetworks>
+            <Capabilities>
+                <SupportedHardwareVersions>
+                    <SupportedHardwareVersion>vmx-04</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-07</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-08</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-09</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-10</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-11</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-12</SupportedHardwareVersion>
+                    <SupportedHardwareVersion>vmx-13</SupportedHardwareVersion>
+                </SupportedHardwareVersions>
+            </Capabilities>
+            <NicQuota>0</NicQuota>
+            <NetworkQuota>1000</NetworkQuota>
+            <UsedNetworkCount>0</UsedNetworkCount>
+            <VmQuota>100</VmQuota>
+            <IsEnabled>true</IsEnabled>
+            <VdcStorageProfiles>
+                <VdcStorageProfile href="https://VMWARE_CLOUD_HOST/api/vdcStorageProfile/c87b2a7c-fcab-4f8a-bef3-3ece59366c38" name="*" type="application/vnd.vmware.vcloud.vdcStorageProfile+xml"/>
+            </VdcStorageProfiles>
+            <VCpuInMhz2>1000</VCpuInMhz2>
+        </Vdc>
+    http_version: 
+  recorded_at: Fri, 11 May 2018 12:51:33 GMT
+recorded_with: VCR 4.0.0

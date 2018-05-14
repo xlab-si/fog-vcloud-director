@@ -10,13 +10,30 @@ module Fog
         attribute :description, :aliases => :Description
         attribute :deployed, :type => :boolean
         attribute :status
-        attribute :lease_settings, :aliases => :LeaseSettingsSection
-        attribute :network_section, :aliases => :"ovf:NetworkSection", :squash => :"ovf:Network"
-        attribute :network_config, :aliases => :NetworkConfigSection, :squash => :NetworkConfig
-        attribute :owner, :aliases => :Owner, :squash => :User
-        attribute :InMaintenanceMode, :type => :boolean
+        attribute :lease_settings
+        attribute :network_section
+        attribute :network_config
+        attribute :owner
+        attribute :maintenance, :type => :boolean
 
-        def vms
+        def initialize(*args, **kwargs)
+          # Memorize VMs because their full XML description was already included in the vApp XML description.
+          # Instead simple Array we rather store as Collection in order to provide common interface e.g.
+          #    vapp.vms.all
+          #    vapp.vms.get_by_name
+          @vms = Fog::Compute::VcloudDirector::Vms.new(
+            :vapp    => self,
+            :service => kwargs[:service]
+          ).with_item_list(Array(kwargs.delete(:vms)))
+
+          super(*args, **kwargs)
+        end
+
+        def vms(force: false)
+          # Return memorized Collection that we parsed based on vApp XML description. This way we prevent
+          # additional API request to be made for each VM in a vApp.
+          return @vms unless @vms.nil? || force
+
           requires :id
           service.vms(:vapp => self)
         end
