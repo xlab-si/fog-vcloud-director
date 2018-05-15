@@ -35,7 +35,7 @@ module Fog
         end
 
         def item_list
-          data = service.get_vms(vapp.id).body  # vapp.id
+          data = service.get_vapp(vapp.id).body
           items = data[:vms]
           items
         end

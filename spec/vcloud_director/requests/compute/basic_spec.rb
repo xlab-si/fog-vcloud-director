@@ -134,7 +134,6 @@ describe Fog::Compute::VcloudDirector::Real do
       { :req => :get_vm_disks, :args => %w(id) },
       { :req => :get_vm_network, :args => %w(id) },
       { :req => :get_vm_pending_question, :args => %w(id) },
-      { :req => :get_vms, :args => %w(id) },
       { :req => :get_vms_by_metadata, :args => %w(key value) },
       { :req => :get_vms_disk_attached_to, :args => %w(id) },
       { :req => :get_vms_in_lease_from_query, :args => %w() },
