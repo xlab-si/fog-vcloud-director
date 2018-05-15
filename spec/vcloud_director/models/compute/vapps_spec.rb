@@ -8,15 +8,20 @@ describe Fog::Compute::VcloudDirector::Vapps do
   let(:vm_id)   { 'vm-314172f1-1835-4598-b049-5c1d4dce39ad' }
   let(:vm2_id)  { 'vm-8dc9990c-a55a-418e-8e21-5942a20b93ef' }
 
-  it '.all' do
-    VCR.use_cassette('get_vapps') do
-      vapps = subject.all
-      vapps.size.must_equal 7
-      expect_vapp_skeleton(
-        vapps.detect { |vapp| vapp.id == vapp_id },
-        :id   => vapp_id,
-        :name => 'cfme-vapp'
-      )
+  describe '.all' do
+    let(:expired_vapp_id) { 'vapp-5d61572f-f76d-45fc-9f59-f36ca6651781' }
+    let(:no_vms_vapp_id)  { 'vapp-6420bb6b-daab-4015-8ab8-f5d8105040fd' }
+
+    it 'vapp skeleton' do
+      VCR.use_cassette('get_vapps') do
+        vapps = subject.all
+        vapps.size.must_equal 7
+        expect_vapp_skeleton(
+          vapps.detect { |vapp| vapp.id == vapp_id },
+          :id   => vapp_id,
+          :name => 'cfme-vapp'
+        )
+      end
     end
   end
 

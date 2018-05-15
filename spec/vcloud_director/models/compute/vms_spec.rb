@@ -7,11 +7,11 @@ describe Fog::Compute::VcloudDirector::Vms do
   let(:vm_id)   { 'vm-314172f1-1835-4598-b049-5c1d4dce39ad' }
 
   it '.all' do
-    VCR.use_cassette('get_vms') do
+    VCR.use_cassette('get_vapp') do
       vms = subject.all
       vms.size.must_equal 2
       expect_vm(
-        vms.detect { |vm| vm.id = vm_id },
+        vms.to_a.detect { |vm| vm.id == vm_id },
         :vapp_id          => vapp_id,
         :name             => 'Web Server VM',
         :status           => 'off',

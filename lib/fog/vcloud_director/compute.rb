@@ -195,7 +195,6 @@ module Fog
       request :get_vm_disks
       request :get_vm_network
       request :get_vm_pending_question
-      request :get_vms
       request :get_vms_by_metadata
       request :get_vms_disk_attached_to
       request :get_vms_in_lease_from_query
