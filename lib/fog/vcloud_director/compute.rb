@@ -345,7 +345,7 @@ module Fog
         end
 
         def _item_list
-          @items || item_list
+          @items || item_list || []
         end
       end
 

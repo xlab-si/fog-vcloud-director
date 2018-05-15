@@ -45,7 +45,7 @@ module Fog
               @vapp[:owner] = attr_value('href', attributes).to_s.split('/').last
             when 'Vm'
               @parsing_vm = true
-              vm_reset
+              vm_reset(@vapp[:id])
               vm_start_element(name, attributes)
             end
           end
@@ -76,12 +76,16 @@ module Fog
             parse_end_element(name, @curr_vm)
           end
 
-          def vm_reset
-            @curr_vm             = initialize_vm
-            @in_operating_system = false
-            @in_children         = false
-            @resource_type       = nil
-            @links               = []
+          def vm_reset(vapp_id)
+            @curr_vm                    = initialize_vm
+            @curr_vm[:vapp_id]          = vapp_id
+            @in_operating_system        = false
+            @in_children                = false
+            @resource_type              = nil
+            @links                      = []
+            @element_name               = nil
+            @current_network_connection = nil
+            @current_host_resource      = nil
           end
         end
       end
