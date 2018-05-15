@@ -23,6 +23,30 @@ describe Fog::Compute::VcloudDirector::Vapps do
         )
       end
     end
+
+    it 'expired vapp' do
+      VCR.use_cassette('get_vapps-expired') do
+        vapps = subject.all
+        vapps.size.must_equal 7
+        vapp = vapps.detect { |vapp| vapp.id == expired_vapp_id }
+
+        vms = vapp.vms.all
+        vms.size.must_equal 2
+        vms[0].vapp_id.must_equal expired_vapp_id
+        vms[1].vapp_id.must_equal expired_vapp_id
+      end
+    end
+
+    it 'vapp without vms' do
+      VCR.use_cassette('get_vapps-novms') do
+        vapps = subject.all
+        vapps.size.must_equal 7
+        vapp = vapps.detect { |vapp| vapp.id == no_vms_vapp_id }
+
+        vms = vapp.vms.all
+        vms.size.must_equal 0
+      end
+    end
   end
 
   it '.get_single_vapp' do

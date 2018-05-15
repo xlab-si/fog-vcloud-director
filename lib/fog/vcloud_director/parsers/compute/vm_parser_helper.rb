@@ -61,13 +61,14 @@ module Fog
             case name
             when 'OperatingSystemSection'
               @in_operating_system = true
+              vm[:cores_per_socket] ||= 1 # VirtualHardwareSection was parsed if we're here and if no value was specified, we default to 1
             when 'HostResource'
               @current_host_resource = extract_attributes(attributes)
             when 'Connection'
               @current_network_connection = extract_attributes(attributes)
             when 'Link'
-              # Extract vapp_id from 'up' link.
-              vm[:vapp_id] = attr_value('href', attributes).to_s.split('/').last if attr_value('type', attributes) == 'application/vnd.vmware.vcloud.vApp+xml'
+              # Parse vapp id from any link if not found elsewhere.
+              vm[:vapp_id] ||= id_from_url(attr_value('href', attributes), :id_prefix => 'vapp-')
 
               @links << extract_attributes(attributes)
             end
@@ -96,6 +97,10 @@ module Fog
             else
               'unknown'
             end
+          end
+
+          def id_from_url(url, id_prefix: 'vapp-')
+            url.split('/').detect { |part| part.start_with?(id_prefix) }
           end
         end
       end
