@@ -35,8 +35,7 @@ module Fog
             when 'VApp'
               vapp_attrs = extract_attributes(attributes)
               @vapp.merge!(vapp_attrs.reject { |key, _| ![:href, :name, :status, :type, :deployed].include?(key) })
-              @vapp[:id] = @vapp[:href].split('/').last
-              @vapp[:status] = human_status(@vapp[:status])
+              @vapp[:id] ||= id_from_url(@vapp[:href], id_prefix: 'vapp-')
               @vapp[:deployed] = @vapp[:deployed] == 'true'
             when 'LeaseSettingsSection' # this is the first of the sections
               @in_sections = true
