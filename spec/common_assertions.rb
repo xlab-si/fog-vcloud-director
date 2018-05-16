@@ -27,11 +27,12 @@ def expect_vapp_skeleton(vapp, id:, name:)
   vapp.name.must_equal name
 end
 
-def expect_vapp(vapp, id:, name:, description:, deployed:, status:, lease:, net_section:, net_config:, owner:, maintenance:, num_vms:)
+def expect_vapp(vapp, id:, name:, description:, deployed:, status:, h_status:, lease:, net_section:, net_config:, owner:, maintenance:, num_vms:)
   expect_vapp_skeleton(vapp, :id => id, :name => name)
   vapp.description.must_equal description
   vapp.deployed.must_equal deployed
   vapp.status.must_equal status
+  vapp.human_status.must_equal h_status
   vapp.lease_settings.must_equal lease
   vapp.network_section.must_equal net_section
   vapp.network_config.must_equal net_config
