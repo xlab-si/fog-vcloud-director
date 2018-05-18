@@ -1,4 +1,4 @@
-require 'fog/vcloud_director/models/compute/vapp'
+require 'fog/vcloud_director/models/compute/vapp_template'
 
 module Fog
   module Compute
