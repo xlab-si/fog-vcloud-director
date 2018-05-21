@@ -7,6 +7,8 @@ module Fog
         class ReconfigureVm
           extend ComposeCommon
 
+          NETWORK_CONNECTION_ORDER = %w(NetworkConnectionIndex IpAddress ExternalIpAddress IsConnected MACAddress IpAddressAllocationMode NetworkAdapterType).freeze
+
           class << self
             # Generates VM reconfiguration XML.
             #
@@ -17,13 +19,13 @@ module Fog
             def generate_xml(current, options)
               current.root['name'] = options[:name] if options[:name]
               current.at('Description').content = options[:description] if options[:description]
-              if options[:hardware]
-                update_virtual_hardware_section(current, options[:hardware])
-              else
-                # Remove entire VirtualHardwareSection if no hardware is modified.
-                # https://pubs.vmware.com/vcd-80/index.jsp#com.vmware.vcloud.api.sp.doc_90/GUID-4759B018-86C2-4C91-8176-3EC73CD7122B.html
-                current.at('//ovf:VirtualHardwareSection').remove
-              end
+              # Remove entire section when no moification is required to improve performance, see
+              # https://pubs.vmware.com/vcd-80/index.jsp#com.vmware.vcloud.api.sp.doc_90/GUID-4759B018-86C2-4C91-8176-3EC73CD7122B.html
+              options[:hardware] ? update_virtual_hardware_section(current, options[:hardware]) : current.at('//ovf:VirtualHardwareSection').remove
+              options[:networks] ? update_network_connection_section(current, options[:networks]) : current.at('//xmlns:NetworkConnectionSection').remove
+              current.at('//ovf:OperatingSystemSection').remove # TODO(miha-plesko): support this type of customization
+              current.at('//xmlns:GuestCustomizationSection').remove # TODO(miha-plesko): support this type of customization
+
               current.to_xml
             end
 
@@ -34,6 +36,13 @@ module Fog
               array_wrap(hardware[:disk]).reject { |d| d[:id].nil? || d[:capacity_mb] == -1 }.each { |disk| update_virtual_hardware_section_item_hdd(xml, **disk) }
               array_wrap(hardware[:disk]).select { |d| d[:id].nil? }.each { |disk| add_virtual_hardware_section_item_hdd(xml, **disk) }
               array_wrap(hardware[:disk]).select { |d| d[:capacity_mb] == -1 }.each { |disk| remove_virtual_hardware_section_item_hdd(xml, id: disk[:id]) }
+            end
+
+            # Apply desired NIC connection modifications to the original xml.
+            def update_network_connection_section(xml, networks)
+              array_wrap(networks).reject { |n| n[:new_idx] == -1 || n[:idx].nil? }.each { |nic| update_network_connection_section_by_index(xml, **nic) }
+              array_wrap(networks).select { |n| n[:new_idx] == -1 }.each { |nic| remove_network_connection_section_by_index(xml, :idx => nic[:idx]) }
+              array_wrap(networks).select { |n| n[:idx].nil? }.each { |nic| add_network_connection_section(xml, **nic) }
             end
 
             def update_virtual_hardware_section_item_cpu(xml, num_cores: nil, cores_per_socket: nil, reservation: nil, limit: nil, weight: nil)
@@ -101,6 +110,76 @@ module Fog
             def remove_virtual_hardware_section_item(xml, type:, id:)
               item = xml.at("//ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType = '#{type}' and rasd:InstanceID = '#{id}']")
               item.remove if item
+            end
+
+            def update_network_connection_section_by_index(xml, idx:, name: nil, mac: nil, ip: nil, connected: nil, mode: nil, type: nil, needs: nil, new_idx: nil, primary: nil)
+              conn = xml.at("//xmlns:NetworkConnectionSection/xmlns:NetworkConnection[./xmlns:NetworkConnectionIndex = '#{idx}']")
+              conn['network'] = name if name
+              conn['needsCustomization'] = needs unless needs.nil?
+              leaf_at(conn, 'IpAddress', NETWORK_CONNECTION_ORDER).content = ip unless ip.nil?
+              leaf_at(conn, 'IpAddressAllocationMode', NETWORK_CONNECTION_ORDER).content = mode if mode
+              leaf_at(conn, 'IsConnected', NETWORK_CONNECTION_ORDER).content = connected unless connected.nil?
+              leaf_at(conn, 'MACAddress', NETWORK_CONNECTION_ORDER).content = mac if mac
+              leaf_at(conn, 'NetworkAdapterType', NETWORK_CONNECTION_ORDER).content = type if type
+              leaf_at(conn, 'NetworkConnectionIndex', NETWORK_CONNECTION_ORDER).content = new_idx if new_idx
+
+              set_primary_nic(xml, new_idx || idx) if primary
+            end
+
+            def remove_network_connection_section_by_index(xml, idx:)
+              conn = xml.at("//xmlns:NetworkConnectionSection/xmlns:NetworkConnection[./xmlns:NetworkConnectionIndex = '#{idx}']")
+              conn.remove if conn
+            end
+
+            def add_network_connection_section(xml, primary: nil, **nic)
+              nic.delete(:idx)
+              network_section = xml.at('//xmlns:NetworkConnectionSection')
+              network_section.add_namespace_definition('vcloud', 'http://www.vmware.com/vcloud/v1.5')
+              Nokogiri::XML::Builder.with(network_section) do |section|
+                network_section_nic(section, **nic)
+              end
+
+              # Move the new item to satisfy vCloud's sorting requirements.
+              item = network_section.at('./xmlns:NetworkConnection[last()]').remove
+              network_section.at('./xmlns:NetworkConnection[last()]').after(item)
+
+              set_primary_nic(xml, nic[:new_idx]) if primary
+            end
+
+            def set_primary_nic(xml, idx)
+              xml.at('//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex').content = idx
+            end
+
+            # Find leaf element if present or create new one. Respect XML ordering when adding new.
+            # Arguments:
+            # - xml: parent xml whose child element are we updating/adding
+            # - leaf_name: child element name (without namespace)
+            # - order: list of child names in proper order
+            # - ns: leaf element's namespace
+            # Returns:
+            # - leaf element
+            def leaf_at(xml, leaf_name, order, ns: 'xmlns')
+              el = xml.at("./#{ns}:#{leaf_name}")
+              el || begin
+                el = Nokogiri::XML::Node.new(ns == 'xmlns' ? leaf_name : "#{ns}:#{leaf_name}", xml)
+                (previous = find_previous(xml, leaf_name, order)) ? previous.after(el) : xml.prepend_child(el)
+                el
+              end
+            end
+
+            # Finds previous sybling for a leaf_name in accordance with ordered list of child elements.
+            # Arguments:
+            # - xml: parent xml whose children are we checking
+            # - leaf_name: child element name that we want to find preceeding sybling for (without namespace)
+            # - order: list of child names in proper order
+            # - ns: leaf element's namespace
+            # Returns:
+            # - previous sybling element if found or nil
+            def find_previous(xml, leaf_name, order, ns: 'xmlns')
+              order.reduce(nil) do |res, curr_name|
+                break res if curr_name == leaf_name
+                xml.at("./#{ns}:#{curr_name}") || res
+              end
             end
           end
         end

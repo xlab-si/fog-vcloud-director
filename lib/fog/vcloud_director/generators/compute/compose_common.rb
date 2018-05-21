@@ -251,6 +251,19 @@ module Fog
             return 'bridged' unless mode && mode != 'isolated'
             mode
           end
+
+          def network_section_nic(xml, new_idx:, name: 'none', mac: nil, ip: nil, connected: true, mode: 'DHCP', type: nil, needs: nil)
+            attr = { :network => name }
+            attr[:needsCustomization] = needs unless needs.nil?
+            xml.NetworkConnection(attr) do
+              xml.NetworkConnectionIndex(new_idx) if new_idx
+              xml.IpAddress(ip) unless ip.nil?
+              xml.IsConnected(connected) unless connected.nil?
+              xml.MACAddress(mac) if mac
+              xml.IpAddressAllocationMode(mode) if mode
+              xml.NetworkAdapterType(type) if type
+            end
+          end
         end
       end
     end
