@@ -3,10 +3,17 @@ require './spec/spec_helper.rb'
 describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
   let(:current)  { Nokogiri::XML(File.read('./spec/fixtures/vm.xml')) }
   let(:hardware) { {} }
-  let(:input)    { hardware ? { :hardware => hardware } : {} }
+  let(:networks) { nic_conf.empty? ? [] : [nic_conf] }
+  let(:nic_conf) { {} }
   let(:output)   { Nokogiri::XML(Fog::Generators::Compute::VcloudDirector::ReconfigureVm.generate_xml(current, input)) }
+  let(:input) do
+    input = {}
+    input[:hardware] = hardware unless hardware.empty?
+    input[:networks] = networks unless networks.empty?
+    input
+  end
 
-  describe 'reconfigure' do
+  describe 'reconfigure hardware' do
     describe 'name' do
       let(:input) { { :name => 'new name' } }
 
@@ -112,6 +119,194 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
       def disk_by_id(xml, id)
         all_disks(xml).xpath("//ovf:Item[./rasd:InstanceID = '#{id}']")
       end
+    end
+  end
+
+  describe 'reconfigure NICs' do
+    describe 'update NIC' do
+      describe 'update NIC - truthful values' do
+        let(:nic_conf) do
+          {
+            :idx       => 0,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          }
+        end
+
+        it 'update NIC' do
+          assert_nic_count(output, 2)
+          assert_nic(
+            output,
+            0,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          )
+        end
+      end
+
+      describe 'update NIC - falseful values' do
+        let(:nic_conf) do
+          {
+            :idx       => 0,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => false,
+            :ip        => '',
+            :connected => false,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          }
+        end
+
+        it 'update NIC - falseful values' do
+          assert_nic_count(output, 2)
+          assert_nic(
+            output,
+            0,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => false,
+            :ip        => '',
+            :connected => false,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          )
+        end
+      end
+    end
+
+    describe 'remove NIC' do
+      let(:nic_conf) { { :idx => 1, :new_idx => -1 } }
+
+      it 'remove NIC' do
+        assert_nic_count(output, 1)
+        output.xpath("//xmlns:NetworkConnection[xmlns:NetworkConnectionIndex = '1']").must_be_empty
+      end
+    end
+
+    describe 'add NIC' do
+      describe 'add NIC - truthful values' do
+        let(:nic_conf) do
+          {
+            :idx       => nil,
+            :new_idx   => '5',
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          }
+        end
+
+        it 'add NIC' do
+          assert_nic_count(output, 3)
+          assert_nic(
+            output,
+            5,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          )
+        end
+      end
+
+      describe 'add NIC - falseful values' do
+        let(:nic_conf) do
+          {
+            :idx       => nil,
+            :new_idx   => '5',
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => false,
+            :ip        => '',
+            :connected => false,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          }
+        end
+
+        it 'add NIC - falseful values' do
+          assert_nic_count(output, 3)
+          assert_nic(
+            output,
+            5,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => false,
+            :ip        => '',
+            :connected => false,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          )
+        end
+      end
+    end
+
+    describe 'set primary NIC' do
+      describe 'regular' do
+        let(:nic_conf) { { :idx => 1, :primary => true } }
+
+        it 'set primary NIC - regular' do
+          output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '1'
+        end
+      end
+
+      describe 'when updating idx' do
+        let(:nic_conf) { { :idx => 1, :new_idx => 5, :primary => true } }
+
+        it 'set primary NIC - when updating idx' do
+          output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '5'
+        end
+      end
+
+      describe 'new NIC' do
+        let(:nic_conf) { { :idx => nil, :new_idx => 3, :primary => true } }
+
+        it 'set primary NIC - new NIC' do
+          output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '3'
+        end
+      end
+    end
+
+    def assert_nic_count(xml, n)
+      xml.xpath("//xmlns:NetworkConnection/xmlns:NetworkConnectionIndex").size.must_equal n
+    end
+
+    def assert_nic(xml, idx, name: nil, mac: nil, ip: nil, connected: nil, mode: nil, type: nil, needs: nil)
+      nic = xml.xpath("//xmlns:NetworkConnection[xmlns:NetworkConnectionIndex = '#{idx}']")
+      nic.xpath('./@network').first.value.must_equal name
+      nic.xpath('./@needsCustomization').first.value.must_equal needs.to_s
+      nic.xpath('./xmlns:MACAddress').text.must_equal mac
+      nic.xpath('./xmlns:IpAddress').text.must_equal ip
+      nic.xpath('./xmlns:IsConnected').text.must_equal connected.to_s
+      nic.xpath('./xmlns:NetworkAdapterType').text.must_equal type
+      nic.xpath('./xmlns:IpAddressAllocationMode').text.must_equal mode
+
+      asset_network_connection_ordered(nic)
+    end
+
+    def asset_network_connection_ordered(xml)
+      children = xml.children.select(&:element?).map(&:name)
+      order = %w(NetworkConnectionIndex IpAddress ExternalIpAddress IsConnected MACAddress IpAddressAllocationMode NetworkAdapterType).select do |el|
+        children.include?(el)
+      end
+      children.must_equal order
     end
   end
 end
