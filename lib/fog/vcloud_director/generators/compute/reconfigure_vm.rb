@@ -7,6 +7,7 @@ module Fog
         class ReconfigureVm
           extend ComposeCommon
 
+          NETWORK_SECTION_ORDER = ['ovf:Info'] + %w(PrimaryNetworkConnectionIndex NetworkConnection Link)
           NETWORK_CONNECTION_ORDER = %w(NetworkConnectionIndex IpAddress ExternalIpAddress IsConnected MACAddress IpAddressAllocationMode NetworkAdapterType).freeze
 
           class << self
@@ -141,13 +142,13 @@ module Fog
 
               # Move the new item to satisfy vCloud's sorting requirements.
               item = network_section.at('./xmlns:NetworkConnection[last()]').remove
-              network_section.at('./xmlns:NetworkConnection[last()]').after(item)
+              (previous = find_previous(network_section, 'NetworkConnection', NETWORK_SECTION_ORDER)) ? previous.after(item) : network_section.prepend_child(item)
 
               set_primary_nic(xml, nic[:new_idx]) if primary
             end
 
             def set_primary_nic(xml, idx)
-              xml.at('//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex').content = idx
+              leaf_at(xml.at('//xmlns:NetworkConnectionSection'), 'PrimaryNetworkConnectionIndex', NETWORK_SECTION_ORDER).content = idx
             end
 
             # Find leaf element if present or create new one. Respect XML ordering when adding new.
@@ -172,13 +173,12 @@ module Fog
             # - xml: parent xml whose children are we checking
             # - leaf_name: child element name that we want to find preceeding sybling for (without namespace)
             # - order: list of child names in proper order
-            # - ns: leaf element's namespace
             # Returns:
             # - previous sybling element if found or nil
-            def find_previous(xml, leaf_name, order, ns: 'xmlns')
+            def find_previous(xml, leaf_name, order)
               order.reduce(nil) do |res, curr_name|
                 break res if curr_name == leaf_name
-                xml.at("./#{ns}:#{curr_name}") || res
+                xml.at(curr_name.include?(':') ? "./#{curr_name}" : "./xmlns:#{curr_name}") || res
               end
             end
           end

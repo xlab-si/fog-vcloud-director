@@ -256,6 +256,29 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
           )
         end
       end
+
+      describe 'add first NIC' do
+        let(:networks) do
+          [
+            {
+              :idx     => 0,
+              :new_idx => -1
+            },
+            {
+              :idx     => 1,
+              :new_idx => -1
+            },
+            {
+              :idx     => nil,
+              :new_idx => 2
+            }
+          ]
+        end
+
+        it 'add first NIC' do
+          assert_nic_count(output, 1)
+        end
+      end
     end
 
     describe 'set primary NIC' do
@@ -271,6 +294,7 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
         let(:nic_conf) { { :idx => 1, :new_idx => 5, :primary => true } }
 
         it 'set primary NIC - when updating idx' do
+          assert_nic_count(output, 2)
           output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '5'
         end
       end
@@ -279,6 +303,51 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
         let(:nic_conf) { { :idx => nil, :new_idx => 3, :primary => true } }
 
         it 'set primary NIC - new NIC' do
+          assert_nic_count(output, 3)
+          output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '3'
+        end
+      end
+    end
+
+    describe 'when VM has no NICs yet' do
+      let(:current) { Nokogiri::XML(File.read('./spec/fixtures/empty_vm.xml')) }
+
+      describe 'when VM has no NICs yet - add NIC' do
+        let(:nic_conf) do
+          {
+            :idx       => nil,
+            :new_idx   => '5',
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          }
+        end
+
+        it 'when VM has no NICs yet - add NIC' do
+          assert_nic_count(output, 1)
+          assert_nic(
+            output,
+            5,
+            :name      => 'vApp net name',
+            :mac       => '11:22:33:44:55:66',
+            :needs     => true,
+            :ip        => '1.2.3.4',
+            :connected => true,
+            :mode      => 'MANUAL',
+            :type      => 'adapter type'
+          )
+        end
+      end
+
+      describe 'set primary NIC' do
+        let(:nic_conf) { { :idx => nil, :new_idx => 3, :primary => true } }
+
+        it 'set primary NIC - new NIC' do
+          assert_nic_count(output, 1)
           output.xpath("//xmlns:NetworkConnectionSection/xmlns:PrimaryNetworkConnectionIndex").text.must_equal '3'
         end
       end
@@ -286,6 +355,7 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
 
     def assert_nic_count(xml, n)
       xml.xpath("//xmlns:NetworkConnection/xmlns:NetworkConnectionIndex").size.must_equal n
+      asset_network_connection_section_ordered(xml, :num_nic => n)
     end
 
     def assert_nic(xml, idx, name: nil, mac: nil, ip: nil, connected: nil, mode: nil, type: nil, needs: nil)
@@ -299,6 +369,14 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
       nic.xpath('./xmlns:IpAddressAllocationMode').text.must_equal mode
 
       asset_network_connection_ordered(nic)
+    end
+
+    def asset_network_connection_section_ordered(xml, num_nic: 2)
+      children = xml.xpath('//xmlns:NetworkConnectionSection').children.select(&:element?).map(&:name)
+      order = (%w(Info PrimaryNetworkConnectionIndex) + Array.new(num_nic, 'NetworkConnection') + %w(Link)).select do |el|
+        children.include?(el)
+      end
+      children.must_equal order
     end
 
     def asset_network_connection_ordered(xml)
