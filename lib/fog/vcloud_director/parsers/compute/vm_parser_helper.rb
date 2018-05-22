@@ -61,7 +61,12 @@ module Fog
             case name
             when 'OperatingSystemSection'
               @in_operating_system = true
-              vm[:cores_per_socket] ||= 1 # VirtualHardwareSection was parsed if we're here and if no value was specified, we default to 1
+
+              # VirtualHardwareSection was parsed if we're here. Set missing values to defaults since
+              # repeatable parsing won't get them.
+              vm[:cores_per_socket] ||= 1
+              vm[:disks]            ||= []
+              vm[:network_adapters] ||= []
             when 'HostResource'
               @current_host_resource = extract_attributes(attributes)
             when 'Connection'
