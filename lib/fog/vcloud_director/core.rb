@@ -61,6 +61,9 @@ module Fog
       class TaskError < ServiceError; end
     end
 
+    # Services
+    autoload :Compute, File.expand_path('../compute', __FILE__)
+
     service(:compute, 'Compute')
   end
 end
