@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :put_vm_memory, :put_memory
@@ -54,7 +54,7 @@ EOF
 
         def put_memory(id, memory)
           unless data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

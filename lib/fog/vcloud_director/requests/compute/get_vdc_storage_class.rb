@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :get_vdc_storage_profile, :get_vdc_storage_class
@@ -29,7 +29,7 @@ module Fog
         #       that can specify a storage profile is created with no storage
         #       profile specified.
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-VdcStorageClass.html
         def get_vdc_storage_class(id)
@@ -46,7 +46,7 @@ module Fog
       class Mock
         def get_vdc_storage_class(id)
           unless vdc_storage_class = data[:vdc_storage_classes][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.vdcstorageProfile:#{id})\"."
             )
           end

@@ -1,7 +1,7 @@
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/types/VmType.html
         class Vm
           attr_reader :attrs

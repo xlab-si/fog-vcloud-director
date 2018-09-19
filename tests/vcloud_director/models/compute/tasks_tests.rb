@@ -2,7 +2,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'helper'))
 
 Shindo.tests('Compute::VcloudDirector | tasks', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new()
+  @service = Fog::VcloudDirector::Compute.new()
 
   if Fog.mocking?
     # add a bunch of tasks

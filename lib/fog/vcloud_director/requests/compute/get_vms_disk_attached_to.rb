@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a list of all VMs attached to a disk.
         #
@@ -26,7 +26,7 @@ module Fog
       class Mock
         def get_vms_disk_attached_to(id)
           unless data[:disks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No access to entity "com.vmware.vcloud.entity.disk:%s".' % id
             )
           end

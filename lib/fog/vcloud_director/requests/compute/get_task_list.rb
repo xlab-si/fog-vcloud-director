@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :get_tasks_list, :get_task_list
@@ -82,8 +82,8 @@ module Fog
         #         contained by the :Owner entity when task status is
         #         preRunning.
         #
-        # @raise [Fog::Compute::VcloudDirector::BadRequest]
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::BadRequest]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-TaskList.html
         # @since vCloud API version 0.9
@@ -103,7 +103,7 @@ module Fog
       class Mock
         def get_task_list(id)
           unless id == data[:org][:uuid]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"com.vmware.vcloud.entity.org:#{id}\"."
             )
           end

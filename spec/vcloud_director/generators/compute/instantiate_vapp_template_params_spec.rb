@@ -1,6 +1,6 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams do
+describe Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams do
   describe 'Complete xml' do
     let(:xml) do
       params = {
@@ -39,7 +39,7 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
 
       }
 
-      output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(params).generate_xml
+      output = Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(params).generate_xml
       Nokogiri::XML(output)
     end
 
@@ -222,7 +222,7 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
             }
           ]
         }
-        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        output = Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(input).generate_xml
         args[:expect].call(Nokogiri::XML(output))
       end
     end
@@ -371,7 +371,7 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
           :vapp_networks => args[:vapp_networks],
           :endpoint      => 'ENDPOINT'
         }
-        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        output = Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(input).generate_xml
         args[:expect].call(vapp_network_config(Nokogiri::XML(output)))
       end
     end
@@ -411,7 +411,7 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
             }
           ]
         }
-        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        output = Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(input).generate_xml
         args[:expect].call(guest_customization(Nokogiri::XML(output)))
       end
     end
@@ -527,7 +527,7 @@ describe Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams
             }
           ]
         }
-        output = Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(input).generate_xml
+        output = Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(input).generate_xml
         args[:expect].call(networks(Nokogiri::XML(output)))
       end
     end

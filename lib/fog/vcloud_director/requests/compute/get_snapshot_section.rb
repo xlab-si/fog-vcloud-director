@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve SnapshotSection element for a vApp or VM.
         #
@@ -27,7 +27,7 @@ module Fog
           type = 'application/vnd.vmware.vcloud.snapshotSection+xml'
 
           unless data[:vms][id] || data[:vapps][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

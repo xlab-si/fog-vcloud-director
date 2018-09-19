@@ -9,7 +9,7 @@ $LOAD_PATH.unshift "lib"
 require "fog/vcloud_director"
 require "./spec/common_assertions"
 
-include Fog::Generators::Compute::VcloudDirector::ComposeCommon
+include Fog::VcloudDirector::Generators::Compute::ComposeCommon
 
 def secrets
   @secrets ||= File.file?(secrets_path) ? YAML.load_file(secrets_path) : {}

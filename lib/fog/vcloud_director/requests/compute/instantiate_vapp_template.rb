@@ -1,8 +1,8 @@
 require 'builder'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/generators/compute/instantiate_vapp_template_params'
         # Create a vApp from a vApp template.
@@ -69,7 +69,7 @@ module Fog
           options[:Source] = options.delete(:template_uri) if options[:template_uri]
           options[:source_vms].each_with_index { |_, i| options[:source_vms][i][:href] = vapp_template_vm_end_point(options[:source_vms][i].delete(:vm_id)) if options[:source_vms][i].has_key?(:vm_id) }
 
-          Fog::Generators::Compute::VcloudDirector::InstantiateVappTemplateParams.new(options).generate_xml
+          Fog::VcloudDirector::Generators::Compute::InstantiateVappTemplateParams.new(options).generate_xml
         end
 
         def xmlns
@@ -106,12 +106,12 @@ module Fog
         # Assume the template is a single VM with one network interface and one disk.
         def instantiate_vapp_template(vapp_name, template_id, options={})          
           unless data[:catalog_items].values.find {|i| i[:template_id] == template_id}
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No such template.'
             )
           end
           unless data[:vdcs][options[:vdc_id]]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No such VDC.'
             )
           end

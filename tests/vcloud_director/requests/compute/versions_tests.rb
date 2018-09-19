@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | versions requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('#get_supported_versions').formats(VcloudDirector::Compute::Schema::SUPPORTED_VERSIONS_TYPE) do
     @versions = @service.get_supported_versions.body

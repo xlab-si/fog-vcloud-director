@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Reboot a vApp or VM.
         #
@@ -15,7 +15,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::BadRequest]
+        # @raise [Fog::VcloudDirector::Compute::BadRequest]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-RebootVApp.html
         # @since vCloud API version 0.9

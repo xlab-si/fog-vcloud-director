@@ -4,7 +4,7 @@ In this document we provide examples of vapp instantiation.
 ## Minimal Example (no customization)
 
 ```ruby
-service = Fog::Compute::VcloudDirector.new(...)
+service = Fog::VcloudDirector::Compute.new(...)
 options = {
   :stack_name => 'miha-test-vapp',
   :template   => 'vappTemplate-e269eba3-f7d4-449c-b960-a313807b3925',
@@ -25,7 +25,7 @@ add a new one ("Default Network"). For each NIC on each VM we then specify what
 network does it connect to and how.
 
 ```ruby
-service = Fog::Compute::VcloudDirector.new(...)
+service = Fog::VcloudDirector::Compute.new(...)
 options = {
   :stack_name    => 'my-vapp',
   :template      => 'vappTemplate-e269eba3-f7d4-449c-b960-a313807b3925',

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieves a list of users for organization the org admin belongs to
         # by using REST API general QueryHandler.

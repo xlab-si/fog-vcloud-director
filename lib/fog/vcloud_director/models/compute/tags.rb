@@ -1,10 +1,10 @@
 require 'fog/vcloud_director/models/compute/tag'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Tags < Collection
-        model Fog::Compute::VcloudDirector::Tag
+        model Fog::VcloudDirector::Compute::Tag
 
         attribute :vm
 

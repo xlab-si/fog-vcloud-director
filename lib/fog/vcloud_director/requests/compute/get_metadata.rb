@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve metadata associated with the vApp or VM.
         #
@@ -20,7 +20,7 @@ module Fog
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::Parsers::Compute::VcloudDirector::Metadata.new,
+            :parser     => Fog::VcloudDirector::Parsers::Compute::Metadata.new,
             :path       => "vApp/#{id}/metadata/"
           )
         end

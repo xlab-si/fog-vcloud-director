@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a disk.
         #
@@ -21,7 +21,7 @@ module Fog
         #     * :StorageProfile<~Hash> - Storage profile of the disk.
         #     * :Owner<~Hash> - Disk owner.
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-Disk.html
         # @since vCloud API version 5.1
@@ -43,7 +43,7 @@ module Fog
       class Mock
         def get_disk(id)
           unless data[:disks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No access to entity "com.vmware.vcloud.entity.disk:%s".' % id
             )
           end

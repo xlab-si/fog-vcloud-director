@@ -1,7 +1,7 @@
 module Fog
-  module Parsers
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Parsers
+      module Compute
         #
         # <Metadata xmlns="http://www.vmware.com/vcloud/v1.5" type="application/vnd.vmware.vcloud.metadata+xml" href="https://example.com/api/vApp/vm-18545e82-d919-4071-ae7e-d1300d9d8112/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.vmware.com/vcloud/v1.5 http://10.194.1.65/api/v1.5/schema/master.xsd">
         #     <Link rel="up" type="application/vnd.vmware.vcloud.vm+xml" href="https://example.com/api/vApp/vm-18545e82-d919-4071-ae7e-d1300d9d8112"/>

@@ -11,7 +11,7 @@ Shindo.tests("Compute::VcloudDirector | vms", ['vclouddirector', 'all']) do
   vm = vms.first
 
   tests("Compute::VcloudDirector | vm") do
-    tests("#model").returns(Fog::Compute::VcloudDirector::Vm){vm.class}
+    tests("#model").returns(Fog::VcloudDirector::Compute::Vm){vm.class}
     tests("#id").returns(String){ vm.id.class }
     tests("#name").returns(String){ vm.name.class }
     tests("#href").returns(String){ vm.href.class }
@@ -33,8 +33,8 @@ Shindo.tests("Compute::VcloudDirector | vms", ['vclouddirector', 'all']) do
   end
 
   tests("Compute::VcloudDirector | vm | disks") do
-    tests("#collection").returns(Fog::Compute::VcloudDirector::Disks){ vm.disks.class }
-    tests("#get_by_name").returns(Fog::Compute::VcloudDirector::Disk) { vm.disks.get_by_name("Hard disk 1").class }
+    tests("#collection").returns(Fog::VcloudDirector::Compute::Disks){ vm.disks.class }
+    tests("#get_by_name").returns(Fog::VcloudDirector::Compute::Disk) { vm.disks.get_by_name("Hard disk 1").class }
 
     hard_disk = vm.disks.get_by_name("Hard disk 1")
     tests("#id").returns(2000){ hard_disk.id }
@@ -50,7 +50,7 @@ Shindo.tests("Compute::VcloudDirector | vms", ['vclouddirector', 'all']) do
 
   tests("Compute::VcloudDirector | vm | customization") do
     customization = vm.customization
-    tests("#model").returns(Fog::Compute::VcloudDirector::VmCustomization){customization.class}
+    tests("#model").returns(Fog::VcloudDirector::Compute::VmCustomization){customization.class}
     tests("#id").returns(String){ customization.id.class }
     tests("#href").returns(String){ customization.href.class }
     tests("#type").returns("application/vnd.vmware.vcloud.guestCustomizationSection+xml"){ customization.type }
@@ -66,7 +66,7 @@ Shindo.tests("Compute::VcloudDirector | vms", ['vclouddirector', 'all']) do
 
   tests("Compute::VcloudDirector | vm | network") do
     network = vm.network
-    tests("#model").returns(Fog::Compute::VcloudDirector::VmNetwork){network.class}
+    tests("#model").returns(Fog::VcloudDirector::Compute::VmNetwork){network.class}
     tests("#id").returns(String){ network.id.class }
     tests("#href").returns(String){ network.href.class }
     tests("#type").returns("application/vnd.vmware.vcloud.networkConnectionSection+xml"){ network.type }
@@ -82,7 +82,7 @@ Shindo.tests("Compute::VcloudDirector | vms", ['vclouddirector', 'all']) do
 
   tests("Compute::VcloudDirector | vm | tags") do
     tags = vm.tags
-    tests("#collection").returns(Fog::Compute::VcloudDirector::Tags){ tags.class }
+    tests("#collection").returns(Fog::VcloudDirector::Compute::Tags){ tags.class }
   end
 
   # We should also be able to find this VM via Query API

@@ -1,10 +1,10 @@
 require 'fog/vcloud_director/models/compute/media'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Medias < Collection
-        model Fog::Compute::VcloudDirector::Media
+        model Fog::VcloudDirector::Compute::Media
 
         attribute :vdc
 

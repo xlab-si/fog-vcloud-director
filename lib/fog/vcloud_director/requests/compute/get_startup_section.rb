@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve the startup section of a vApp.
         #
@@ -28,7 +28,7 @@ module Fog
           type = 'application/vnd.vmware.vcloud.startupSection+xml'
 
           unless vapp = data[:vapps][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

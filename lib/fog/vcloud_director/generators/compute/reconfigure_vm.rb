@@ -1,9 +1,9 @@
 require 'fog/vcloud_director/generators/compute/compose_common'
 
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         class ReconfigureVm
           extend ComposeCommon
 
@@ -72,7 +72,7 @@ module Fog
                 item.at('./rasd:HostResource')['ns13:busType'] = type if type
                 item.at('./rasd:HostResource')['ns13:busSubType'] = subtype if subtype
               end
-              raise Fog::Compute::VcloudDirector::PreProcessingError.new("Error resizing disk: disk with id '#{id}' does not exist.") unless hdd_exists
+              raise Fog::VcloudDirector::Compute::PreProcessingError.new("Error resizing disk: disk with id '#{id}' does not exist.") unless hdd_exists
             end
 
             def remove_virtual_hardware_section_item_hdd(xml, id:)

@@ -1,8 +1,8 @@
 require 'fog/vcloud_director/models/compute/vm_customization'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class TemplateVm < Model
         identity  :id
 

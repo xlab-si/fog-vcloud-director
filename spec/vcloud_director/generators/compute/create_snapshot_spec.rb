@@ -1,4 +1,4 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Generators::Compute::VcloudDirector::CreateSnapshot do
+describe Fog::VcloudDirector::Generators::Compute::CreateSnapshot do
 end

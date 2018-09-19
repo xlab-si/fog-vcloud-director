@@ -2,11 +2,11 @@ require 'fog/core/collection'
 require 'fog/vcloud_director/models/compute/custom_field'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
 
       class CustomFields < Collection
-        model Fog::Compute::VcloudDirector::CustomField
+        model Fog::VcloudDirector::Compute::CustomField
 
         attribute :vapp
 

@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | users requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('#get_users_from_query') do
     pending if Fog.mocking?

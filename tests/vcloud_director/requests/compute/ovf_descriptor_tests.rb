@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | ovf requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
 
   tests('Get first vDC') do

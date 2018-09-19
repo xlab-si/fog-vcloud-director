@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve the owner of a media object.
         #
@@ -19,7 +19,7 @@ module Fog
         #       * :name<~String> - The name of the user.
         #       * :type<~String> - The MIME type of the user.
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-MediaOwner.html
         # @since vCloud API version 1.5
@@ -37,7 +37,7 @@ module Fog
       class Mock
         def get_media_owner(id)
           unless data[:medias][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No access to entity "com.vmware.vcloud.entity.media:%s".' % id
             )
           end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a vApp or VM.
         #
@@ -11,7 +11,7 @@ module Fog
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-VApp.html
         # @since vCloud API version 0.9
-        def get_vapp(id, parser: Fog::Parsers::Compute::VcloudDirector::Vapp)
+        def get_vapp(id, parser: Fog::VcloudDirector::Parsers::Compute::Vapp)
           response = request(
             :expects    => 200,
             :idempotent => true,
@@ -37,7 +37,7 @@ module Fog
           when /^vm-/
             body = get_mock_vm_body(id)
           else
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end
@@ -52,7 +52,7 @@ module Fog
 
         def get_mock_vm_body(id)
           unless vm = data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end
@@ -83,7 +83,7 @@ module Fog
         def get_mock_vapp_body(id)
 
           unless vapp = data[:vapps][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

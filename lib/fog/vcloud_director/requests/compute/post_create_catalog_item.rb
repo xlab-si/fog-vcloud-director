@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Add an item to a catalog.
         #
@@ -15,7 +15,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise Fog::Compute::VcloudDirector::DuplicateName
+        # @raise Fog::VcloudDirector::Compute::DuplicateName
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-CreateCatalogItem.html
         # @since vCloud API version 0.9
@@ -43,9 +43,9 @@ module Fog
               :parser  => Fog::ToHashDocument.new,
               :path    => "catalog/#{id}/catalogItems"
             )
-          rescue Fog::Compute::VcloudDirector::BadRequest => e
+          rescue Fog::VcloudDirector::Compute::BadRequest => e
             if e.minor_error_code == 'DUPLICATE_NAME'
-              raise Fog::Compute::VcloudDirector::DuplicateName.new(e.message)
+              raise Fog::VcloudDirector::Compute::DuplicateName.new(e.message)
             end
             raise
           end

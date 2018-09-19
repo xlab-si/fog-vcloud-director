@@ -3,7 +3,7 @@ Shindo.tests('Compute::VcloudDirector | ensure_list!', ['vclouddirector']) do
   # ensure list is not available in mocking mode
   unless Fog.mocking?
 
-    @service = Fog::Compute::VcloudDirector.new
+    @service = Fog::VcloudDirector::Compute.new
 
     tests('#ensure_list! for single key ensures our key has an array as a value') do
       tests('for key with a hash').returns(Array) do

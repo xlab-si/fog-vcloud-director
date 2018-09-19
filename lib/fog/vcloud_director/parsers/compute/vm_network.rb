@@ -1,7 +1,7 @@
 module Fog
-  module Parsers
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Parsers
+      module Compute
         #
         #{:xmlns=>"http://www.vmware.com/vcloud/v1.5",
         # :xmlns_xsi=>"http://www.w3.org/2001/XMLSchema-instance",

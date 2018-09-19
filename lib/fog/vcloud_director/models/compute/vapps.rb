@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/vapp'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Vapps < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::Vapp
+        model Fog::VcloudDirector::Compute::Vapp
 
         attribute :vdc
 

@@ -7,7 +7,7 @@ Shindo.tests('Compute::VcloudDirector | media', ['vclouddirector']) do
   media_name = VcloudDirector::Compute::Helper.test_name
 
   tests('Compute::VcloudDirector | media', ['create']) do
-    tests('#create').returns(Fog::Compute::VcloudDirector::Media) do
+    tests('#create').returns(Fog::VcloudDirector::Compute::Media) do
       File.open(VcloudDirector::Compute::Helper.fixture('test.iso'), 'rb') do |iso|
         medias.create(media_name, iso).class
       end

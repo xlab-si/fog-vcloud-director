@@ -1,7 +1,7 @@
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         #   {:metadata=>
         #    {"buenas si"=>"no tanto ya",
         #     "hola"=>"adios"},

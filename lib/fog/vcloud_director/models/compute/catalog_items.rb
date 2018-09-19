@@ -1,10 +1,10 @@
 require 'fog/vcloud_director/models/compute/catalog_item'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class CatalogItems < Collection
-        model Fog::Compute::VcloudDirector::CatalogItem
+        model Fog::VcloudDirector::Compute::CatalogItem
 
         attribute :catalog
 

@@ -21,23 +21,23 @@ Shindo.tests('Compute::VcloudDirector | network requests', ['vclouddirector']) d
     }]
   }
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
   @created_net_id = nil
 
-  tests('Create network in non-existent vDC').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Create network in non-existent vDC').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.post_create_org_vdc_network('00000000-0000-0000-0000-000000000000', 'bob')
   end
 
-  tests('Delete non-existent OrgNetwork').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Delete non-existent OrgNetwork').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.delete_network('00000000-0000-0000-0000-000000000000')
   end
 
-  tests('Retrieve non-existent OrgNetwork (get_network)').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent OrgNetwork (get_network)').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_network('00000000-0000-0000-0000-000000000000')
   end
 
-  tests('Retrieve non-existent OrgNetwork (get_network_complete)').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent OrgNetwork (get_network_complete)').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_network_complete('00000000-0000-0000-0000-000000000000')
   end
 
@@ -178,7 +178,7 @@ Shindo.tests('Compute::VcloudDirector | network requests', ['vclouddirector']) d
   tests('#delete_network') do
     @delete_task = @service.delete_network(@created_net_id).body
     @service.process_task(@delete_task)
-    tests('created network has been deleted').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('created network has been deleted').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_network(@created_net_id)
     end
   end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Upload a media image.
         #
@@ -17,8 +17,8 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::BadRequest]
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::BadRequest]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-UploadMedia.html
         # @since vCloud API version 0.9
@@ -55,17 +55,17 @@ module Fog
       class Mock
         def post_upload_media(vdc_id, name, image_type, size, options={})
           unless ['iso','floppy'].include?(image_type)
-            raise Fog::Compute::VcloudDirector::BadRequest.new(
+            raise Fog::VcloudDirector::Compute::BadRequest.new(
               'The value of parameter imageType is incorrect.'
             )
           end
           unless size.to_s =~ /^\d+$/
-            raise Fog::Compute::VcloudDirector::BadRequest.new(
+            raise Fog::VcloudDirector::Compute::BadRequest.new(
               'validation error on field \'size\': must be greater than or equal to 0'
             )
           end
           unless data[:vdcs][vdc_id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.vdc:#{vdc_id})\"."
             )
           end

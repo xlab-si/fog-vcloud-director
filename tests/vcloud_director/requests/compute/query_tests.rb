@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | query requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('retrieve a summary list of all typed queries types') do
     tests('#get_execute_query') do

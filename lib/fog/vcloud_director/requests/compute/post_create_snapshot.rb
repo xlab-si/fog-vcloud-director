@@ -1,10 +1,10 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/generators/compute/create_snapshot'
         def post_create_snapshot(id, options={})
-          body = Fog::Generators::Compute::VcloudDirector::CreateSnapshot.new(options).generate_xml
+          body = Fog::VcloudDirector::Generators::Compute::CreateSnapshot.new(options).generate_xml
 
           request(
             :body => body,

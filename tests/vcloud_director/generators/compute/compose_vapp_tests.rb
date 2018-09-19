@@ -56,7 +56,7 @@ Shindo.tests("Compute::VcloudDirector - ComposeVapp", ['vclouddirector']) do
   }
 
   tests('#check xml from generator').returns(true) do
-    xml = Nokogiri.XML Fog::Generators::Compute::VcloudDirector::ComposeVapp.new(@vapp_configuration).generate_xml
+    xml = Nokogiri.XML Fog::VcloudDirector::Generators::Compute::ComposeVapp.new(@vapp_configuration).generate_xml
 
     tags_with_values = {
       'ComposeVAppParams>Description' => 'a description',

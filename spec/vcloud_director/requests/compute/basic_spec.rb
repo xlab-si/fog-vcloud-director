@@ -1,6 +1,6 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Compute::VcloudDirector::Real do
+describe Fog::VcloudDirector::Compute::Real do
   describe 'Requests exist' do
     let(:service) do
       response =  Object.new
@@ -14,7 +14,7 @@ describe Fog::Compute::VcloudDirector::Real do
         })
       connection = Object.new
       connection.stubs(:request).returns(response)
-      service = Fog::Compute::VcloudDirector::Real.new
+      service = Fog::VcloudDirector::Compute::Real.new
       service.instance_variable_set(:@connection, connection)
       service.stubs(:request).returns(response)
       service.stubs(:ensure_list!).returns(true)

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Vapp < Model
         identity  :id
 
@@ -22,7 +22,7 @@ module Fog
           #    vapp.vms.all
           #    vapp.vms.get_by_name
           if (vms = kwargs.delete(:vms))
-            @vms = Fog::Compute::VcloudDirector::Vms.new(
+            @vms = Fog::VcloudDirector::Compute::Vms.new(
               :vapp    => self,
               :service => kwargs[:service]
             ).with_item_list(Array(vms))
@@ -84,7 +84,7 @@ module Fog
         def undeploy(action='powerOff')
           begin
             response = service.post_undeploy_vapp(id, :UndeployPowerAction => action)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -96,7 +96,7 @@ module Fog
           requires :id
           begin
             response = service.post_power_off_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -108,7 +108,7 @@ module Fog
           requires :id
           begin
             response = service.post_power_on_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -120,7 +120,7 @@ module Fog
           requires :id
           begin
             response = service.post_reboot_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -132,7 +132,7 @@ module Fog
           requires :id
           begin
             response = service.post_reset_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -144,7 +144,7 @@ module Fog
           requires :id
           begin
             response = service.post_shutdown_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -156,7 +156,7 @@ module Fog
           requires :id
           begin
             response = service.post_suspend_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end
@@ -167,7 +167,7 @@ module Fog
           requires :id
           begin
             response = service.delete_vapp(id)
-          rescue Fog::Compute::VcloudDirector::BadRequest => ex
+          rescue Fog::VcloudDirector::Compute::BadRequest => ex
             Fog::Logger.debug(ex.message)
             return false
           end

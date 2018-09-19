@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a catalog.
         #
@@ -8,7 +8,7 @@ module Fog
         # @return [Excon::Response]
         #   * hash<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-Catalog.html
         # @since vCloud API version 0.9
@@ -28,7 +28,7 @@ module Fog
       class Mock
         def get_catalog(id)
           unless catalog = data[:catalogs][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.catalog:#{id})\"."
             )
           end

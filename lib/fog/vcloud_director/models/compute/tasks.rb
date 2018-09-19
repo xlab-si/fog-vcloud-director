@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/task'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Tasks < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::Task
+        model Fog::VcloudDirector::Compute::Task
 
         attribute :organization
 

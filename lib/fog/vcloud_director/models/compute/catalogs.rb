@@ -2,10 +2,10 @@ require 'fog/vcloud_director/models/compute/catalog'
 require 'fog/vcloud_director/models/compute/catalog_item'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Catalogs < Collection
-        model Fog::Compute::VcloudDirector::Catalog
+        model Fog::VcloudDirector::Compute::Catalog
 
         attribute :organization
 
@@ -13,7 +13,7 @@ module Fog
           item = service.get_catalog_item(item_id).body
           return nil unless item
           item[:vapp_template_id] = item[:Entity][:href].split('/').last
-          Fog::Compute::VcloudDirector::CatalogItem.new(item.merge({ :service => service, :collection => [] }))
+          Fog::VcloudDirector::Compute::CatalogItem.new(item.merge({ :service => service, :collection => [] }))
         end
 
         private

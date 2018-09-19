@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :post_task_cancel, :post_cancel_task
@@ -24,7 +24,7 @@ module Fog
       class Mock
         def post_cancel_task(id)
           unless task = data[:tasks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No access to entity "com.vmware.vcloud.entity.task:%s"' % id
             )
           end

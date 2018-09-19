@@ -22,7 +22,7 @@ def vcr_service
   end
 
   @vcr_service ||= VCR.use_cassette('authentication') do
-    Fog::Compute::VcloudDirector.new(
+    Fog::VcloudDirector::Compute.new(
       :vcloud_director_username      => username,
       :vcloud_director_password      => password,
       :vcloud_director_host          => hostname,

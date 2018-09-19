@@ -1,16 +1,16 @@
 require 'fog/vcloud_director/models/compute/disk'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Disks < Collection
-        model Fog::Compute::VcloudDirector::Disk
+        model Fog::VcloudDirector::Compute::Disk
 
         attribute :vm
 
         def create(size)
           item_list unless @disks
-          data = Fog::Generators::Compute::VcloudDirector::Disks.new(@disks)
+          data = Fog::VcloudDirector::Generators::Compute::Disks.new(@disks)
           data.add_hard_disk(size)
           response = service.put_disks(vm.id, data.disks)
           service.process_task(response.body)

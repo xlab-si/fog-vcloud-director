@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | vdc_storage_profile requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
   @vdc_id = VcloudDirector::Compute::Helper.first_vdc_id(@org)
   @vdc = @service.get_vdc(@vdc_id).body
@@ -20,7 +20,7 @@ Shindo.tests('Compute::VcloudDirector | vdc_storage_profile requests', ['vcloudd
     end
   end
 
-  tests('Retrieve non-existent vDC storage profile').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent vDC storage profile').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_vdc_storage_class('00000000-0000-0000-0000-000000000000')
   end
 

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :post_vm_poweron, :post_power_on_vapp
@@ -18,7 +18,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::BadRequest]
+        # @raise [Fog::VcloudDirector::Compute::BadRequest]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-PowerOnVApp.html
         # @since vCloud API version 0.9
@@ -34,7 +34,7 @@ module Fog
       class Mock
         def post_power_on_vapp(id)
           unless data[:vapps][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

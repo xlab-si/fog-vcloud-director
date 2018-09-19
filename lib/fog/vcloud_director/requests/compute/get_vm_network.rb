@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/parsers/compute/vm_network'
 
@@ -21,7 +21,7 @@ module Fog
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::Parsers::Compute::VcloudDirector::VmNetwork.new,
+            :parser     => Fog::VcloudDirector::Parsers::Compute::VmNetwork.new,
             :path       => "vApp/#{id}/networkConnectionSection/"
           )
         end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Disk < Model # there is no lazy_load in disks
         identity  :id
 
@@ -22,7 +22,7 @@ module Fog
           not_first_set = !capacity.nil?
           attributes[:capacity] = new_capacity.to_i
           if not_first_set && has_changed
-            data = Fog::Generators::Compute::VcloudDirector::Disks.new(all_disks)
+            data = Fog::VcloudDirector::Generators::Compute::Disks.new(all_disks)
             num_disk = name.scan(/\d+/).first.to_i
             data.modify_hard_disk_size(num_disk, new_capacity)
             response = service.put_disks(attributes[:vm].id, data.disks)
@@ -36,7 +36,7 @@ module Fog
 
         def destroy
           num_disk = name.scan(/\d+/).first.to_i
-          data = Fog::Generators::Compute::VcloudDirector::Disks.new(all_disks)
+          data = Fog::VcloudDirector::Generators::Compute::Disks.new(all_disks)
           data.delete_hard_disk(num_disk)
           response = service.put_disks(attributes[:vm].id, data.disks)
           service.process_task(response.body)

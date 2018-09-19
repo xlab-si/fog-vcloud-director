@@ -1,8 +1,8 @@
 require 'date'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a task.
         #
@@ -70,7 +70,7 @@ module Fog
         #     * :Details<~String> - Detailed message about the task. Also
         #       contained by the :Owner entity when task status is preRunning.
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-Task.html
         # @since vCloud API version 0.9
@@ -97,7 +97,7 @@ module Fog
       class Mock
         def get_task(id)
           unless data[:tasks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

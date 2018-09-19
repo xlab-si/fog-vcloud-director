@@ -1,11 +1,11 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
+describe Fog::VcloudDirector::Generators::Compute::ReconfigureVm do
   let(:current)  { Nokogiri::XML(File.read('./spec/fixtures/vm.xml')) }
   let(:hardware) { {} }
   let(:networks) { nic_conf.empty? ? [] : [nic_conf] }
   let(:nic_conf) { {} }
-  let(:output)   { Nokogiri::XML(Fog::Generators::Compute::VcloudDirector::ReconfigureVm.generate_xml(current, input)) }
+  let(:output)   { Nokogiri::XML(Fog::VcloudDirector::Generators::Compute::ReconfigureVm.generate_xml(current, input)) }
   let(:input) do
     input = {}
     input[:hardware] = hardware unless hardware.empty?
@@ -65,7 +65,7 @@ describe Fog::Generators::Compute::VcloudDirector::ReconfigureVm do
         let(:disks) { { :id => 'nonexisting', :capacity_mb => 123 } }
 
         it 'resize nonexisting' do
-          -> { output }.must_raise Fog::Compute::VcloudDirector::PreProcessingError
+          -> { output }.must_raise Fog::VcloudDirector::Compute::PreProcessingError
         end
       end
 

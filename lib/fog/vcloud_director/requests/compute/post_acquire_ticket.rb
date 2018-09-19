@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a screen ticket that you can use with the VMRC browser
         # plug-in to gain access to the console of a running VM.
@@ -9,7 +9,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::Conflict]
+        # @raise [Fog::VcloudDirector::Compute::Conflict]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-AcquireTicket.html
         # @since vCloud API version 0.9

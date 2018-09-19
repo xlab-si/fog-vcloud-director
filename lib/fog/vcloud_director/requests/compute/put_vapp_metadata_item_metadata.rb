@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Set the value for the specified metadata key to the value provided,
         # overwriting any existing value.
@@ -50,7 +50,7 @@ module Fog
 
         def put_vapp_metadata_item_metadata(id, key, value)
           unless vm_or_vapp = data[:vapps][id] || vm_or_vapp = data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

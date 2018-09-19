@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/vm'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Vms < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::Vm
+        model Fog::VcloudDirector::Compute::Vm
 
         attribute :vapp
 

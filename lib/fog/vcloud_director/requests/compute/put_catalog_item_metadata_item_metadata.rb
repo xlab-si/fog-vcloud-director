@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Set the metadata value for the specified key to the value provided,
         # overwriting any existing value.

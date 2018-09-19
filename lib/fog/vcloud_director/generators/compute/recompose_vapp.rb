@@ -1,9 +1,9 @@
 require 'fog/vcloud_director/generators/compute/compose_common'
 
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         # @see http://pubs.vmware.com/vcd-51/index.jsp#types/RecomposeVAppParamsType.html
         class RecomposeVapp
 
