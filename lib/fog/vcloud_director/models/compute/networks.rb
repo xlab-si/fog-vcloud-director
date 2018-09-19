@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/network'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Networks < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::Network
+        model Fog::VcloudDirector::Compute::Network
 
         attribute :organization
         attribute :vdc

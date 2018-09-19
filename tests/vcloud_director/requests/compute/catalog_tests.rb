@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | catalog requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
 
   tests('#get_catalog').data_matches_schema(VcloudDirector::Compute::Schema::CATALOG_TYPE) do
@@ -35,7 +35,7 @@ Shindo.tests('Compute::VcloudDirector | catalog requests', ['vclouddirector']) d
     end
   end
 
-  tests('Retrieve non-existent Catalog').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent Catalog').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_catalog('00000000-0000-0000-0000-000000000000')
   end
 

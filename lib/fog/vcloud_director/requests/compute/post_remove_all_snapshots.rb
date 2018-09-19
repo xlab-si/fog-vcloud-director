@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Removes all user created snapshots for a vApp or virtual machine.
         #

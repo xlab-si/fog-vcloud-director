@@ -1,10 +1,10 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/generators/compute/recompose_vapp'
         def post_recompose_vapp(id, options={})
-          body = Fog::Generators::Compute::VcloudDirector::RecomposeVapp.new(options).generate_xml
+          body = Fog::VcloudDirector::Generators::Compute::RecomposeVapp.new(options).generate_xml
 
           request(
             :body => body,

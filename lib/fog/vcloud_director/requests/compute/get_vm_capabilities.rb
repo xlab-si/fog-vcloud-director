@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Gets capabilities for the VM identified by id.
         #
@@ -33,7 +33,7 @@ module Fog
           type = 'application/vnd.vmware.vcloud.vmCapabilitiesSection+xml'
 
           unless vm = data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve the value of the specified key from virtual datacenter
         # metadata.

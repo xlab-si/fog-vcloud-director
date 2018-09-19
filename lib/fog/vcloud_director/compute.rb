@@ -20,8 +20,8 @@ class NonLoaded
 end
 
 module Fog
-  module Compute
-    class VcloudDirector < Fog::Service
+  module VcloudDirector
+    class Compute < Fog::Service
       module Defaults
         PATH        = '/api'
         PORT        = 443
@@ -360,15 +360,15 @@ module Fog
           @vcloud_director_password = options[:vcloud_director_password]
           @vcloud_director_username = options[:vcloud_director_username]
           @connection_options = options[:connection_options] || {}
-          @connection_options[:omit_default_port] = Fog::Compute::VcloudDirector::Defaults::OMIT_DEFAULT_PORT unless @connection_options[:omit_default_port]
+          @connection_options[:omit_default_port] = Fog::VcloudDirector::Compute::Defaults::OMIT_DEFAULT_PORT unless @connection_options[:omit_default_port]
           @host       = options[:vcloud_director_host]
-          @path       = options[:path]        || Fog::Compute::VcloudDirector::Defaults::PATH
+          @path       = options[:path]        || Fog::VcloudDirector::Compute::Defaults::PATH
           @persistent = options[:persistent]  || false
-          @port       = options[:port]        || Fog::Compute::VcloudDirector::Defaults::PORT
-          @scheme     = options[:scheme]      || Fog::Compute::VcloudDirector::Defaults::SCHEME
+          @port       = options[:port]        || Fog::VcloudDirector::Compute::Defaults::PORT
+          @scheme     = options[:scheme]      || Fog::VcloudDirector::Compute::Defaults::SCHEME
           @connection = Fog::XML::Connection.new("#{@scheme}://#{@host}:#{@port}", @persistent, @connection_options)
           @end_point = "#{@scheme}://#{@host}#{@path}/"
-          @api_version = options[:vcloud_director_api_version] || Fog::Compute::VcloudDirector::Defaults::API_VERSION
+          @api_version = options[:vcloud_director_api_version] || Fog::VcloudDirector::Compute::Defaults::API_VERSION
           @show_progress = options[:vcloud_director_show_progress]
           @show_progress = $stdin.tty? if @show_progress.nil?
           @vcloud_token  = options[:vcloud_token]
@@ -832,13 +832,13 @@ module Fog
           @vcloud_director_username = options[:vcloud_director_username]
           #@connection_options = options[:connection_options] || {}
           @host = options[:vcloud_director_host]
-          @path = options[:path] || Fog::Compute::VcloudDirector::Defaults::PATH
+          @path = options[:path] || Fog::VcloudDirector::Compute::Defaults::PATH
           @persistent = options[:persistent] || false
-          @port = options[:port] || Fog::Compute::VcloudDirector::Defaults::PORT
-          @scheme = options[:scheme] || Fog::Compute::VcloudDirector::Defaults::SCHEME
+          @port = options[:port] || Fog::VcloudDirector::Compute::Defaults::PORT
+          @scheme = options[:scheme] || Fog::VcloudDirector::Compute::Defaults::SCHEME
           #@connection = Fog::XML::Connection.new("#{@scheme}://#{@host}:#{@port}", @persistent, @connection_options)
           @end_point    = "#{@scheme}://#{@host}#{@path}/"
-          @api_version  = options[:vcloud_director_api_version] || Fog::Compute::VcloudDirector::Defaults::API_VERSION
+          @api_version  = options[:vcloud_director_api_version] || Fog::VcloudDirector::Compute::Defaults::API_VERSION
           @vcloud_token = options[:vcloud_token]
         end
 

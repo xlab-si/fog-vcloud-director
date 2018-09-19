@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | session requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('#post_login_sessions').data_matches_schema(VcloudDirector::Compute::Schema::SESSION_TYPE) do
     pending

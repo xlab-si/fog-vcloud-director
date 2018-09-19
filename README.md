@@ -59,7 +59,7 @@ Lazy load isn't used with `get` and `get_by_name` methods are used.
 ## Initialization
 
 ```ruby
-vcloud = Fog::Compute::VcloudDirector.new(
+vcloud = Fog::VcloudDirector::Compute.new(
   :vcloud_director_username => "<username>@<org_name>",
   :vcloud_director_password => "<password>",
   :vcloud_director_host => 'api.example.com',
@@ -80,9 +80,9 @@ specify `false`. Another option is to reload a specific item:
 vcloud.organizations
 ```
 ```
-  <Fog::Compute::VcloudDirector::Organizations
+  <Fog::VcloudDirector::Compute::Organizations
     [
-      <Fog::Compute::VcloudDirector::Organization
+      <Fog::VcloudDirector::Compute::Organization
         id="c6a4c623-c158-41cf-a87a-dbc1637ad55a",
         name="DevOps",
         type="application/vnd.vmware.vcloud.org+xml",
@@ -116,8 +116,8 @@ org = vcloud.organizations.first
 org.vdcs
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vdcs
-    organization=    <Fog::Compute::VcloudDirector::Organization
+  <Fog::VcloudDirector::Compute::Vdcs
+    organization=    <Fog::VcloudDirector::Compute::Organization
       id="c6a4c623-c158-41cf-a87a-dbc1637ad55a",
       name="DevOps",
       type="application/vnd.vmware.vcloud.org+xml",
@@ -125,7 +125,7 @@ org.vdcs
       description=NonLoaded
     >
     [
-      <Fog::Compute::VcloudDirector::Vdc
+      <Fog::VcloudDirector::Compute::Vdc
         id="9a06a16b-12c6-44dc-aee1-06aa52262ea3",
         name="DevOps - VDC",
         type="application/vnd.vmware.vcloud.vdc+xml",
@@ -153,7 +153,7 @@ org = vcloud.organizations.first
 org.vdcs.get_by_name("DevOps - VDC")
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vdc
+  <Fog::VcloudDirector::Compute::Vdc
     id="9a06a16b-12c6-44dc-aee1-06aa52262ea3",
     name="DevOps - VDC",
     type="application/vnd.vmware.vcloud.vdc+xml",
@@ -182,8 +182,8 @@ vdc = org.vdcs.first
 vdc.vapps
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vapps
-    vdc=    <Fog::Compute::VcloudDirector::Vdc
+  <Fog::VcloudDirector::Compute::Vapps
+    vdc=    <Fog::VcloudDirector::Compute::Vdc
       id="9a06a16b-12c6-44dc-aee1-06aa52262ea3",
       name="DevOps - VDC",
       type="application/vnd.vmware.vcloud.vdc+xml",
@@ -201,7 +201,7 @@ vdc.vapps
       is_enabled=NonLoaded
     >
     [
-      <Fog::Compute::VcloudDirector::Vapp
+      <Fog::VcloudDirector::Compute::Vapp
         id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
         name="segundo",
         type="application/vnd.vmware.vcloud.vApp+xml",
@@ -217,7 +217,7 @@ vdc.vapps
         owner=NonLoaded,
         InMaintenanceMode=NonLoaded
       >,
-      <Fog::Compute::VcloudDirector::Vapp
+      <Fog::VcloudDirector::Compute::Vapp
         id="vapp-6ac43e0e-13e2-4642-a58a-6dc3a12f585b",
         name="vApp_restebanez_9",
         type="application/vnd.vmware.vcloud.vApp+xml",
@@ -245,7 +245,7 @@ vdc = org.vdcs.first
 vdc.vapps.get_by_name("segundo")
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vapp
+  <Fog::VcloudDirector::Compute::Vapp
     id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
     name="segundo",
     type="application/vnd.vmware.vcloud.vApp+xml",
@@ -274,8 +274,8 @@ vapp = vdc.vapps.get_by_name("segundo")
 vapp.vms
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vms
-    vapp=    <Fog::Compute::VcloudDirector::Vapp
+  <Fog::VcloudDirector::Compute::Vms
+    vapp=    <Fog::VcloudDirector::Compute::Vapp
       id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
       name="segundo",
       type="application/vnd.vmware.vcloud.vApp+xml",
@@ -292,7 +292,7 @@ vapp.vms
       InMaintenanceMode=false
     >
     [
-      <Fog::Compute::VcloudDirector::Vm
+      <Fog::VcloudDirector::Compute::Vm
         id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
         vapp_id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
         name="DEVWEB",
@@ -318,7 +318,7 @@ vapp = vdc.vapps.get_by_name("segundo")
 vapp.vms.get_by_name("DEVWEB")
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Vm
+  <Fog::VcloudDirector::Compute::Vm
     id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
     vapp_id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
     name="DEVWEB",
@@ -384,7 +384,7 @@ vm = vapp.vms.get_by_name("DEVWEB")
 vm.customization
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::VmCustomization
+  <Fog::VcloudDirector::Compute::VmCustomization
     id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
     type="application/vnd.vmware.vcloud.guestCustomizationSection+xml",
     href="https://example.com/api/vApp/vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192/guestCustomizationSection/",
@@ -434,7 +434,7 @@ vm = vapp.vms.get_by_name("DEVWEB")
 vm.network
 ```
 ```ruby
-    <Fog::Compute::VcloudDirector::VmNetwork
+    <Fog::VcloudDirector::Compute::VmNetwork
     id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
     type="application/vnd.vmware.vcloud.networkConnectionSection+xml",
     href="https://example.com/api/vApp/vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192/networkConnectionSection/",
@@ -479,8 +479,8 @@ vm = vapp.vms.get_by_name("DEVWEB")
 vm.disks
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Disks
-    vm=    <Fog::Compute::VcloudDirector::Vm
+  <Fog::VcloudDirector::Compute::Disks
+    vm=    <Fog::VcloudDirector::Compute::Vm
       id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
       vapp_id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
       name="DEVWEB",
@@ -494,7 +494,7 @@ vm.disks
       hard_disks=[{"Hard disk 1"=>163840}]
     >
     [
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=2,
         address=0,
         description="SCSI Controller",
@@ -507,7 +507,7 @@ vm.disks
         bus_sub_type=nil,
         bus_type=nil
       >,
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=2000,
         address=nil,
         description="Hard disk",
@@ -520,7 +520,7 @@ vm.disks
         bus_sub_type="lsilogicsas",
         bus_type=6
       >,
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=3,
         address=0,
         description="IDE Controller",
@@ -554,8 +554,8 @@ The new disk should show up.
 
 ```ruby
 >> vm.disks
-  <Fog::Compute::VcloudDirector::Disks
-    vm=    <Fog::Compute::VcloudDirector::Vm
+  <Fog::VcloudDirector::Compute::Disks
+    vm=    <Fog::VcloudDirector::Compute::Vm
       id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
       vapp_id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
       name="DEVWEB",
@@ -569,7 +569,7 @@ The new disk should show up.
       hard_disks=[{"Hard disk 1"=>163840}]
     >
     [
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=2,
         address=0,
         description="SCSI Controller",
@@ -582,7 +582,7 @@ The new disk should show up.
         bus_sub_type=nil,
         bus_type=nil
       >,
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=2000,
         address=nil,
         description="Hard disk",
@@ -595,7 +595,7 @@ The new disk should show up.
         bus_sub_type="lsilogicsas",
         bus_type=6
       >,
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=2001,
         address=nil,
         description="Hard disk",
@@ -608,7 +608,7 @@ The new disk should show up.
         bus_sub_type="lsilogicsas",
         bus_type=6
       >,
-      <Fog::Compute::VcloudDirector::Disk
+      <Fog::VcloudDirector::Compute::Disk
         id=3,
         address=0,
         description="IDE Controller",
@@ -665,8 +665,8 @@ vm = vapp.vms.get_by_name("DEVWEB")
 vm.tags
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Tags
-    vm=    <Fog::Compute::VcloudDirector::Vm
+  <Fog::VcloudDirector::Compute::Tags
+    vm=    <Fog::VcloudDirector::Compute::Vm
       id="vm-2ddeea36-ac71-470f-abc5-c6e3c2aca192",
       vapp_id="vapp-11c7102f-443d-40fd-b1da-cca981fb44b6",
       name="DEVWEB",
@@ -680,19 +680,19 @@ vm.tags
       hard_disks=[{"Hard disk 1"=>163840}]
     >
     [
-      <Fog::Compute::VcloudDirector::Tag
+      <Fog::VcloudDirector::Compute::Tag
         id="environment",
         value="devlab"
       >,
-      <Fog::Compute::VcloudDirector::Tag
+      <Fog::VcloudDirector::Compute::Tag
         id="product",
         value="devlabtest"
       >,
-      <Fog::Compute::VcloudDirector::Tag
+      <Fog::VcloudDirector::Compute::Tag
         id="hello",
         value="ddd"
       >,
-      <Fog::Compute::VcloudDirector::Tag
+      <Fog::VcloudDirector::Compute::Tag
         id="uno",
         value="jander"
       >
@@ -723,7 +723,7 @@ vm = vapp.vms.get_by_name("DEVWEB")
 vm.tags.get_by_name('this_is_a_key')
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Tag
+  <Fog::VcloudDirector::Compute::Tag
     id="this_is_a_key",
     value="this_is_a_value"
   >
@@ -766,8 +766,8 @@ org = vcloud.organizations.first
 org.networks
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Networks
-    organization=    <Fog::Compute::VcloudDirector::Organization
+  <Fog::VcloudDirector::Compute::Networks
+    organization=    <Fog::VcloudDirector::Compute::Organization
       id="c6a4c623-c158-41cf-a87a-dbc1637ad55a",
       name="DevOps",
       type="application/vnd.vmware.vcloud.org+xml",
@@ -775,7 +775,7 @@ org.networks
       description=NonLoaded
     >
     [
-      <Fog::Compute::VcloudDirector::Network
+      <Fog::VcloudDirector::Compute::Network
         id="d5f47bbf-de27-4cf5-aaaa-56772f2ccd17",
         name="DevOps - Dev Network Connection",
         type="application/vnd.vmware.vcloud.orgNetwork+xml",
@@ -800,7 +800,7 @@ org = vcloud.organizations.first
 org.networks.get_by_name("DevOps - Dev Network Connection")
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Network
+  <Fog::VcloudDirector::Compute::Network
     id="d5f47bbf-de27-4cf5-aaaa-56772f2ccd17",
     name="DevOps - Dev Network Connection",
     type="application/vnd.vmware.vcloud.orgNetwork+xml",
@@ -827,8 +827,8 @@ org = vcloud.organizations.first
 org.catalogs
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Catalogs
-    organization=    <Fog::Compute::VcloudDirector::Organization
+  <Fog::VcloudDirector::Compute::Catalogs
+    organization=    <Fog::VcloudDirector::Compute::Organization
       id="c6a4c623-c158-41cf-a87a-dbc1637ad55a",
       name="DevOps",
       type="application/vnd.vmware.vcloud.org+xml",
@@ -836,7 +836,7 @@ org.catalogs
       description=NonLoaded
     >
     [
-      <Fog::Compute::VcloudDirector::Catalog
+      <Fog::VcloudDirector::Compute::Catalog
         id="4ee720e5-173a-41ac-824b-6f4908bac975",
         name="Public VM Templates",
         type="application/vnd.vmware.vcloud.catalog+xml",
@@ -844,7 +844,7 @@ org.catalogs
         description=NonLoaded,
         is_published=NonLoaded
       >,
-      <Fog::Compute::VcloudDirector::Catalog
+      <Fog::VcloudDirector::Compute::Catalog
         id="ea0c6acf-c9c0-46b7-b19f-4b2d3bf8aa33",
         name="prueba",
         type="application/vnd.vmware.vcloud.catalog+xml",
@@ -863,7 +863,7 @@ org = vcloud.organizations.first
 org.catalogs.get("4ee720e5-173a-41ac-824b-6f4908bac975") # or get_by_name("Public VM Templates")
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::Catalog
+  <Fog::VcloudDirector::Compute::Catalog
     id="4ee720e5-173a-41ac-824b-6f4908bac975",
     name="Public VM Templates",
     type="application/vnd.vmware.vcloud.catalog+xml",
@@ -883,8 +883,8 @@ catalog = org.catalogs.first
 catalog.catalog_items
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::CatalogItems
-    catalog=    <Fog::Compute::VcloudDirector::Catalog
+  <Fog::VcloudDirector::Compute::CatalogItems
+    catalog=    <Fog::VcloudDirector::Compute::Catalog
       id="4ee720e5-173a-41ac-824b-6f4908bac975",
       name="Public VM Templates",
       type="application/vnd.vmware.vcloud.catalog+xml",
@@ -893,7 +893,7 @@ catalog.catalog_items
       is_published=NonLoaded
     >
     [
-      <Fog::Compute::VcloudDirector::CatalogItem
+      <Fog::VcloudDirector::Compute::CatalogItem
         id="2bd55629-2734-420c-9068-2ff06a4a8028",
         name="DEVWIN",
         type="application/vnd.vmware.vcloud.catalogItem+xml",
@@ -901,7 +901,7 @@ catalog.catalog_items
         description=NonLoaded,
         vapp_template_id=NonLoaded
       >,
-      <Fog::Compute::VcloudDirector::CatalogItem
+      <Fog::VcloudDirector::Compute::CatalogItem
         id="5437aa3f-e369-40b2-b985-2e63e1bc9f2e",
         name="DEVRHL",
         type="application/vnd.vmware.vcloud.catalogItem+xml",
@@ -909,7 +909,7 @@ catalog.catalog_items
         description=NonLoaded,
         vapp_template_id=NonLoaded
       >,
-      <Fog::Compute::VcloudDirector::CatalogItem
+      <Fog::VcloudDirector::Compute::CatalogItem
         id="54cf5deb-326f-4770-a91a-39048689b6ea",
         name="DEVAPP",
         type="application/vnd.vmware.vcloud.catalogItem+xml",
@@ -929,7 +929,7 @@ catalog = org.catalogs.first
 catalog.catalog_items.get_by_name('DEVAPP')
 ```
 ```ruby
-  <Fog::Compute::VcloudDirector::CatalogItem
+  <Fog::VcloudDirector::Compute::CatalogItem
     id="54cf5deb-326f-4770-a91a-39048689b6ea",
     name="DEVAPP",
     type="application/vnd.vmware.vcloud.catalogItem+xml",

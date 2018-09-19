@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | vdc requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
 
   tests('#get_vdc').data_matches_schema(VcloudDirector::Compute::Schema::VDC_TYPE) do
@@ -29,7 +29,7 @@ Shindo.tests('Compute::VcloudDirector | vdc requests', ['vclouddirector']) do
     end
   end
 
-  tests('Retrieve non-existent vDC').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent vDC').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_vdc('00000000-0000-0000-0000-000000000000')
   end
 

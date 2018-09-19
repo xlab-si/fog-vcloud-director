@@ -1,4 +1,4 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Generators::Compute::VcloudDirector::Vm do
+describe Fog::VcloudDirector::Generators::Compute::Vm do
 end

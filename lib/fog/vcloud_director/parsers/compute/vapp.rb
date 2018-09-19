@@ -1,9 +1,9 @@
 require 'fog/vcloud_director/parsers/compute/vm_parser_helper'
 
 module Fog
-  module Parsers
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Parsers
+      module Compute
         class Vapp < VcloudDirectorParser
           include VmParserHelper
 

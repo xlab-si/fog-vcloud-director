@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Create a copy of a media object.
         #
@@ -53,12 +53,12 @@ module Fog
         def post_clone_media(vdc_id, source_id, options={})
           # TODO: check this happens.
           unless source_media = data[:medias][source_id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.media:#{source_id})\"."
             )
           end
           unless data[:vdcs][vdc_id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.vdc:#{vdc_id})\"."
             )
           end

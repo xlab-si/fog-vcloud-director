@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/generators/compute/compose_vapp'
         # Compose a vApp from existing virtual machines.
@@ -28,7 +28,7 @@ module Fog
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/POST-ComposeVApp.html
         # @since vCloud API version 0.9
         def post_compose_vapp(id, options={})
-          body = Fog::Generators::Compute::VcloudDirector::ComposeVapp.new(options).generate_xml
+          body = Fog::VcloudDirector::Generators::Compute::ComposeVapp.new(options).generate_xml
 
           request(
             :body => body,

@@ -5,7 +5,7 @@ Shindo.tests("Compute::VcloudDirector | networks", ['vclouddirector', 'all']) do
   # unless there is at least one network we cannot run these tests
   pending if organization.networks.empty?
 
-  service = Fog::Compute::VcloudDirector.new
+  service = Fog::VcloudDirector::Compute.new
 
   networks = organization.networks
   network_raw = nil

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a catalog item.
         #
@@ -23,7 +23,7 @@ module Fog
       class Mock
         def get_catalog_item(id)
           unless item = data[:catalog_items][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.catalogItem:#{id})\"."
             )
           end

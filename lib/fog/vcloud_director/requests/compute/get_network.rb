@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/parsers/compute/network'
 
@@ -12,7 +12,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/GET-Network.html
         # @since vCloud API version 0.9
@@ -22,7 +22,7 @@ module Fog
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::Parsers::Compute::VcloudDirector::Network.new,
+            :parser     => Fog::VcloudDirector::Parsers::Compute::Network.new,
             :path       => "network/#{id}"
           )
         end
@@ -32,7 +32,7 @@ module Fog
         def get_network(id)
           Fog::Logger.deprecation("#{self} => #get_network is deprecated, use #get_network_complete instead [light_black](#{caller.first})[/]")
           unless network = data[:networks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

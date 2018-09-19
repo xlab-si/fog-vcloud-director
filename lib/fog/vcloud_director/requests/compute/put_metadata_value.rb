@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # deprecated Use {#put_vapp_metadata_item_metadata} instead.
         def put_metadata_value(vm_id, metadata_key, metadata_value)

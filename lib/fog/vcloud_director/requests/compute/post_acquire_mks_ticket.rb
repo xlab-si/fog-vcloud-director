@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Retrieve a MKS screen ticket that you can use
         # to gain access to the console of a running VM.
@@ -9,7 +9,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::Conflict]
+        # @raise [Fog::VcloudDirector::Compute::Conflict]
         #
         # https://pubs.vmware.com/vcd-80/index.jsp?topic=%2Fcom.vmware.vcloud.api.reference.doc_90%2Fdoc%2Foperations%2FPOST-AcquireMksTicket.html
         # @since vCloud API version 5.5

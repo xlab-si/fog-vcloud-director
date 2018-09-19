@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/vdc'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Vdcs < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::Vdc
+        model Fog::VcloudDirector::Compute::Vdc
 
         attribute :organization
 

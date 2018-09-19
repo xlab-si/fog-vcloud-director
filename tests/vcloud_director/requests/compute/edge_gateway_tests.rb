@@ -87,7 +87,7 @@ Shindo.tests('Compute::VcloudDirector | edge gateway requests', ['vclouddirector
       }
   }.merge!(@vpn_configuration).merge!(@dhcp_configuration)
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
 
   tests('Get first vDC with an EdgeGatewayRecord') do
@@ -106,7 +106,7 @@ Shindo.tests('Compute::VcloudDirector | edge gateway requests', ['vclouddirector
   tests('#get_org_vdc_gateways').data_matches_schema(VcloudDirector::Compute::Schema::QUERY_RESULT_RECORDS_TYPE) do
     begin
       @edge_gateways = @service.get_org_vdc_gateways(@vdc_id).body
-    rescue Fog::Compute::VcloudDirector::Unauthorized # bug, may be localised
+    rescue Fog::VcloudDirector::Compute::Unauthorized # bug, may be localised
       retry
     end
     @edge_gateways
@@ -172,7 +172,7 @@ Shindo.tests('Compute::VcloudDirector | edge gateway requests', ['vclouddirector
     end
 
     tests('#check VPN xml from generator').returns(true) do
-      xml = Nokogiri.XML Fog::Generators::Compute::VcloudDirector::EdgeGatewayServiceConfiguration.new(@vpn_configuration).generate_xml
+      xml = Nokogiri.XML Fog::VcloudDirector::Generators::Compute::EdgeGatewayServiceConfiguration.new(@vpn_configuration).generate_xml
       #Not comprehensive, only checks that the generator actually knows how to handle it and that the output looks vagely sane
       paths = {
         'GatewayIpsecVpnService>IsEnabled' => 'true',
@@ -184,7 +184,7 @@ Shindo.tests('Compute::VcloudDirector | edge gateway requests', ['vclouddirector
     end
 
     tests('#check DHCP xml from generator').returns(true) do
-      xml = Nokogiri.XML Fog::Generators::Compute::VcloudDirector::EdgeGatewayServiceConfiguration.new(@dhcp_configuration).generate_xml
+      xml = Nokogiri.XML Fog::VcloudDirector::Generators::Compute::EdgeGatewayServiceConfiguration.new(@dhcp_configuration).generate_xml
       paths = {
           'GatewayDhcpService>IsEnabled' => "true",
           'GatewayDhcpService>Pool>IsEnabled' => "true",
@@ -198,18 +198,18 @@ Shindo.tests('Compute::VcloudDirector | edge gateway requests', ['vclouddirector
 
 end
 
-  tests('Retrieve non-existent edge gateway').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Retrieve non-existent edge gateway').raises(Fog::VcloudDirector::Compute::Forbidden) do
     begin
       @service.get_edge_gateway('00000000-0000-0000-0000-000000000000')
-    rescue Fog::Compute::VcloudDirector::Unauthorized # bug, may be localised
+    rescue Fog::VcloudDirector::Compute::Unauthorized # bug, may be localised
       retry
     end
   end
 
-  tests('Configure non-existent edge gateway').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('Configure non-existent edge gateway').raises(Fog::VcloudDirector::Compute::Forbidden) do
     begin
       @service.post_configure_edge_gateway_services('00000000-0000-0000-0000-000000000000', {})
-    rescue Fog::Compute::VcloudDirector::Unauthorized # bug, may be localised
+    rescue Fog::VcloudDirector::Compute::Unauthorized # bug, may be localised
       retry
     end
   end

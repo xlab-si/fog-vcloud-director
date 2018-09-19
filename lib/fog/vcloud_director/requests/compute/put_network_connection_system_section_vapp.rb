@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :put_vm_network, :put_network_connection_system_section_vapp
@@ -119,7 +119,7 @@ module Fog
       class Mock
         def put_network_connection_system_section_vapp(id, options={})
           unless data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

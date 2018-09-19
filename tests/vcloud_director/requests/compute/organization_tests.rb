@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | organization requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('#get_organizations').data_matches_schema(VcloudDirector::Compute::Schema::ORG_LIST_TYPE) do
     @org_list = @service.get_organizations.body
@@ -30,7 +30,7 @@ Shindo.tests('Compute::VcloudDirector | organization requests', ['vclouddirector
     end
   end
 
-  tests('retrieve non-existent Org').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  tests('retrieve non-existent Org').raises(Fog::VcloudDirector::Compute::Forbidden) do
     @service.get_organization('00000000-0000-0000-0000-000000000000')
   end
 

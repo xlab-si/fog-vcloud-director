@@ -1,10 +1,10 @@
 require 'fog/vcloud_director/models/compute/organization'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Organizations < Collection
-        model Fog::Compute::VcloudDirector::Organization
+        model Fog::VcloudDirector::Compute::Organization
 
         private
 

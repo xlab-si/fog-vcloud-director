@@ -1,7 +1,7 @@
 require './spec/vcr_spec_helper.rb'
 
-describe Fog::Compute::VcloudDirector::Vms do
-  let(:subject) { Fog::Compute::VcloudDirector::Vms.new(:service => vcr_service, :vapp => vapp) }
+describe Fog::VcloudDirector::Compute::Vms do
+  let(:subject) { Fog::VcloudDirector::Compute::Vms.new(:service => vcr_service, :vapp => vapp) }
   let(:vapp_id) { 'vapp-fe8d013d-dd2f-4ac6-9e8a-3a4a18e0a62e' }
   let(:vapp)    { Object.new.tap { |vapp| vapp.stubs(:id).returns(vapp_id) } }
   let(:vm_id)   { 'vm-314172f1-1835-4598-b049-5c1d4dce39ad' }

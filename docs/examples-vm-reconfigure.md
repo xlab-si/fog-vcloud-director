@@ -6,7 +6,7 @@ This example demonstrates basic hardware customization parameters. Raw content o
 `xml` can be examined [here](./vm-to-reconfigure.xml).
 
 ```ruby
-service = Fog::Compute::VcloudDirector.new(...)
+service = Fog::VcloudDirector::Compute.new(...)
 
 # Obtain nokogiri-parsed XML representation of VM.
 xml = service.get_vapp('vm-8dc9990c-a55a-418e-8e21-5942a20b93ef', :parser => 'xml').body
@@ -43,7 +43,7 @@ This example demonstrates basic NIC connection customization that allows you to 
 vApp network is each VM's NIC connected to, among with other NIC options.
 
 ```ruby
-service = Fog::Compute::VcloudDirector.new(...)
+service = Fog::VcloudDirector::Compute.new(...)
 
 # Obtain nokogiri-parsed XML representation of VM.
 xml = service.get_vapp('vm-8dc9990c-a55a-418e-8e21-5942a20b93ef', :parser => 'xml').body

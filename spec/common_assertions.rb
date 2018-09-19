@@ -1,5 +1,5 @@
 def expect_vm(vm, vapp_id:, name:, status:, deployed:, os:, ip:, cpu:, cores_per_socket:, cpu_hot:, mem:, mem_hot:, num_hdds:, num_nics:)
-  vm.must_be_instance_of Fog::Compute::VcloudDirector::Vm
+  vm.must_be_instance_of Fog::VcloudDirector::Compute::Vm
   vm.type.must_equal 'application/vnd.vmware.vcloud.vm+xml'
   vm.vapp_id.must_equal vapp_id
   vm.name.must_equal name
@@ -20,7 +20,7 @@ end
 
 # Basic vApp information which is provided when vApps are only listed for VDC.
 def expect_vapp_skeleton(vapp, id:, name:)
-  vapp.must_be_instance_of Fog::Compute::VcloudDirector::Vapp
+  vapp.must_be_instance_of Fog::VcloudDirector::Compute::Vapp
   vapp.type.must_equal 'application/vnd.vmware.vcloud.vApp+xml'
   vapp.href.must_include '/api/vApp/vapp-'
   vapp.id.must_equal id

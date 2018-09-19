@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Upgrade the virtual hardware version of a VM to the highest supported
         # virtual hardware version of the vDC that contains it.

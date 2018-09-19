@@ -1,4 +1,4 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Parsers::Compute::VcloudDirector::VmsByMetadata do
+describe Fog::VcloudDirector::Parsers::Compute::VmsByMetadata do
 end

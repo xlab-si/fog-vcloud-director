@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/generators/compute/edge_gateway_service_configuration'
 
@@ -20,7 +20,7 @@ module Fog
         #   vCloud API Documentaion
         # @since vCloud API version 5.1
         def post_configure_edge_gateway_services(id, configuration)
-          body = Fog::Generators::Compute::VcloudDirector::EdgeGatewayServiceConfiguration.new(configuration).generate_xml
+          body = Fog::VcloudDirector::Generators::Compute::EdgeGatewayServiceConfiguration.new(configuration).generate_xml
 
           request(
               :body => body,
@@ -36,7 +36,7 @@ module Fog
       class Mock
         def post_configure_edge_gateway_services(id, configuration)
           unless data[:edge_gateways][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
                       "No access to entity \"(com.vmware.vcloud.entity.edgegateway:#{id})\"."
                   )
           end

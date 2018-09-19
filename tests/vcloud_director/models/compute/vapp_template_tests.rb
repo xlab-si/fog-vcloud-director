@@ -16,7 +16,7 @@ Shindo.tests("Compute::VcloudDirector | vapp_templates", ['vclouddirector', 'all
   end
   
   tests("Compute::VcloudDirector | vapp_template vms") do
-    tests("#vms").returns(Fog::Compute::VcloudDirector::TemplateVms) { vapp.vms.class }
+    tests("#vms").returns(Fog::VcloudDirector::Compute::TemplateVms) { vapp.vms.class }
     pending if Fog.mock?
     vm = vapp.vms[0]
     tests("#name").returns(String){ vm.name.class }

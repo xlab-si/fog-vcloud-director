@@ -1,8 +1,8 @@
 require 'fog/vcloud_director/generators/compute/reconfigure_vm'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Updates VM configuration.
         #
@@ -24,7 +24,7 @@ module Fog
         # @since vCloud API version 5.1
         def post_reconfigure_vm(id, current, options)
           request(
-            :body    => Fog::Generators::Compute::VcloudDirector::ReconfigureVm.generate_xml(current, options),
+            :body    => Fog::VcloudDirector::Generators::Compute::ReconfigureVm.generate_xml(current, options),
             :expects => 202,
             :headers => {'Content-Type' => 'application/vnd.vmware.vcloud.vm+xml'},
             :method  => 'POST',

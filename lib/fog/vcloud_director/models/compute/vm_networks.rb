@@ -1,10 +1,10 @@
 require 'fog/vcloud_director/models/compute/vm_network'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class VmNetworks < Collection
-        model Fog::Compute::VcloudDirector::VmNetwork
+        model Fog::VcloudDirector::Compute::VmNetwork
 
         attribute :vm
 

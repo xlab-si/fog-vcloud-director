@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/parsers/compute/disks'
 
@@ -21,7 +21,7 @@ module Fog
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::Parsers::Compute::VcloudDirector::Disks.new,
+            :parser     => Fog::VcloudDirector::Parsers::Compute::Disks.new,
             :path       => "vApp/#{id}/virtualHardwareSection/disks"
           )
         end

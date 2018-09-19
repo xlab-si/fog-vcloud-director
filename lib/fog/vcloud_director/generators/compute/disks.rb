@@ -1,7 +1,7 @@
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         # This is the data structure it accepts, this is the output of
         # #get_vm_disks:
         #

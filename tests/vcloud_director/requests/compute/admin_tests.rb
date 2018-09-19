@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | admin requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('#get_vcloud').data_matches_schema(VcloudDirector::Compute::Schema::VCLOUD_TYPE) do
      @service.get_vcloud.body

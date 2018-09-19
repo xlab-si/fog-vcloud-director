@@ -1,6 +1,6 @@
 Shindo.tests('Compute::VcloudDirector | vm requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @org = VcloudDirector::Compute::Helper.current_org(@service)
 
   tests('Each vDC') do
@@ -167,17 +167,17 @@ Shindo.tests('Compute::VcloudDirector | vm requests', ['vclouddirector']) do
     end
   end
 
-  #tests('Retrieve non-existent vApp').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  #tests('Retrieve non-existent vApp').raises(Fog::VcloudDirector::Compute::Forbidden) do
   #  pending if Fog.mocking?
   #  @service.get_vapp('00000000-0000-0000-0000-000000000000')
   #end
 
-  #tests('Retrieve owner of non-existent vApp').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  #tests('Retrieve owner of non-existent vApp').raises(Fog::VcloudDirector::Compute::Forbidden) do
   #  pending if Fog.mocking?
   #  @service.get_vapp_owner('00000000-0000-0000-0000-000000000000')
   #end
 
-  #tests('Delete non-existent vApp').raises(Fog::Compute::VcloudDirector::Forbidden) do
+  #tests('Delete non-existent vApp').raises(Fog::VcloudDirector::Compute::Forbidden) do
   #  pending if Fog.mocking?
   #  @service.delete_vapp('00000000-0000-0000-0000-000000000000')
   #end

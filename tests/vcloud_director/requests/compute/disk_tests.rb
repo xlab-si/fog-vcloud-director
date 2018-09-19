@@ -1,27 +1,27 @@
 Shindo.tests('Compute::VcloudDirector | disk requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
   @disk_name = VcloudDirector::Compute::Helper.test_name
 
   tests('error conditions') do
     tests('#post_upload_disk') do
-      tests('Invalid size').raises(Fog::Compute::VcloudDirector::BadRequest) do
+      tests('Invalid size').raises(Fog::VcloudDirector::Compute::BadRequest) do
         @service.post_upload_disk('00000000-0000-0000-0000-000000000000', @disk_name, -1)
       end
     end
-    tests('Upload to non-existent vDC').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('Upload to non-existent vDC').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.post_upload_disk('00000000-0000-0000-0000-000000000000', @disk_name, 0)
     end
-    tests('Retrieve non-existent Disk').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('Retrieve non-existent Disk').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_disk('00000000-0000-0000-0000-000000000000')
     end
-    tests('Retrieve owner of non-existent Disk').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('Retrieve owner of non-existent Disk').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_disk_owner('00000000-0000-0000-0000-000000000000')
     end
-    tests('Retrieve VM list for non-existent Disk').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('Retrieve VM list for non-existent Disk').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_vms_disk_attached_to('00000000-0000-0000-0000-000000000000')
     end
-    tests('Delete non-existent Disk').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('Delete non-existent Disk').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.delete_disk('00000000-0000-0000-0000-000000000000')
     end
   end
@@ -147,17 +147,17 @@ Shindo.tests('Compute::VcloudDirector | disk requests', ['vclouddirector']) do
   end
 
   tests('Disk no longer exists') do
-    tests("#get_disk(#{@disk_id})").raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests("#get_disk(#{@disk_id})").raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_disk(@disk_id)
     end
-    tests("#get_disk_owner(#{@disk_id})").raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests("#get_disk_owner(#{@disk_id})").raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_disk_owner(@disk_id)
     end
-    tests("#get_disk_metadata(#{@disk_id})").raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests("#get_disk_metadata(#{@disk_id})").raises(Fog::VcloudDirector::Compute::Forbidden) do
       pending if Fog.mocking?
       @service.get_disk_metadata(@disk_id)
     end
-    tests("#delete_disk(#{@disk_id})").raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests("#delete_disk(#{@disk_id})").raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.delete_disk(@disk_id)
     end
   end

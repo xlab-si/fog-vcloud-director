@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Delete a disk.
         #
@@ -26,7 +26,7 @@ module Fog
       class Mock
         def delete_disk(id)
           unless data[:disks][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.disk:#{id})\""
             )
           end

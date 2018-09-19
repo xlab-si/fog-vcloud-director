@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Delete a vApp or VM.
         #
@@ -11,7 +11,7 @@ module Fog
         # @return [Excon::Response]
         #   * body<~Hash>:
         #
-        # @raise [Fog::Compute::VcloudDirector::BadRequest]
+        # @raise [Fog::VcloudDirector::Compute::BadRequest]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/DELETE-VApp.html
         # @since vCloud API version 0.9
@@ -27,7 +27,7 @@ module Fog
       class Mock
         def delete_vapp(id)
           unless data[:vapps][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end

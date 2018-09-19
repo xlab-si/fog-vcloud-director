@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Create a disk.
         #
@@ -81,12 +81,12 @@ module Fog
       class Mock
         def post_upload_disk(id, name, size, options={})
           unless size.to_s =~ /^\d+$/
-            raise Fog::Compute::VcloudDirector::BadRequest.new(
+            raise Fog::VcloudDirector::Compute::BadRequest.new(
               "validation error on field 'diskSpec.sizeBytes': must be greater than or equal to 0"
             )
           end
           unless data[:vdcs][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'No access to entity "(com.vmware.vcloud.entity.vdc:%s)".' % id
             )
           end

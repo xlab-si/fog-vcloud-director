@@ -5,7 +5,7 @@ def boolean?(item)
 end
 
 def vcloud_director
-  @vcloud_director ||= Fog::Compute::VcloudDirector.new(
+  @vcloud_director ||= Fog::VcloudDirector::Compute.new(
     :connection_options => {
       :ssl_verify_peer => false,
       :connect_timeout => 200,

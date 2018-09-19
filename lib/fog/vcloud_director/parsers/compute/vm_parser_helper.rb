@@ -1,7 +1,7 @@
 module Fog
-  module Parsers
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Parsers
+      module Compute
         module VmParserHelper
           def initialize_vm
             {

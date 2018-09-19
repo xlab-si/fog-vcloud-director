@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         require 'fog/vcloud_director/parsers/compute/vms_by_metadata'
 
@@ -10,7 +10,7 @@ module Fog
             :expects    => 200,
             :idempotent => true,
             :method     => 'GET',
-            :parser     => Fog::Parsers::Compute::VcloudDirector::VmsByMetadata.new,
+            :parser     => Fog::VcloudDirector::Parsers::Compute::VmsByMetadata.new,
             :path       => "vms/query?format=records&filter=metadata:#{key}==STRING:#{value}"
           )
         end

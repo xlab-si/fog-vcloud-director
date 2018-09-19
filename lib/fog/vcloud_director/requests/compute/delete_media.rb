@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Delete a media object.
         #
@@ -72,7 +72,7 @@ module Fog
         #         contained by the :Owner entity when task status is
         #         preRunning.
         #
-        # @raise [Fog::Compute::VcloudDirector::Forbidden]
+        # @raise [Fog::VcloudDirector::Compute::Forbidden]
         #
         # @see http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.api.reference.doc_51/doc/operations/DELETE-Media.html
         # @since vCloud API version 0.9
@@ -89,7 +89,7 @@ module Fog
       class Mock
         def delete_media(id)
           unless media = data[:medias][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               "No access to entity \"(com.vmware.vcloud.entity.media:#{id})\""
             )
           end

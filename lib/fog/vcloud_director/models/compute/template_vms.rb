@@ -1,13 +1,13 @@
 require 'fog/vcloud_director/models/compute/template_vm'
 
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class TemplateVms < Collection
 
         include Fog::VcloudDirector::Query
 
-        model Fog::Compute::VcloudDirector::TemplateVm
+        model Fog::VcloudDirector::Compute::TemplateVm
 
         attribute :vapp_template
 

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         extend Fog::Deprecation
         deprecate :put_vm_customization, :put_guest_customization_section_vapp

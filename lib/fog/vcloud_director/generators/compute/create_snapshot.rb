@@ -1,7 +1,7 @@
 module Fog
-  module Generators
-    module Compute
-      module VcloudDirector
+  module VcloudDirector
+    module Generators
+      module Compute
         # @see http://pubs.vmware.com/vcd-56/topic/com.vmware.ICbase/PDF/vcd_56_api_guide.pdf @page 121
         class CreateSnapshot
           attr_reader :attrs

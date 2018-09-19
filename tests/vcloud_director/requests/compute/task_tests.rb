@@ -1,15 +1,15 @@
 Shindo.tests('Compute::VcloudDirector | task requests', ['vclouddirector']) do
 
-  @service = Fog::Compute::VcloudDirector.new
+  @service = Fog::VcloudDirector::Compute.new
 
   tests('error conditions') do
-    tests('retrieve non-existent TasksList').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('retrieve non-existent TasksList').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_task_list('00000000-0000-0000-0000-000000000000')
     end
-    tests('retrieve non-existent Task').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('retrieve non-existent Task').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.get_task('00000000-0000-0000-0000-000000000000')
     end
-    tests('cancel non-existent Task').raises(Fog::Compute::VcloudDirector::Forbidden) do
+    tests('cancel non-existent Task').raises(Fog::VcloudDirector::Compute::Forbidden) do
       @service.post_cancel_task('00000000-0000-0000-0000-000000000000')
     end
   end

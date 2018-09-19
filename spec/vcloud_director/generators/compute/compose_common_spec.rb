@@ -1,6 +1,6 @@
 require './spec/spec_helper.rb'
 
-describe Fog::Generators::Compute::VcloudDirector::ComposeCommon do
+describe Fog::VcloudDirector::Generators::Compute::ComposeCommon do
   describe '.calculate_fence_mode' do
     [
       {
@@ -54,7 +54,7 @@ describe Fog::Generators::Compute::VcloudDirector::ComposeCommon do
       },
     ].each do |args|
       it args[:case].to_s do
-        mode = Fog::Generators::Compute::VcloudDirector::ComposeCommon.send(
+        mode = Fog::VcloudDirector::Generators::Compute::ComposeCommon.send(
           :calculate_fence_mode,
           args[:mode],
           args[:parent],

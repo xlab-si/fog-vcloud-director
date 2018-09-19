@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class VcloudDirector
+  module VcloudDirector
+    class Compute
       class Real
         # Merge the metadata provided in the request with existing metadata.
         #
@@ -50,7 +50,7 @@ module Fog
       class Mock
         def post_update_vapp_metadata(id, metadata={})
           unless data[:vms][id]
-            raise Fog::Compute::VcloudDirector::Forbidden.new(
+            raise Fog::VcloudDirector::Compute::Forbidden.new(
               'This operation is denied.'
             )
           end
