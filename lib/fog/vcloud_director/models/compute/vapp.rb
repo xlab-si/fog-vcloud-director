@@ -50,6 +50,7 @@ module Fog
           service.custom_fields( :vapp => self)
         end
 
+        # https://pubs.vmware.com/vcd-80/index.jsp#com.vmware.vcloud.api.sp.doc_90/GUID-843BE3AD-5EF6-4442-B864-BCAE44A51867.html
         def human_status
           case status
           when '-1', -1
