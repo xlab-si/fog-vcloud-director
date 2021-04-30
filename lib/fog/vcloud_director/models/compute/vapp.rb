@@ -16,19 +16,19 @@ module Fog
         attribute :owner
         attribute :maintenance, :type => :boolean
 
-        def initialize(*args, **kwargs)
+        def initialize(attributes = {})
           # Memorize VMs because their full XML description was already included in the vApp XML description.
           # Instead simple Array we rather store as Collection in order to provide common interface e.g.
           #    vapp.vms.all
           #    vapp.vms.get_by_name
-          if (vms = kwargs.delete(:vms))
+          if (vms = attributes.delete(:vms))
             @vms = Fog::VcloudDirector::Compute::Vms.new(
               :vapp    => self,
-              :service => kwargs[:service]
+              :service => attributes[:service]
             ).with_item_list(Array(vms))
           end
 
-          super(*args, **kwargs)
+          super(attributes)
         end
 
         def vms(force: false)
