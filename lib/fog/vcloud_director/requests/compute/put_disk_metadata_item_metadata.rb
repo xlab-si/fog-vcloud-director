@@ -37,7 +37,7 @@ module Fog
             :headers => {'Content-Type' => 'application/vnd.vmware.vcloud.metadata.value+xml'},
             :method  => 'PUT',
             :parser  => Fog::ToHashDocument.new,
-            :path    => "disk/#{id}/metadata/#{URI.escape(key)}"
+            :path    => "disk/#{id}/metadata/#{URI::DEFAULT_PARSER.escape(key)}"
           )
         end
       end

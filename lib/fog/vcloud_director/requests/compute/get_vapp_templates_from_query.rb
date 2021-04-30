@@ -71,7 +71,7 @@ module Fog
             :method     => 'GET',
             :parser     => Fog::ToHashDocument.new,
             :path       => 'vAppTemplates/query',
-            :query      => query.map {|q| URI.escape(q)}.join('&')
+            :query      => query.map {|q| URI::DEFAULT_PARSER.escape(q)}.join('&')
           )
           ensure_list! response.body, :Link
           ensure_list! response.body,

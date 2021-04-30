@@ -19,7 +19,7 @@ module Fog
             :idempotent => true,
             :method     => 'GET',
             :parser     => Fog::ToHashDocument.new,
-            :path       => "admin/org/#{id}/metadata/#{URI.escape(domain)}/#{URI.escape(key)})"
+            :path       => "admin/org/#{id}/metadata/#{URI::DEFAULT_PARSER.escape(domain)}/#{URI::DEFAULT_PARSER.escape(key)})"
           )
         end
       end

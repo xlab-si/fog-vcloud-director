@@ -17,7 +17,7 @@ module Fog
             :idempotent => true,
             :method     => 'GET',
             :parser     => Fog::ToHashDocument.new,
-            :path       => "catalogItem/#{id}/metadata/#{URI.escape(key)})"
+            :path       => "catalogItem/#{id}/metadata/#{URI::DEFAULT_PARSER.escape(key)})"
           )
         end
       end
