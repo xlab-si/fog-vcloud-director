@@ -16,7 +16,7 @@ module Fog
             :expects => 202,
             :method  => 'DELETE',
             :parser  => Fog::ToHashDocument.new,
-            :path    => "media/#{id}/metadata/#{URI.escape(key)}"
+            :path    => "media/#{id}/metadata/#{URI::DEFAULT_PARSER.escape(key)}"
           )
         end
       end

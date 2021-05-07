@@ -16,7 +16,7 @@ module Fog
             :idempotent => true,
             :method     => 'GET',
             :parser     => Fog::ToHashDocument.new,
-            :path       => "vdcStorageProfile/#{id}/metadata/#{URI.escape(key)})"
+            :path       => "vdcStorageProfile/#{id}/metadata/#{URI::DEFAULT_PARSER.escape(key)})"
           )
         end
       end
